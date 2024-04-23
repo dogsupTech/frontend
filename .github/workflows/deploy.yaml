@@ -7,7 +7,7 @@ on:
 
 env:
   REGISTRY: europe-west2-docker.pkg.dev
-  IMAGE_NAME: ${{ secrets.GCP_PROJECT_ID }}/docker-repository/nextjs-frontend
+  IMAGE_NAME: ${{ secrets.GCP_PROJECT_ID }}/docker-repository/nextjstfrontend
 
 jobs:
   build-and-deploy:
@@ -41,8 +41,7 @@ jobs:
 
     - name: Build and push Docker image
       run: >
-        docker buildx build --platform linux/amd64 
-        -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }} --push .
+        docker buildx build --platform linux/amd64 -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }} --push .
         # Build and push Docker image with the commit SHA as a tag for version tracking.
 
     - name: Deploy to Google Cloud Run
