@@ -7,7 +7,7 @@ on:
 
 env:
   REGISTRY: europe-west2-docker.pkg.dev
-  IMAGE_NAME: ${{ secrets.GCP_PROJECT_ID }}/nextjs-frontend
+  IMAGE_NAME: ${{ secrets.GCP_PROJECT_ID }}/docker-repository/nextjs-frontend
 
 jobs:
   build-and-deploy:
