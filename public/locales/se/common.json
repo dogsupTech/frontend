@@ -1,0 +1,921 @@
+{
+  "vetai": {
+    "waitlist": {
+      "youAreOnTheWaitlist": "Du står på väntelistan!",
+      "text": "Tack för att du har anslutit dig till väntelistan för Dogsup Vet AI! Ha tålamod! För att säkerställa en fantastisk upplevelse kommer vi att skicka ut inbjudningar gradvis över tid. Vi meddelar dig när vi är redo för dig.",
+      "exploreDogsup": "UTFORSKA DOGSUP"
+    },
+    "age": "Ålder",
+    "breed": "Ras",
+    "symptoms": "Symptom",
+    "summary": "Sammanfattning",
+    "assessment1": "Bedömning",
+    "nextsteps1": "Nästa steg",
+    "backbutton": "Tillbaka",
+    "nextbutton": "Nästa",
+    "okbutton": "OK",
+    "continuebutton": "Fortsätt",
+    "confirmbutton": "Konfirmera",
+    "skipbutton": "Hoppa över",
+    "symptomslist": {
+      "gut": "Mage",
+      "eyes": "Ögon",
+      "mouth": "Mun",
+      "skinandfur": "Hud och päls",
+      "ears": "Öron",
+      "skin": "Hud och päls"
+    },
+    "subsymptomlist": {
+      "vomiting": "Kräkningar",
+      "diarrhea": "Diarré",
+      "noAppetite": "Bristande aptit",
+      "bloatedAbdomen": "Uppblåst mage",
+      "constipation": "Förstoppning",
+      "gas": "Gas",
+      "redness": "Rodnad",
+      "discharge": "Utsläpp",
+      "swelling": "Svullnad",
+      "cloudiness": "Molnighet",
+      "squinting": "Squinting",
+      "tearing": "Tårar",
+      "odor": "Lukt",
+      "scratchingOrPawingAtTheEar": "Klåda eller tassande vid örat",
+      "headShaking": "Huvudskakning",
+      "hearingLoss": "Hörselbortfall",
+      "scabsOrCrusts": "Skorpor eller skorpa",
+      "itchyPatches": "Klåda eller utslag",
+      "hairLoss": "Håravfall",
+      "lumpsOrBumps": "Knölar eller bulor",
+      "rash": "Utslag",
+      "badBreath": "Dålig andedräkt",
+      "drooling": "Dreglande",
+      "difficultyChewing": "Svårigheter att tugga",
+      "swollenGums": "Svullna tandkött",
+      "bleedingGums": "Blödande tandkött",
+      "toothLoss": "Tandförlust"
+    },
+    "welcomepage": {
+      "title": {
+        "first": "Välkommen till",
+        "second": "Dogsup Vet AI"
+      },
+      "subtitle": "En veterinär till din hunds förfogande när som helst, var som helst.",
+      "login": "Logga in",
+      "signup": "Registrera dig",
+      "rollingsymptomstitle": "Vi är här för att hjälpa din hund med:"
+    },
+    "whathashappendpage": {
+      "title": "Vad har hänt?",
+      "content": "Klicka på bilden som speglar problemet du vill ha hjälp med idag.",
+      "healthproblems": {
+        "first": "Hälso-",
+        "second": "problem"
+      },
+      "emergency": {
+        "title": "Nödsituation",
+        "content": {
+          "first": "Om det är en nödsituation, kontakta en fysisk veterinär för ett besök eller ring din lokala djurambulans.",
+          "second": "Om du är osäker på vem du ska kontakta, kontakta din hunds försäkringsbolag för råd."
+        }
+      }
+    },
+    "howitworkspage": {
+      "title": "Så fungerar det",
+      "content1": "Dogsup Vet AI kan ge dig och din hund en första åsikt om hur man behandlar en hälsoproblem.",
+      "content2": "Se till att du tar din tid när du besvarar frågorna. Efter att ha besvarat frågorna får du ett svar från AI:n inom 5 sekunder. Ju mer informativa svar du kan ge, desto mer exakt bedömning från AI:n.",
+      "content3": "Ju mer informativa svar du kan ge, desto mer exakt bedömning från AI:n.",
+      "wheredoestheaigetinfo": "Var får AI sin information ifrån?",
+      "letsgo": "Låt oss gå!",
+      "ifemergency": {
+        "title": "OM NÖDSITUATION:",
+        "content": "Kontakta en fysisk veterinär för ett besök eller ring din lokala djurambulans."
+      }
+    },
+    "dogagepage": {
+      "selectdate": "Välj din hunds födelsedag",
+      "title": {
+        "first": "Hur gammal är",
+        "second": "din hund?"
+      },
+      "content": "Dra vår vän Nelson till din hunds korrekta ålder eller skriv in den i fältet och klicka på 'Nästa'.",
+      "year": {
+        "singular": "år",
+        "plural": "år"
+      },
+      "month": {
+        "singular": "månad",
+        "plural": "månader"
+      },
+      "week": {
+        "singular": "vecka",
+        "plural": "veckor"
+      },
+      "day": {
+        "singular": "dag",
+        "plural": "dagar"
+      },
+      "newborn": "Nyfödd",
+      "errors": {
+        "selectage": "Vänligen välj födelsedatum."
+      }
+    },
+    "dogbreedpage": {
+      "title": {
+        "first": "Vilken ras är",
+        "second": "din hund?"
+      },
+      "content": "Använd rullgardinsmenyn eller sök efter din hunds ras nedan. Klicka på 'Nästa' när du är klar.",
+      "searchplaceholder": "Sok eller anvand gardinen",
+      "errors": {
+        "selectbreed": "Vänligen välj en ras innan du fortsätter."
+      }
+    },
+    "symptomspage": {
+      "title": {
+        "first": "Vad kan vi hjälpa",
+        "second": "dig med?"
+      },
+      "content": "Använd rullgardinsmenyn eller sök efter din hunds ras nedan. Klicka på 'Nästa' när du är klar."
+    },
+    "subsymptompage": {
+      "title": {
+        "choose": "Välj",
+        "problems": "problem"
+      },
+      "content": {
+        "select": "Välj tillämpliga",
+        "problemsyourdogisexperiencing": "problem som din hund upplever",
+        "inthenextsteps": "I nästa steg kommer vi att be dig utveckla varje problem."
+      }
+    },
+    "betweensymptomandsubsymptompage": {
+      "title": {
+        "first": "Bra jobbat!",
+        "second": "Låt oss lägga till lite mer detaljer om..."
+      },
+      "content": "Vi är nästan klara! Vi behöver helt enkelt lite mer information om symptomen för att ge dig exakta resultat och åtgärder att vidta."
+    },
+    "detailinfopage": {
+      "title": "Detaljerad information",
+      "content": "All information om din hunds nuvarande tillstånd kan vara till hjälp för att göra en bedömning och ge dig bästa möjliga vägledning.",
+      "whendiditstart": "När började det?",
+      "selectsymptomifapplicable": [
+        "Välj",
+        "symptom om det är tillämpligt..."
+      ],
+      "condition": {
+        "title": "Nuvarande tillstånd?",
+        "gettingworse": "Blir värre",
+        "gettingbetter": "Blir bättre",
+        "male": "Hane",
+        "female" : "Tik"
+      },
+      "selectedsymptoms": "valda symptom"
+    },
+    "summarypage": {
+      "title": "Sammanfattning",
+      "content": "Detta är en sammanfattning av all information du har lämnat. Läs igenom den, dubbelkolla att den är korrekt och redigera informationen vid behov."
+    },
+    "assessment": {
+      "title": "Resultat",
+      "urgency": "Brådskande",
+      "accuracy": "Noggrannhet",
+      "assessment": "Bedömning",
+      "reasoning": "Resonemang",
+      "actions": "Åtgärder"
+    },
+    "nextsteps": {
+      "title": {
+        "first": "Nästa steg",
+        "second": "Nästa steg",
+        "third": "Nästa steg"
+      },
+      "content": [
+        "Tack för att du använder Dogsup Vet AI!",
+        "Bedömningen kommer att sparas på din profil. För att göra processen snabbare nästa gång du använder Dogsup Vet AI sparar vi all historisk information om din hund, detta kan ändras när som helst från din profil.",
+        "Bedömningen kommer också att skickas till din e-post."
+      ]
+    },
+    "whatIsYourDogsName": {
+      "title1": "Vad heter",
+      "title2": "din hund?",
+      "enterTheNameOfYourDog" : "Ange namnet på din hund...",
+      "maleOrFemale": "Hane eller tik?",
+      "male": "Hane",
+      "female": "Tik",
+      "hello": "Hej"
+    }
+  },
+  "rolling": "100% Spannmålsfritt",
+  "free-sample": {
+    "title": " GRATIS SMAKPROV AV DOGSUP",
+    "CTA": "KLICKA HÄR"
+  },
+  "followus": "Följ oss!",
+  "newsdeals": {
+    "title": "Erbjudanden & nyheter",
+    "youremail": "Din email",
+    "subscribe": "prenumerera"
+  },
+  "navigation": {
+    "home": "Hem",
+    "shop": "Shop",
+    "our-story": "Vår historia",
+    "food-change": "Foderbyte",
+    "faq": "FAQ",
+    "log-in": "Logga in",
+    "cart": "Kundvagn",
+    "profile": "Profil",
+    "blog": "Blogg"
+  },
+  "introduction": {
+    "hello": "hej",
+    "greeting": "Hundmat för kräsna hundar\n",
+    "brand-name": "Dogsup",
+    "description": "Miljövänligt hundfoder med insekter, formulerat av veterinärer för varje hunds välmående.",
+    "buy-now": "Köp nu"
+  },
+  "dog-bag-section": {
+    "title": "Möt din nya hundmatshjälte.",
+    "description": "Vi ersätter konventionellt djurkött med insekter i vår hundmat. Tillsammans med våra andra utmärkta ingredienser bildar de ett riktigt superpar för din hund. Säg hej till en gladare hund med mer energi!  ",
+    "benefits": {
+      "taste": "God smak",
+      "digestibility": "Lätt att smälta",
+      "veterinarian-recipe": "Recept av veterinärer"
+    },
+    "buy-now": "Köp nu"
+  },
+  "home": {
+    "testimonials": {
+      "title": "Ta inte bara vårt ord för det."
+    },
+    "benefits": {
+      "title": "Varför insektsbaserat hundfoder?",
+      "description": "Innan du säger \"usch\", lyssna på vad vi har att säga. Högkvalitativt protein, miljövänligt, lättsmält, högt näringsvärde och god smak. Det är Dogsup's insekt: den svarta soldatflugan.",
+      "planet": {
+        "title": "Med planeten i åtanke",
+        "description": "Att äta insekter är inte bara coolt, utan också bra för din hund och miljön. Visste du att produktion av kött släpper ut upp till 90% mer växthusgaser jämfört med insekter? Nu vet du."
+      },
+      "important_nutrients": {
+        "title1": "Viktiga näringsämnen",
+        "title2": "för din hund",
+        "description": "Insekter kompenserar för sitt utseende med sina näringsämnen. Våra insekter är fulla av antioxidanter, vitaminer, fett och kalcium, vilket är avgörande för din hunds hälsa."
+      },
+      "packed_with_protein": {
+        "title": "Packat med protein",
+        "description": "Insekter är en fantastisk proteinkälla med hög kvalitet. För att din hund ska må bra är protein \nlivsviktigt, det bidrar till ökad muskelmassa och styrka. Våra insekter ger de essentiella aminosyrorna som din hund behöver."
+      }
+    },
+    "we-are-dogsup": {
+      "title": "Vi är Dogsup",
+      "description": "Vi strävar efter att aldrig vara tillfredsställda. Dogsup är hundmatrebellen som inte kompromissar med kvalitet eller en föråldrad bransch.",
+      "about-us": "Om oss"
+    },
+    "dogfood": {
+      "title": "Hundmat med din hunds välmående i fokus.",
+      "description": "Det är hälsosamt. Det är hållbart. Dogsup tillverkas med ingredienser du kan lita på och vara säker på att din hund tycker om. Det är spannmålsfritt med en sammansättning som stödjer känsliga hundar, 100% fritt från dåliga ämnen.",
+      "more-info": "Mer info"
+    },
+    "disrupt": {
+      "title": "Det är dags att förändra det vanliga.",
+      "description": "Vi strävar efter att inspirera en generation av fritänkande, självständiga hundföräldrar att ta ställning mot en föråldrad industri och säkerställa att de ger det bästa för sina hundar. Vi skapade Dogsup med varje hunds välbefinnande i åtanke.",
+      "about-us": "Om oss"
+    },
+    "loyalty": {
+      "title": "Lojalitet ger fördelar",
+      "description": "Prenumera på Dogsup och upplev mindre strul, mer fördelar, och alltid bra mat för din hund.",
+      "discount": {
+        "title": "Lojalitetsrabatt",
+        "description": "Alltid 15% rabatt på varje Dogsup leverans."
+      },
+      "inCharge": {
+        "title": "Du bestämmer",
+        "description": "Sätt ett schema som funkar för dig och din hund. Avbryt din prenumeration när du vill."
+      },
+      "referral": {
+        "title": "Inbjudningsbonus",
+        "description": "För varje inbjudan, får du och din vän 10 SEK billigare leverans föralltid."
+      },
+      "subscription": "prenumerera",
+      "buy-now": "Köp nu"
+    }
+  },
+  "shop": {
+    "title": {
+      "first": "Insektsbaserat",
+      "second": "Hundfoder"
+    },
+    "buy": {
+      "title": "Köpalternativ",
+      "subscriptions": {
+        "text": "Prenumeration - (alltid 15% rabatt) ",
+        "howoften": "Hur ofta?"
+      },
+      "onetime": "Engångsköp",
+      "size": "Storlek",
+      "addtocart": "Lägg i varukorg",
+      "intervals": {
+        "monthly": "Varje månad",
+        "secondMonth": "Varannan månad",
+        "thirdMonth": "Var tredje månad"
+      }
+    },
+    "description": "Dogsup är spannmålsfritt och tillverkat med insekter, potatis och andra grönsaker, frukter och örter.",
+    "benefits": {
+      "protein": {
+        "title": "Högkvalitativt insektprotein",
+        "description": "fritt från antibiotika och rikt på aminosyror."
+      },
+      "earth": {
+        "title": "Miljövänligt",
+        "description": "med hållbarhet i fokus."
+      },
+      "digest": {
+        "title": "Lätt att smälta",
+        "description": "bra för hundar med känsliga magar och allergier."
+      },
+      "vets": {
+        "title": "Recept formulerat av veterinärer",
+        "description": "med en komposition av näringsämnen hundar behöver."
+      },
+      "skin": {
+        "title": "Förbättrar pälslystern och ger en mjukare hud",
+        "description": "samt förbättrar tarmhälsan."
+      }
+    },
+    "aboutOurDog": {
+      "title": "Om vår hundmat",
+      "description1": "Vi tillhandahåller hundmat av högsta kvalitet för din hund. Vi har noggrant formulerat våra recept med veterinärer för att ge komplett och balanserad näring för vuxna hundar.",
+      "description2": "Vi arbetar med insekter, den svarta soldatflugan, som vår proteinkälla, ett hållbart och miljövänligt alternativ till kött och fisk. Vi kombinerar våra insekter med spannmålsfria ingredienser som ger de väsentliga näringsämnen din hund behöver. Vi använder noggrant utvalda grönsaker, frukter och örter som hjälper till med matsmältningen och minskar allergier.",
+      "description3": "Låter bra, eller hur? Prova nu!"
+    },
+    "accordion": {
+      "recipe": {
+        "title": "Recept",
+        "composition": {
+          "title": "Komposition",
+          "description": "Torkade insekter (26% svarta soldatflugor), torkad potatis, potatismjöl, ärter, animaliskt fett, sötpotatis, mineraler, torkade karobpods, bryggerjäst, laxolja, inulin (källa till FOS), torkade morötter, nässla, Echinacea, torkade tomater, torkade äpplen, torkad mango, torkade plommon, torkade bananer, timjan, basilika, spirulina, tranbär, selleri, linolja."
+        },
+        "content": {
+          "analytical-constituents": {
+            "title": {
+              "text": "Analytiska Beståndsdelar"
+            },
+            "contents": [
+              {
+                "text": "Råprotein 22,0% "
+              },
+              {
+                "text": "Råoljor och fetter 13,0%"
+              },
+              {
+                "text": "Råfiber 4,5%"
+              },
+              {
+                "text": "Råaska 7,9%"
+              },
+              {
+                "text": "Kalcium 1,4%"
+              },
+              {
+                "text": "Fosfor 1,1%"
+              },
+              {
+                "text": " Energiinnehåll (kcal/kg ME) 3395"
+              }
+            ]
+          },
+          "additives": {
+            "title": {
+              "text": "Tillsatser (/kg)"
+            },
+            "contents": [
+              {
+                "text": "Vitamin A (retinylacetat) 18 000 IE"
+              },
+              {
+                "text": "Vitamin D3 (kolekalciferol) 1 800 IE"
+              },
+              {
+                "text": "Vitamin E (all-rac alpha-tocopheryl acetate) 500 IU/IE"
+              },
+              {
+                "text": "Koppar (koppar(II) sulfatpentahydrat) 10 mg"
+              },
+              {
+                "text": "Koppar (koppar(II) kelat av glycinhydrat) 5,0 mg"
+              },
+              {
+                "text": "Zink (zinksulfat, monohydrat) 100 mg"
+              },
+              {
+                "text": "Zinc (Zinc chelate of glycine, hydrate) 50 mg"
+              },
+              {
+                "text": "Järn (järn(II) sulfat, monohydrat) 70 mg"
+              },
+              {
+                "text": "Järn (järn(II) kelat av glycinhydrat) 35 mg"
+              },
+              {
+                "text": "Mangan (mangan(II) oxid) 50 mg"
+              },
+              {
+                "text": "Mangan (mangan(II) kelat av glycinhydrat) 25 mg"
+              },
+              {
+                "text": "Jod (kalciumjodat, anhydrat) 2,0 mg"
+              },
+              {
+                "text": "Selen (natriumselenit) 0,1 mg"
+              }
+            ]
+          },
+          "OtherAdditives": {
+            "title": {
+              "text": "Andra tillsatser (/kg)"
+            },
+            "Nutritional": {
+              "title": "Näringsämne:",
+              "content": [
+                {
+                  "text": "- Taurin 1 000 mg"
+                },
+                {
+                  "text": "- L-karnitin 50 mg"
+                }
+              ]
+            },
+            "Sensorial": {
+              "title": "Sensoriska tillsatser:",
+              "content": [
+                {
+                  "text": "- Yucca Schidigera-extrakt 200 mg"
+                }
+              ]
+            },
+            "anitoxidants": {
+              "title": "Innehåller naturliga antioxidanter."
+            }
+          }
+        },
+        "store": {
+          "title": "Förvaras svalt, torrt och om möjligt mörkt."
+        }
+      },
+      "feeding": {
+        "title": "Foderguide",
+        "description": "Kroppsvikt / Dagligt intag (g) / Månadsintag (kg)",
+        "content": [
+          {
+            "text": "2 – 5kg - 60 – 105g - 2 – 4kg"
+          },
+          {
+            "text": "5 – 10kg - 105 – 175g - 4 – 6kg"
+          },
+          {
+            "text": "10 – 20kg - 175 – 300g - 6 – 9kg"
+          },
+          {
+            "text": "20 – 40kg - 300 – 500g - 9 – 15kg"
+          },
+          {
+            "text": "40 – 65kg - 500 - 720g - 15 – 22kg"
+          },
+          {
+            "text": "> 65kg 10.5 g/kg kroppsvikt"
+          }
+        ],
+        "advice": "Foderguiden är baserad på en normal energiförbrukning för din hund. Din hunds kroppsform är vägledning för den faktiska mängden mat. Vid behov kan du ge mer eller mindre mat för att hålla din hund i optimal kondition. Det rekommenderas att fördela dagens matmängd i två portioner. Se till att ge tillräckligt med färskt dricksvatten."
+      },
+      "delivery": {
+        "title": "Leveransinfo",
+        "description": "Ingen krångel nästa gång du köper hundmat. Vi förstår att det är jobbigt att bära tunga påsar med hundmat från butiken och är något man gärna slipper göra. Med Dogsup kan du prenumerera och få hundmaten levererad till din dörr. Enkelt, eller hur?",
+        "orders": "Ordrar som läggs på Dogsup förbereds och levereras på vardagar. Vi levererar endast inom Sverige.",
+        "shipping": {
+          "title": "Leveranstid:",
+          "delivery": "Levereras inom 1-4 veckodagar."
+        }
+      }
+    },
+    "youAndDog": {
+      "title": "Du och din hund förtjänar att stråla.",
+      "description": "Vi vill skapa mer utrymme för glädje, kreativitet och välbefinnande i hundvärlden. Med en ny och fräsch syn på hundmat är vi här för att skaka om den föråldrade hundindustrin. Vi vill ge det bästa till dig och din hund.",
+      "about": "OM OSS"
+    },
+    "barsection": {
+      "title": "Näringsrika ingredienser för välmående hundar",
+      "description1": "Protein, kolhydrater, fetter, mineraler och vitaminer är alla viktiga näringsämnen som vi bryr oss om. Dogsup är hundmat som sätter hundens hälsa och välbefinnande i första hand.",
+      "description2": "Insekter är en hållbar och miljövänlig proteinkälla som är rik på aminosyror, vitaminer och mineraler. De andra ingredienserna, som potatis, ärtor och sötpotatis, ger ytterligare källor till grundläggande näringsämnen som kolhydrater, protein och vitaminer. Torkade frukter och grönsaker, samt örter och oljor, ger naturliga källor till vitaminer, mineraler, fett och antioxidanter. Det du ser är vad du får, bra mat för din hund.",
+      "nutInfo": "Näringsinformation",
+      "contents": [
+        "Protein 22%",
+        "Olja och fetter 13%",
+        "Fibrer 4.5%",
+        "Råaska 7.9%",
+        "Kalcium 1.4%",
+        "100% Näringsrikt & Gott!"
+      ]
+    }
+  },
+  "ourstory": {
+    "tag": "Vår historia",
+    "title": "Dogsup förändrar uppfattningen om hundägande, inte för evolution, utan för revolution.",
+    "content": {
+      "title": "Vår historia",
+      "description": [
+        "Vi älskar hundar.",
+        "Vi tror på en holistisk syn på hundägande och idén att varje hunds välbefinnande ligger till grund för övergripande lycka. ",
+        "Vi kunde inte hitta hundmat som omfamnar hundar i stadsmiljöer, så vi bestämde oss för att skapa det själva. Vi är engagerade i att möta de krävande utmaningarna med att leva i en stad.",
+        "Dogsup är hundmatrebellen som inte gör avkall på kvalitet eller en föråldrad industri. Vi är engagerade i att stötta en ljusare och hälsosammare framtid för varje hund.",
+        "Vi strävar efter att inspirera en generation av fritänkande, självständiga hundföräldrar att ta ställning mot en föråldrad industri och säkerställa vad som är bäst för deras hundar.",
+        "Det ska vara roligt och kännas bra att ta hand om dig själv och din hund. Gå med i Dogsup på vår resa att radera gamla oskrivna regler och ändra sättet vi tänker på hundmat.",
+        "Det är dags att förändra det vanliga."
+      ]
+    }
+  },
+  "switch": {
+    "tag": "Foderbyte",
+    "title": "När du byter din hunds foder är det viktigt att komma ihåg att det ska vara en lugn och stressfri upplevelse.",
+    "description": "Planera foderbytet under en tid när det inte sker några stora förändringar eller händelser i din hunds liv.",
+    "content": {
+      "title": "Hur man gör det",
+      "description": [
+        {
+          "title": "Dag 1-3:",
+          "text": "Blanda 25% ny mat med 75% gammal mat. Öka gradvis mängden av den nya maten medan du minskar mängden av den gamla maten. \n"
+        },
+        {
+          "title": "Dag 4-7:",
+          "text": "Blanda 50% ny mat med 50% gammal mat. Observera din hunds beteende och matsmältning. Om de verkar acceptera den nya maten kan du gå vidare till nästa steg. "
+        },
+        {
+          "title": "Dag 8-11:",
+          "text": "Blanda 75% ny mat med 25% gammal mat. Uppmärksamma din hunds matsmältning och leta efter tecken på obehag såsom lös avföring eller kräkningar. "
+        },
+        {
+          "title": "Dag 12 och framåt:",
+          "text": "Servera 100% ny mat. Vid det här laget ska din hund ha övergått helt till den nya maten."
+        }
+      ]
+    }
+  },
+  "faq": {
+    "header": "FAQ",
+    "title": "Vanliga frågor",
+    "description": {
+      "text": "Har du frågor? Vi har svar. Kolla in de vanligaste frågorna och svaren nedanför. Om du inte hittar det du letar efter är du mer än välkommen att",
+      "contact": "kontakta oss",
+      "subjects": [
+        "Maten",
+        "Foderguide",
+        "Beställningar"
+      ],
+      "questions": [
+        [
+          {
+            "title": "Vad är huvudingrediensen i er hundmat? ",
+            "content": "Vår hundmat innehåller insekter som den primära källan till protein. Vi använder hållbart uppfödda svarta soldatflugor för att ge högkvalitativ och näringsrik näring till din hund.\n"
+          },
+          {
+            "title": "Varför använda insekter som en proteinkälla för hundmat? \n",
+            "content": "Insekter är en mycket hållbar proteinkälla som kräver mindre mark, vatten och foder för att produceras jämfört med traditionella animaliska proteinkällor. De är också rika på essentiella näringsämnen och lättsmälta för hundar."
+          },
+          {
+            "title": "Är insekter säkra för hunden att äta? \n",
+            "content": "Ja, insekter är säkra för hundar att äta och har använts som en proteinkälla i husdjursmat i många år. Våra insekter odlas i en kontrollerad miljö och bearbetas noggrant för att säkerställa att de är säkra och hälsosamma för din hund."
+          },
+          {
+            "title": " Vad är hållbarheten för er hundmat? \n",
+            "content": "Hållbarheten för vår hundmat är ungefär 18 månader från produktionsdatumet. Det är bäst att förvara den på en sval och torr plats för att säkerställa dess färskhet."
+          },
+          {
+            "title": "Hur förvarar jag er hundmat? \n ",
+            "content": "Vår hundmat ska förvaras på en sval och torr plats, borta från direkt solljus och fukt. Den bör förvaras i sin originalförpackning eller en förseglad behållare för att bevara dess färskhet."
+          },
+          {
+            "title": "Är insekterna i er hundmat ekologiska eller uppfödda med bekämpningsmedel?",
+            "content": "Våra insekter odlas utan användning av bekämpningsmedel och kommer från leverantörer som följer strikta ekologiska metoder."
+          },
+          {
+            "title": "Är er hundmat glutenfri? ",
+            "content": "Ja, vår hundmat är glutenfri."
+          },
+          {
+            "title": "Vilka är de näringsmässiga fördelarna med att ge min hund en insektbaserad kost?",
+            "content": "En insektbaserad kost för hundar ger högkvalitativt protein, essentiella vitaminer och mineraler, antioxidanter, fett och kalcium, vilket är viktigt för att bibehålla övergripande hälsa och välbefinnande. Våra insekter (svarta soldatflugor) ger också de essentiella aminosyrorna som din hund behöver."
+          }
+        ],
+        [
+          {
+            "title": "Hur gör jag för att min hund ska övergå till en insektsbaserad kost?",
+            "content": "Vi rekommenderar att du gradvis övergår din hund till en insektbaserad kost under loppet av 12 dagar. Börja genom att blanda en liten mängd av vår hundmat med deras nuvarande mat, och öka gradvis proportionen tills de bara äter vår mat. Läs vår föderbytesguide för mer information."
+          },
+          {
+            "title": "Kan jag fortfarande ge min hund godis medan de är på en insektbaserad kost?",
+            "content": "Ja, du kan fortsätta att ge din hund godis medan de äter en insektbaserad kost. Vi rekommenderar dock att välja godis som också är gjorda med insekter för att säkerställa en balanserad kost. Många av våra kunder använder också Dogsup som ett godis till sina hundar på grund av den goda smaken."
+          },
+          {
+            "title": "Är er hundmat lämplig för hundar med matallergier?",
+            "content": "Vår hundmat är fri från vanliga allergener som soja, vete och majs. Den är också gjord med en enda proteinkälla (insekter), vilket kan vara till hjälp för hundar med matkänslighet. Om din hund har en allvarlig allergi är det dock bäst att rådgöra med din veterinär innan du gör några ändringar i deras diet.\n"
+          },
+          {
+            "title": "Är er hundmat lämplig för hundar med känsliga magar?",
+            "content": "Ja, vår hundmat är gjord med lätt smältbara ingredienser, vilket gör den lämplig för hundar med känsliga magar."
+          },
+          {
+            "title": " Är er hundmat lämplig för alla livsstadier hos hundar?",
+            "content": "Vår hundmat är ett komplett hundfoder formulerat för att möta de näringsmässiga behoven hos vuxna hundar."
+          },
+          {
+            "title": "Var hittar jag foderrekommendationer?",
+            "content": "Du hittar informationen på vår produktsida och även på hundmatpåsen. Om du har ytterligare frågor, vänligen kontakta info@dogsup.co."
+          }
+        ],
+        [
+          {
+            "title": "Hur ändrar jag min prenumeration?",
+            "content": "Under \"Mina prenumerationer\" på din profil kan du hitta alla alternativ för din prenumeration."
+          },
+          {
+            "title": "Kan er hundmat köpas i butiker eller endast online? ",
+            "content": "Vår hundmat är för närvarande endast tillgänglig för köp online, via vår webbplats. Du kan också prova Dogsup på utvalda hundvänliga restauranger, barer och caféer i Stockholm. Kontakta info@dogsup.co för mer information.\n"
+          },
+          {
+            "title": "Erbjuder ni några garantier eller returer på er hundmat?\n",
+            "content": "Vi står bakom kvaliteten på vår hundmat och är övertygade om att din hund kommer att älska den. Om du av någon anledning inte är nöjd med vår produkt, erbjuder vi en pengarna-tillbaka-garanti. Skicka ett mail till oss på info@dogsup.co med ditt ordernummer och en video på din hund som inte äter maten."
+          },
+          {
+            "title": "Hur lång är leveranstiden? ",
+            "content": "Leveranstiden är 1-4 arbetsdagar. Du kommer att få ett spårningsnummer för din beställning så att du alltid kan se var ditt paket befinner sig."
+          },
+          {
+            "title": "Jag har problem med min beställning, vad ska jag göra?\n",
+            "content": "Skicka ett mejl till info@dogsup.co så återkommer vi till dig så snart som möjligt."
+          },
+          {
+            "title": "Är er hundmat certifierad av några organisationer eller myndigheter?\n",
+            "content": "Vår hundmat uppfyller alla nödvändiga livsmedelssäkerhetsstandarder från Jordbruksverket. Vi är också engagerade i att skaffa våra ingredienser från leverantörer som följer högsta standarder för kvalitet och hållbarhet."
+          }
+        ]
+      ]
+    }
+  },
+  "login": {
+    "login": "Logga in",
+    "dont_you_have_an_account": "Har du inget konto?",
+    "email": "Email",
+    "signup": "Registrera dig",
+    "try-again": "Opps, pröva igen. Skriv till info@dogsup.co vid fortsatt problem.",
+    "forgot_password": "Glömt lösenordet?",
+    "password": "Lösenord"
+  },
+  "forgotPassword": {
+    "title": "Glömt lösenord",
+    "text": "Inga problem! Ange din kontos e-postadress så skickar vi dig en länk för att återställa ditt lösenord.",
+    "email": "Email",
+    "sendResetLink": "SKICKA LÄNK",
+    "goBack": "GÅ TILLBAKA"
+  },
+  "completeResetPassword": {
+    "title1": "Byt ditt",
+    "title2": "lösenord",
+    "newPassword": "Nytt Lösenord",
+    "repeatPassword": "Upprepa Lösenord",
+    "confirm": "Bekräfta",
+    "passwordChanged1": "Lösenordet",
+    "passwordChanged2": "ändrat!",
+    "passwordChangedText": "Woho! Du har ett nytt lösenord :)",
+    "exploreDogsup": "Utforska Dogsup"
+  },
+  "signup": {
+    "title": "Registrera dig",
+    "loginHere": "Logga in här",
+    "alreadyHaveAnAccount": "Har du redan ett konto?",
+    "email": "Email",
+    "letsGo": "LET'S GO"
+  },
+  "verifyYourEmail": {
+    "title": "Verifiera din e-post :)",
+    "thankYouForSigning": "Tack för att du registrerade dig på Dogsup!",
+    "youAreAlmostThere": "Du är nästan klar!",
+    "weSentAnEmail": "Vi skickade ett e-postmeddelande till:",
+    "pleaseVerify": "Verifiera din e-post genom att klicka på länken i e-postmeddelandet vi skickade dig. Om du inte ser det kanske du behöver ",
+    "checkYourSpam": "Kontrollera din skräppostmapp.",
+    "stillCantFind": "Hittar du fortfarande inte e-postmeddelandet? Inga problem!",
+    "resendVerificationEmail": "Skicka om verifieringsmejl"
+  },
+  "completeSignup": {
+    "title": "Komplettera din profil",
+    "email": "Email",
+    "password": "Lösenord",
+    "firstName": "Förnamn",
+    "lastName": "Efternamn",
+    "phoneNumber": "Telefonnummer (valfritt)",
+    "welcomeToDogsup": {
+      "title": "Välkommen till Dogsup!",
+      "text": "Tack för att du verifierade din e-post. Nu vill vi lära känna din hund lite bättre, så att vi kan skapa den bästa möjliga upplevelsen med Dogsup :).",
+      "next": "NÄSTA"
+    },
+    "vetAI": {
+      "title": "Du står på väntelistan!",
+      "text": "Tack för att du gick med i väntelistan för Dogsup Vet AI! Håll ut! För att säkerställa en bra upplevelse kommer vi att skicka inbjudningar gradvis över tid. Vi kommer att meddela dig när vi är redo för dig.",
+      "next": "NÄSTA"
+    }
+  },
+  "cart": {
+    "yourcart": "Din varukorg",
+    "checkout": "Till kassan",
+    "empty": "Din varukorg är tom"
+  },
+  "freeDogFood": {
+    "title": "Gratis smakprov",
+    "description": "Fyll i formuläret nedan, så hör vi av oss så fort som möjligt med gratis hundmat.",
+    "name": "Vad är ditt namn?",
+    "email": "Vad är din email?",
+    "phone": "Vad är ditt telefon-nummer?"
+  },
+  "profile": {
+    "acconutoverview": "PROFILÖVERSIKT",
+    "hello": "Hej, ",
+    "myinfo": "Min information",
+    "account": {
+      "title": "Profil",
+      "firstname": "Förnamn",
+      "lastname": "Efternamn",
+      "email": "Email",
+      "submit": "UPPDATERA PROFIL"
+    },
+    "shipping": {
+      "title": "Frakt",
+      "address": "Adress",
+      "city": "Stad",
+      "doorcode": "Portkod",
+      "zip": "Postnummer",
+      "phone": "Telefon",
+      "submit": "UPPDATERA FRAKT"
+    },
+    "payment": {
+      "title": "Updatera din betalningsmetod?",
+      "contact": "kontakta oss på",
+      "contact2": "för att ändra betalningsmetod."
+    },
+    "subscriptions": {
+      "title": "Mina prenumerationer",
+      "infoText": "Vi hoppas att du gillar vår mat! Här kan du hantera ditt Dogsup-abonnemang. Du faktureras",
+      "delivery": {
+        "title": "Leverans",
+        "Monthly": "Månadsvis",
+        "SecondMonth": "Varannan månad",
+        "ThirdMonth": "Var tredje månad"
+      },
+      "product": "Produkt",
+      "nextDelivery": {
+        "title": "Nästa leverans är planerad...",
+        "content": "Leverans planerad:"
+      },
+      "status": {
+        "title": "Status",
+        "label": {
+          "active": "Aktiv",
+          "pending": "Väntande",
+          "trial": "Test",
+          "pastdue": "Försenad",
+          "unpaid": "Obetald",
+          "canceled": "Avbruten",
+          "paid": "Betald",
+          "complete": "Klar",
+          "paused": "Pausad"
+        },
+        "active": "Aktiv",
+        "pending": "Väntande",
+        "trial": "Test",
+        "pastdue": "Försenad",
+        "unpaid": "Obetald",
+        "canceled": "Avbruten",
+        "paid": "Betald",
+        "complete": "Klar",
+        "paused": "Pausad"
+      },
+      "activatePlanButton": "AKTIVERA",
+      "SubIntervals": {
+        "MONTHLY": "Varje månad",
+        "SECOND_MONTH": "Varannan månad",
+        "THIRD_MONTH": "Var tredje månad"
+      },
+      "edit": {
+        "title": "Ändra plan",
+        "delivery": "Leverans",
+        "size": "Storlek (KG)",
+        "editButton": "ÄNDRA PLAN",
+        "cancel": "AVBRYT"
+      },
+      "cancel": {
+        "title": "Vad sägs om att pausa ?",
+        "subBenefits": {
+          "title": "Här är några fördelar med att vara prenumerant:",
+          "reason1": "Alltid fri frakt till din dörr.",
+          "reason2": "Ora dig aldrig för planering av att handla hundmat.",
+          "reason3": "Va den första som prövar nya Dogsup features"
+        },
+        "SubIntervals": {
+          "MONTHLY": "1 månad",
+          "SECOND_MONTH": "2 månader",
+          "THIRD_MONTH": "3 månader"
+        },
+        "pauseButton": "PAUSA",
+        "cancelPlanButton": "AVBRYT PLAN",
+        "cancelButton": "AVBRYT"
+      }
+    },
+    "logout": "Logga ut"
+  },
+  "breedslist": {
+    "pomeranians": "Pomeranian",
+    "toyFoxTerriers": "Toy Fox Terrier",
+    "poodlesToy": "Pudel (leksakspudel)",
+    "papillons": "Papillon",
+    "chihuahuas": "Chihuahua",
+    "americanEskimoDogsToy": "Amerikansk eskimåhund (leksak)",
+    "maltese": "Malteser",
+    "yorkshireTerriers": "Yorkshireterrier",
+    "affenpinschers": "Affenpinscher",
+    "japaneseChin": "Japansk spaniel",
+    "havanese": "Havaneser",
+    "italianGreyhounds": "Italiensk vinthund",
+    "brusselsGriffons": "Brussels griffon",
+    "miniaturePinschers": "Dvärgpinscher",
+    "chineseCrested": "Kinesisk nakenhund",
+    "englishToySpaniels": "Engelsk leksaksspaniel",
+    "portuguesePodengoPequenos": "Portugisisk podengo pequeno",
+    "cotonDeTulear": "Coton de Tulear",
+    "russellTerriers": "Russellterrier",
+    "tibetanSpaniel": "Tibetansk spaniel",
+    "shihTzu": "Shih Tzu",
+    "silkyTerriers": "Silkysterrier",
+    "xoloitzcuintliToy": "Xoloitzcuintli (leksak)",
+    "poodlesMiniature": "Pudel (miniatyr)",
+    "schipperkes": "Schipperke",
+    "americanEskimoDogsMiniature": "Amerikansk eskimåhund (miniatyr)",
+    "ratTerriers": "Ratterrier",
+    "dachshundsMiniature": "Tax (miniatyr)",
+    "norfolkTerriers": "Norfolkterrier",
+    "miniatureSchnauzers": "Dvärgschnauzer",
+    "manchesterTerriers": "Manchesterterrier",
+    "norwichTerriers": "Norwichterrier",
+    "americanHairlessTerriers": "Amerikansk nakenhund",
+    "australianTerriers": "Australisk terrier",
+    "bichonsFrises": "Bichon frisé",
+    "lhasaApsos": "Lhasa apso",
+    "manchesterTerriersToy": "Manchesterterrier (leksak)",
+    "bostonTerriers": "Bostonterrier",
+    "borderTerriers": "Borderterrier",
+    "parsonRussellTerriers": "Parson russell terrier",
+    "cavalierKingCharlesSpaniels": "Cavalier king charles spaniel",
+    "pekingese": "Pekingese",
+    "cairnTerriers": "Cairnterrier",
+    "pugs": "Mops",
+    "ceskyTerriers": "Ceskyterrier",
+    "lowchen": "Löwchen",
+    "westHighlandWhiteTerriers": "West highland white terrier",
+    "shetlandSheepdogs": "Shetland sheepdog",
+    "pyreneanShepherds": "Pyrenéerhund",
+    "xoloitzcuintliMiniature": "Xoloitzcuintli (miniatyr)",
+    "dachshundsStandard": "Tax (standard)",
+    "lakelandTerriers": "Lakelandterrier",
+    "bedlingtonTerriers": "Bedlingtonterrier",
+    "foxTerriersSmooth": "Foxterrier (korthårig)",
+    "foxTerriersWire": "Foxterrier (trådhårig)",
+    "dandieDinmontTerriers": "Dandie dinmont terrier",
+    "miniatureBullTerriers": "Dvärgbullterrier",
+    "tibetanTerriers": "Tibetansk terrier",
+    "scottishTerriers": "Skottsk terrier",
+    "beagles13InchesUnder": "Beagle (under 13 tum)",
+    "welshTerriers": "Welsh terrier",
+    "beagles13To15Inches": "Beagle (13-15 tum)",
+    "norwegianLundehunds": "Norsk lundehund",
+    "swedishVallhunds": "Svensk vallhund",
+    "miniatureAmericanShepherds": "Dvärgamerikansk herdehund",
+    "cirnechiDellEtna": "Cirnechi dell’Etna",
+    "shibaInu": "Shiba inu",
+    "sealyhamTerriers": "Sealyhamterrier",
+    "basenjis": "Basenji",
+    "finnishSpitz": "Finsk spets",
+    "pulik": "Puli",
+    "americanEskimoDogsStandard": "Amerikansk eskimåhund (standard)",
+    "petitsBassetsGriffonsVendeens": "Petits bassets griffons vendeens",
+    "whippets": "Whippet",
+    "germanPinschers": "Tysk pinscher",
+    "irishTerriers": "Irisk terrier",
+    "pumik": "Pumi",
+    "frenchBulldogs": "Fransk bulldog",
+    "spanielsEnglishCocker": "Engelsk cockerspaniel",
+    "mixedRace": "Blandras"
+  }
+}
+
+
+
+
+
+

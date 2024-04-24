@@ -21,7 +21,7 @@ export default function Home() {
 
 	return (
 		<main className="flex min-h-screen flex-col items-center justify-between p-24">
-			<h1>Dog talk, luna.ai or smth else..</h1>
+			<h1 style={{fontStyle:"roboto"}}>Dog talk, luna.ai or smth else..</h1>
 			{/* Button to fetch data from backend */}
 			<button className="mt-5 rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-700"
 					onClick={fetchHelloWorld}>
