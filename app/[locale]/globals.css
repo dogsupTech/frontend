@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 /* globals.css */
 .font-inter {
 	font-family: var(--font-inter);
@@ -16,8 +17,7 @@
 
 :root {
 	--foreground-rgb: 0, 0, 0;
-	--background-start-rgb: 214, 219, 220;
-	--background-end-rgb: 255, 255, 255;
+	  background: #FCFBF9;
 	--font-inter: 'Inter', sans-serif;
 	--font-adieu: 'Adieu', serif;
 	--font-josefin-sans: 'Josefin Sans', sans-serif;

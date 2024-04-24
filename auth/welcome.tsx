@@ -155,7 +155,8 @@ export const WelcomeComponent: React.FC<{
 							setView('auth');
 						}}
 						text={t('vetai.welcomepage.signup')}
-						isLoading={false} isDisabled={false} isWhite={false} border={false} isMobile={false}/>
+						isMobile={isMobile}
+					/>
 
 					<WhiteSpace height="20px"/>
 					<p className="font-adieu text-center"> {/* Second P2 also styled similarly */}
@@ -195,7 +196,6 @@ export const AuthComponent: React.FC<{
 		</div>
 	);
 };
-
 
 export const YouAreOnTheWaitListComponent: React.FC<{
 	email: string,

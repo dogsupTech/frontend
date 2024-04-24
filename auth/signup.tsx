@@ -4,8 +4,8 @@ import { Toaster } from "react-hot-toast";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { SmallPrimaryButtonNew, WhiteSpace } from "@/components";
-import { errorToast } from "@/auth/index";
+import { SmallPrimaryButtonNew, WhiteSpace } from "../components";
+import { errorToast } from "../auth";
 
 export const invalid_type_error = "Invalid type error";
 export const required_error = "Required error";
@@ -61,9 +61,9 @@ const SignUp: React.FC<{
 	};
 
 	return (
-		<div className="bg-white p-4 rounded-lg shadow">
+		<div className="bg-black p-4 rounded-lg">
 			<Toaster position="top-center" reverseOrder={false}/>
-			<div className="text-xl text-center font-semibold">{t('signup.title')}</div>
+			<h1 className="font-adieu text-5xl">{t('signup.title')}</h1>
 			<WhiteSpace height="15px"/>
 			<div className="text-base">
 				{t('signup.alreadyHaveAnAccount')}{' '}

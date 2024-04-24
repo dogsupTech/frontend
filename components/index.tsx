@@ -6,8 +6,8 @@ type ButtonDefaultProps = {
 	isWhite?: boolean;
 	border?: boolean;
 	isMobile: boolean;
-	isLoading: boolean;
-	text: string;
+	isLoading?: boolean;
+	text?: string;
 	isSmall?: boolean;
 };
 
@@ -41,7 +41,7 @@ export const SmallPrimaryButtonNew = (props: ButtonDefaultProps) => {
         hover:text-midnight-dogsup
       `}
 		>
-			{props.isLoading ? <LoadingDots/> : <ButtonText text={props.text}/>}
+			{props.isLoading ? <LoadingDots/> : <ButtonText text={props.text || ''}/>}
 		</button>
 	);
 };
@@ -72,7 +72,7 @@ export const PrimaryButtonNew = (props: ButtonDefaultProps) => {
         hover:text-midnight-dogsup
       `}
 		>
-			{props.isLoading ? <LoadingDots/> : <ButtonText text={props.text}/>}
+			{props.isLoading ? <LoadingDots/> : <ButtonText text={props.text || ''}/>}
 		</button>
 	);
 };
@@ -106,20 +106,13 @@ export const PrimaryButton = (props: ButtonDefaultProps) => {
 	buttonClasses += props.isSmall ? " w-40 h-10" : " w-70 h-13"; // Tailwind does not support custom width and height directly, use closest sizes
 	buttonClasses += props.border ? " border border-black" : "";
 
-	// Define hover styles conditionally
-	const hoverStyles = props.isWhite ? {backgroundColor: '#f5f5f5', color: '#333'} : {
-		backgroundColor: '#333',
-		color: '#f5f5f5'
-	};
-
 	return (
 		<button
 			className={buttonClasses}
 			onClick={props.onClick}
 			disabled={props.isDisabled}
-			style={props.isDisabled ? {} : hoverStyles}  // Applying hover styles through inline styles conditionally
 		>
-			{props.isLoading ? <LoadingDots/> : <ButtonText text={props.text}/>}
+			{props.isLoading ? <LoadingDots/> : <ButtonText text={props.text || ''}/>}
 		</button>
 	);
 };
