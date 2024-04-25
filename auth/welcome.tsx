@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { useTranslation } from "next-i18next";
 import { useAuth } from "@/auth/auth";
-import { ForgotPassword, SignUp, Login, successToast, errorToast } from "@/auth";
+import { ForgotPassword, SignUp, Login, } from "@/auth";
 import { LoadingDots, SmallPrimaryButtonNew, PrimaryButton, PrimaryButtonNew } from "@/components";
 import { WhiteSpace } from "@/components";
 import { Toaster } from "react-hot-toast";
@@ -116,7 +116,8 @@ export const WelcomeComponent: React.FC<{
 				reverseOrder={false}
 			/>
 			<div className=" flex justify-center items-center min-h-[60vh] lg:min-h-[80vh]">
-				<div className="bg-black
+				<div className="
+				bg-sugar
                 border-[1px]
                 border-black
                 rounded-md
@@ -131,19 +132,19 @@ export const WelcomeComponent: React.FC<{
 
 					{!isMobile ? (
 						<div className="flex flex-col justify-center items-center">
-							<h4 className="text-center font-josefin-sans text-[2rem] lg:text-[2.125rem]"> {/* Adjusted size for H4AndAHalf */}
+							<h4 className="text-center font-adieu text-[2rem]"> {/* Adjusted size for H4AndAHalf */}
 								{t('vetai.welcomepage.title.first')}
 							</h4>
-							<h4 className="text-center font-josefin-sans text-[2rem] lg:text-[2.125rem]"> {/* Same styling for consistency */}
+							<h4 className="text-center font-josefin-sans text-[2rem]"> {/* Same styling for consistency */}
 								{t('vetai.welcomepage.title.second')}
 							</h4>
 						</div>
 					) : (
 						<div className="flex flex-col justify-center items-center">
-							<h5 className="text-center font-josefin-sans text-[1.75rem]"> {/* Adjusted size for H5 */}
+							<h5 className="text-center font-adieu text-[1.75rem]"> {/* Adjusted size for H5 */}
 								{t('vetai.welcomepage.title.first')}
 							</h5>
-							<h5 className="text-center font-josefin-sans text-[1.75rem]"> {/* Same styling for consistency */}
+							<h5 className="text-center font-adieu text-[1.75rem]"> {/* Same styling for consistency */}
 								{t('vetai.welcomepage.title.second')}
 							</h5>
 						</div>)}

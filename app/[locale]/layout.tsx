@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import localFont from '@next/font/local'
+import local from 'next/font/local';
+
 
 // Define Inter with a CSS variable for Tailwind
 const inter = Inter({
@@ -12,32 +13,32 @@ const inter = Inter({
 
 // Font files can be colocated inside of `app`
 // Define local fonts with CSS variables
-const Adieu = localFont({
+const Adieu = local({
 	src: [
-		{path: './Fonts/Adieu/Adieu-Regular.woff2', weight: 'normal', style: 'normal'},
-		{path: './Fonts/Adieu/Adieu-Light.woff2', weight: '300', style: 'normal'},
-		{path: './Fonts/Adieu/Adieu-Black.woff2', weight: '900', style: 'normal'}
+		{path: '../../public/Fonts/Adieu/Adieu-Regular.woff2', weight: 'normal', style: 'normal'},
+		{path: '../../public/Fonts/Adieu/Adieu-Light.woff2', weight: '300', style: 'normal'},
+		{path: '../../public/Fonts/Adieu/Adieu-Black.woff2', weight: '900', style: 'normal'}
 	],
 	variable: '--font-adieu'
 });
 
 
-const JosefinSans = localFont({
+const JosefinSans = local({
 	src: [
-		{path: './Fonts/Josefin_Sans/JosefinSans-Thin.woff2', weight: '100', style: 'normal'},
-		{path: './Fonts/Josefin_Sans/JosefinSans-ThinItalic.woff2', weight: '100', style: 'italic'},
-		{path: './Fonts/Josefin_Sans/JosefinSans-ExtraLight.woff2', weight: '200', style: 'normal'},
-		{path: './Fonts/Josefin_Sans/JosefinSans-ExtraLightItalic.woff2', weight: '200', style: 'italic'},
-		{path: './Fonts/Josefin_Sans/JosefinSans-Light.woff2', weight: '300', style: 'normal'},
-		{path: './Fonts/Josefin_Sans/JosefinSans-LightItalic.woff2', weight: '300', style: 'italic'},
-		{path: './Fonts/Josefin_Sans/JosefinSans-Regular.woff2', weight: 'normal', style: 'normal'},
-		{path: './Fonts/Josefin_Sans/JosefinSans-Italic.woff2', weight: 'normal', style: 'italic'},
-		{path: './Fonts/Josefin_Sans/JosefinSans-Medium.woff2', weight: '500', style: 'normal'},
-		{path: './Fonts/Josefin_Sans/JosefinSans-MediumItalic.woff2', weight: '500', style: 'italic'},
-		{path: './Fonts/Josefin_Sans/JosefinSans-SemiBold.woff2', weight: '600', style: 'normal'},
-		{path: './Fonts/Josefin_Sans/JosefinSans-SemiBoldItalic.woff2', weight: '600', style: 'italic'},
-		{path: './Fonts/Josefin_Sans/JosefinSans-Bold.woff2', weight: 'bold', style: 'normal'},
-		{path: './Fonts/Josefin_Sans/JosefinSans-BoldItalic.woff2', weight: 'bold', style: 'italic'}
+		{path: '../../public/Fonts/Josefin_Sans/JosefinSans-Thin.woff2', weight: '100', style: 'normal'},
+		{path: '../../public/Fonts/Josefin_Sans/JosefinSans-ThinItalic.woff2', weight: '100', style: 'italic'},
+		{path: '../../public/Fonts/Josefin_Sans/JosefinSans-ExtraLight.woff2', weight: '200', style: 'normal'},
+		{path: '../../public/Fonts/Josefin_Sans/JosefinSans-ExtraLightItalic.woff2', weight: '200', style: 'italic'},
+		{path: '../../public/Fonts/Josefin_Sans/JosefinSans-Light.woff2', weight: '300', style: 'normal'},
+		{path: '../../public/Fonts/Josefin_Sans/JosefinSans-LightItalic.woff2', weight: '300', style: 'italic'},
+		{path: '../../public/Fonts/Josefin_Sans/JosefinSans-Regular.woff2', weight: 'normal', style: 'normal'},
+		{path: '../../public/Fonts/Josefin_Sans/JosefinSans-Italic.woff2', weight: 'normal', style: 'italic'},
+		{path: '../../public/Fonts/Josefin_Sans/JosefinSans-Medium.woff2', weight: '500', style: 'normal'},
+		{path: '../../public/Fonts/Josefin_Sans/JosefinSans-MediumItalic.woff2', weight: '500', style: 'italic'},
+		{path: '../../public/Fonts/Josefin_Sans/JosefinSans-SemiBold.woff2', weight: '600', style: 'normal'},
+		{path: '../../public/Fonts/Josefin_Sans/JosefinSans-SemiBoldItalic.woff2', weight: '600', style: 'italic'},
+		{path: '../../public/Fonts/Josefin_Sans/JosefinSans-Bold.woff2', weight: 'bold', style: 'normal'},
+		{path: '../../public/Fonts/Josefin_Sans/JosefinSans-BoldItalic.woff2', weight: 'bold', style: 'italic'}
 	],
 	variable: '--font-josefin-sans'
 });
@@ -56,7 +57,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-		<body>{children}</body>
+		<body >{children}</body>
 		</html>
 	);
 }

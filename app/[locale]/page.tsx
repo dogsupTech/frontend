@@ -19,7 +19,7 @@ export default async function Home({params: {locale}}: HomeProps) {
 			namespaces={i18nNamespaces}
 			locale={locale}
 			resources={resources}>
-			<main className="flex min-h-screen flex-col w-full items-center justify-between ">
+			<main className={"border-2 h-screen items-center justify-center"}>
 				<WelcomeAi isUserLoggedIn={false} isMobile={true}/>
 			</main>
 		</TranslationsProvider>

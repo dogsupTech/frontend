@@ -61,7 +61,7 @@ const SignUp: React.FC<{
 	};
 
 	return (
-		<div className="bg-black p-4 rounded-lg">
+		<div className="p-4 rounded-lg">
 			<Toaster position="top-center" reverseOrder={false}/>
 			<h1 className="font-adieu text-9xl">{t('signup.title')}</h1>
 			<WhiteSpace height="15px"/>
