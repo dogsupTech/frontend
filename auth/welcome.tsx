@@ -193,7 +193,9 @@ export const AuthComponent: React.FC<{
 		<div className={"flex flex-col lg:mt-[100px] mt-[20px] h-[80vh] items-center"}>
 			{authView === LOGIN_AUTH_VIEW ?
 				<Login setAuthView={setAuthView} isMobile={isMobile}/> : authView === SIGNUP_AUTH_VIEW ?
+					// TODO ADD ORIGIN
 					<SignUp
+						origin={"don't forget to add the origin here!"}
 						setAuthView={setAuthView}
 						isMobile={isMobile}/> : authView === AUTH_VIEW_FORGOT_PASSWORD &&
 					<ForgotPassword setAuthView={setAuthView} isMobile={isMobile}/>

@@ -36,8 +36,12 @@ body {
 	color: rgb(var(--foreground-rgb));
 }
 
+
 @layer utilities {
-	.text-balance {
-		text-wrap: balance;
+	.font-josefin-sans {
+		font-family: 'Josefin Sans', sans-serif;
+	}
+	.font-adieu {
+		font-family: 'Adieu', serif;
 	}
 }

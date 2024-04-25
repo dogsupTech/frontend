@@ -7,8 +7,7 @@ import { useTranslation } from "next-i18next";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Toaster } from "react-hot-toast";
-import { PrimaryButtonNew, SmallPrimaryButtonNew, WhiteSpace } from "@/components/"
-import { invalid_type_error, required_error } from "@/auth/signup";
+import { SmallPrimaryButtonNew, WhiteSpace } from "@/components/"
 import { errorToast, successToast } from "@/auth/index";
 
 const forgotPasswordSchema = z.object({

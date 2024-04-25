@@ -44,7 +44,19 @@ const config: Config = {
 			},
 		},
 	},
-	
-	plugins: [],
+
+	plugins: [
+		function ({addUtilities, theme}: { addUtilities: Function, theme: Function }) {
+			const newUtilities = {
+				'.font-josefin-sans': {
+					fontFamily: theme('fontFamily.josefin-sans')
+				},
+				'.font-adieu': {
+					fontFamily: theme('fontFamily.adieu')
+				}
+			};
+			addUtilities(newUtilities);
+		}
+	],
 };
 export default config;

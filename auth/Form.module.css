@@ -16,7 +16,7 @@
     cursor-pointer
     text-[#fcfbf9]
     bg-midnight-dogsup
-    font-josefin
+	font-josefin-sans
     hover:bg-virgot-dogsup
     hover:text-[#100f1f]
     w-[160px]
@@ -32,7 +32,7 @@
     w-[160px]
     rounded-sm
     text-[14px]
-    font-josefin
+    font-josefin-sans
 }
 
 .inputWrapper {
@@ -40,7 +40,7 @@
 }
 
 .input {
-    @apply rounded-[4px] w-full p-[12px] border-black bg-transparent font-josefin border-solid border-[1px] text-midnight-dogsup
+    @apply rounded-[4px] w-full p-[12px] border-black bg-transparent font-josefin-sans border-solid border-[1px] text-midnight-dogsup
 }
 
 .callToAction {
@@ -52,7 +52,7 @@
     cursor-pointer
     text-[#fcfbf9]
     bg-midnight-dogsup
-    font-josefin
+    font-josefin-sans
     hover:bg-virgot-dogsup
     hover:text-[#100f1f]
     w-[160px]
