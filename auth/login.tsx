@@ -10,6 +10,7 @@ import { WhiteSpace, SmallPrimaryButtonNew } from "@/components";
 import { AUTH_VIEW_FORGOT_PASSWORD } from "@/auth/welcome";
 import cn from "clsx";
 import s from "./Form.module.css";
+import { H6, H7 } from "@/components/texts";
 
 const loginSchema = z.object({
 	email: z.string().email().min(1, { message: 'Email is required' }),
@@ -66,9 +67,9 @@ const Login: React.FC<{ isMobile: boolean, setAuthView: React.Dispatch<any> }> =
 				reverseOrder={false}
 			/>
 			{!isMobile ?
-				<h1 className="adieu-font">{LOGIN_TEXT}</h1>
+				<H6>{LOGIN_TEXT}</H6>
 				:
-				<h2 className="adieu-font">{LOGIN_TEXT}</h2>
+				<H7>{LOGIN_TEXT}</H7>
 			}
 			<WhiteSpace height={"15px"}/>
 			<p className="josefin-font" style={{fontWeight: 600}}>{DONT_YOU_HAVE_AN_ACCOUNT_TEXT} <span className={cn(s.callToAction)} onClick={() => {
