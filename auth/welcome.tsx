@@ -60,7 +60,7 @@ export const WelcomeAi: React.FC<{ isUserLoggedIn: boolean; isMobile: boolean }>
 				<div className="flex flex-col h-[80vh] justify-center items-center">
 					<p className="font-josefin-sans text-lg">Hi, {userData.email}!</p>
 					<WhiteSpace height="20px"/>
-					<p className="font-adieu text-base">Join the waitlist for vetAI</p>
+					<p className="font-adieu ">Join the waitlist for vetAI</p>
 					<WhiteSpace height="20px"/>
 					<PrimaryButton
 						isLoading={loading}
@@ -109,22 +109,25 @@ export const WelcomeComponent: React.FC<{
 }> = ({isMobile, setView, setAuthView}) => {
 	const {t} = useTranslation();
 	return (
-		<div style={{backgroundImage: `url("/assets/firstPageLarge.png")`, backgroundSize: 'cover'}}
-			 className="h-screen">
-			<Toaster position="top-center" reverseOrder={false}/>
-			<div className="flex justify-center items-center min-h-[60vh] lg:min-h-[80vh]">
-				<div className="
-          bg-[#fcfbf9]
-          py-10 border border-black
-          rounded-md
-          flex
-          justify-center
-          items-center
-          flex-col
-          px-[22px]
-          py-[51px]
-          lg:px-[167px]
-          lg:py-[96px]">
+		<div style={{backgroundImage: `url("/firstPageLarge.png")`, backgroundSize: 'cover'}}
+			 className={"h-screen"}>
+			<Toaster
+				position="top-center"
+				reverseOrder={false}
+			/>
+			<div className=" flex justify-center items-center min-h-[60vh] lg:min-h-[80vh]">
+				<div className="bg-black
+                border-[1px]
+                border-black
+                rounded-md
+                flex
+                justify-center
+                items-center
+                flex-col
+                px-[22px]
+                py-[51px]
+                lg:px-[167px]
+                lg:py-[96px]">
 
 					{!isMobile ? (
 						<div className="flex flex-col justify-center items-center">

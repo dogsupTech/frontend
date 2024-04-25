@@ -1,6 +1,7 @@
+/* debug-twcss/styles/global.css */
 @tailwind base;
-@tailwind components;
 @tailwind utilities;
+@tailwind components;
 
 /* globals.css */
 .font-inter {
@@ -17,7 +18,7 @@
 
 :root {
 	--foreground-rgb: 0, 0, 0;
-	  background: #FCFBF9;
+	--background-color: #FCFBF9; /* Correct definition */
 	--font-inter: 'Inter', sans-serif;
 	--font-adieu: 'Adieu', serif;
 	--font-josefin-sans: 'Josefin Sans', sans-serif;
@@ -33,11 +34,6 @@
 
 body {
 	color: rgb(var(--foreground-rgb));
-	background: linear-gradient(
-		to bottom,
-		transparent,
-		rgb(var(--background-end-rgb))
-	) rgb(var(--background-start-rgb));
 }
 
 @layer utilities {
