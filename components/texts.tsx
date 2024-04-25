@@ -6,6 +6,8 @@ export type TextProp = {
 	className?: string;
 	textAlign?: string;
 	textDecoration?: string;
+	fontWeight?: number;
+	lineHeight?: string;
 	scaleFactor?: number;
 	children?: React.ReactNode;  // Add this line to include children in the type
 };
@@ -111,4 +113,123 @@ export const H8 = ({text, children, color, textAlign, className}: TextProp) => (
 	</h6>
 );
 
-// Add other headings and components as needed
+
+
+export const VetAiTitle = ({ children, text, color, textAlign, className }: TextProp) => (
+	<h6 className={`font-adieu text-[20px] font-normal leading-[21px] tracking-[-0.4px] ${getTextAlignment(textAlign!)} ${color ? `text-[${color}]` : 'text-black'} ${className}`}>
+		{text}
+		{children}
+	</h6>
+);
+
+export const VetAiLargeTitle = ({ children, text, color, textAlign, className }: TextProp) => (
+	<h6 className={`font-adieu text-[22px] font-bold leading-[33px] tracking-[-0.44px] ${getTextAlignment(textAlign!)} ${color ? `text-[${color}]` : 'text-black'} ${className}`}>
+		{text}
+		{children}
+	</h6>
+);
+
+export const VetAiSubTitle = ({ children, text, color, textAlign, className }: TextProp) => (
+	<h6 className={`font-adieu text-[14px] font-normal leading-[21px] tracking-[-0.28px] ${getTextAlignment(textAlign!)} ${color ? `text-[${color}]` : 'text-black'} ${className}`}>
+		{text}
+		{children}
+	</h6>
+);
+
+export const VetAiUrgencyLabel = ({ children, text, color, textAlign, className }: TextProp) => (
+	<h6 className={`font-adieu text-[12px] font-bold leading-[15px] tracking-[-0.2px] ${getTextAlignment(textAlign!)} ${color ? `text-[${color}]` : 'text-black'} ${className} flex-grow flex-shrink-0`}>
+		{text}
+		{children}
+	</h6>
+);
+
+export type CustomAdieuProp = TextProp & {
+	fontWeight?: number;
+	lineHeight?: string;
+	fontSize?: string;
+	letterSpacing?: string;
+};
+
+export const CustomAdieu = ({
+								children, text, color, textAlign, className, fontWeight, lineHeight, fontSize, letterSpacing
+							}: CustomAdieuProp) => (
+	<h6 className={`font-adieu ${fontWeight === 900 ? 'font-bold' : `font-${fontWeight}`} ${fontSize ? `text-[${fontSize}]` : 'text-[12px]'} ${lineHeight ? `leading-[${lineHeight}]` : 'leading-[150%]'} ${letterSpacing ? `tracking-[${letterSpacing}]` : '-tracking-[0.8px]'} ${getTextAlignment(textAlign!)} ${color ? `text-[${color}]` : 'text-black'} ${className}`}>
+		{text}
+		{children}
+	</h6>
+);
+
+
+export const PBig = ({ children, text, color, textAlign, className, textDecoration }: TextProp) => (
+	<p className={`font-josefin text-[18px] font-normal leading-[28px] ${getTextAlignment(textAlign!)} ${color ? `text-[${color}]` : ''} ${getTextDecoration(textDecoration!)} ${className}`}>
+		{text}
+		{children}
+	</p>
+);
+
+export const P1 = ({ children, text, color, textAlign, className, textDecoration }: TextProp) => (
+	<p className={`font-josefin text-[22px] font-normal leading-[28px] -tracking-[0.04em] ${getTextAlignment(textAlign!)} ${color ? `text-[${color}]` : ''} ${getTextDecoration(textDecoration!)} ${className}`}>
+		{text}
+		{children}
+	</p>
+);
+
+export const P2 = ({ children, text, color, textAlign, fontWeight, lineHeight, className, textDecoration }: TextProp) => (
+	<p className={`font-josefin ${fontWeight === 400 ? 'font-normal' : `font-${fontWeight}`} text-[16px] ${lineHeight ? `leading-[${lineHeight}]` : 'leading-[21px]'} ${getTextAlignment(textAlign!)} ${color ? `text-[${color}]` : ''} ${getTextDecoration(textDecoration!)} ${className}`}>
+		{text}
+		{children}
+	</p>
+);
+
+export const P3 = ({ children, text, color, textAlign, className, textDecoration }: TextProp) => (
+	<p className={`font-adieu text-[14px] font-normal leading-[21px] -tracking-[0.28px] ${getTextAlignment(textAlign!)} ${color ? `text-[${color}]` : ''} ${getTextDecoration(textDecoration!)} ${className}`}>
+		{text}
+		{children}
+	</p>
+);
+
+export const P4 = ({ children, text, color, textAlign, className, textDecoration }: TextProp) => (
+	<p className={`font-josefin text-[12px] font-normal leading-[18px] -tracking-[0.24px] ${getTextAlignment(textAlign!)} ${color ? `text-[${color}]` : ''} ${getTextDecoration(textDecoration!)} ${className}`}>
+		{text}
+		{children}
+	</p>
+);
+
+interface CustomPProps extends TextProp {
+	fontSize?: string;
+	letterSpacing?: string;
+}
+
+export const CustomP = ({ children, text, color, textAlign, fontWeight, fontSize, lineHeight, letterSpacing, className, textDecoration }: CustomPProps) => (
+	<p className={`font-josefin ${fontWeight ? `font-${fontWeight}` : 'font-normal'} ${fontSize ? `text-[${fontSize}]` : 'text-[16px]'} ${lineHeight ? `leading-[${lineHeight}]` : 'leading-[125%]'} ${letterSpacing ? `tracking-[${letterSpacing}]` : '-tracking-[0.8px]'} ${getTextAlignment(textAlign!)} ${color ? `text-[${color}]` : ''} ${getTextDecoration(textDecoration!)} ${className}`}>
+		{text}
+		{children}
+	</p>
+);
+
+
+export type ButtonTextProp = {
+	text?: string;
+	color?: string;
+	isSmall?: boolean;
+	textAlign?: string;
+};
+
+
+export const ButtonText = ({ text, color, isSmall, textAlign }: ButtonTextProp) => (
+	<p className={`font-josefin font-normal ${isSmall ? 'text-[14px]' : 'text-[16px]'} leading-[21px] uppercase ${getTextAlignment(textAlign!)} ${color ? `text-[${color}]` : ''}`}>
+		{text}
+	</p>
+);
+
+export const CompactButtonText = ({ text, color, textAlign }: ButtonTextProp) => (
+	<p className={`font-josefin font-semibold text-[16px] leading-[24px] uppercase ${getTextAlignment(textAlign!)} ${color ? `text-[${color}]` : ''}`}>
+		{text}
+	</p>
+);
+
+export const SubscribeButtonText = ({ text, color, textAlign }: ButtonTextProp) => (
+	<p className={`font-adieu font-normal text-[15px] leading-[22px] tracking-[-0.02em] ${getTextAlignment(textAlign!)} ${color ? `text-[${color}]` : ''}`}>
+		{text}
+	</p>
+);

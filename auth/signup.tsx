@@ -9,6 +9,7 @@ import { SmallPrimaryButtonNew, WhiteSpace } from "../components";
 import { errorToast } from "../auth";
 import cn from "clsx";
 import { LOGIN_AUTH_VIEW } from "@/auth/welcome";
+import { CustomAdieu, CustomP, H6, H7, P2 } from "@/components/texts";
 
 export const invalid_type_error = "Invalid type error";
 export const required_error = "Required error";
@@ -63,10 +64,10 @@ const SignUp: React.FC<{ isMobile: boolean; setAuthView: React.Dispatch<any>, or
 
 	const handleFormSubmit = async (data: { email: string; }) => {
 		try {
-			setLoading(true);
+			setLoading(true)
 			await handleSignUp(data.email, origin);
 			setEmail(data.email);
-			setSignUpView("VERIFY_EMAIL_VIEW");
+			setSignUpView("VERIFY_EMAIL_VIEW")
 		} catch (e: any) {
 			console.error(e);
 			errorToast(errorMessage);
@@ -82,34 +83,34 @@ const SignUp: React.FC<{ isMobile: boolean; setAuthView: React.Dispatch<any>, or
 						position="top-center"
 						reverseOrder={false}
 					/>
-					{!isMobile ? <h2 style={{fontFamily: "Adieu"}}>
+					{!isMobile ? <H6>
 						{t('signup.title')}
-					</h2> : <h3 style={{fontFamily: "Adieu"}}>
+					</H6> : <H7>
 						{t('signup.title')}
-					</h3>}
+					</H7>}
 					<WhiteSpace height={'15px'}/>
-					<p style={{fontWeight: 600}}>
+					<P2 fontWeight={600}>
 						{t('signup.alreadyHaveAnAccount')} &nbsp;
 						<span className={cn(s.callToAction)} onClick={() => setAuthView(LOGIN_AUTH_VIEW)}>
-              {t('signup.loginHere')}
-            </span>
-					</p>
+   {t('signup.loginHere')}
+
+    </span>
+					</P2>
 					<form className={cn(s.form)} onSubmit={handleSubmit(handleFormSubmit)}>
 						{/* EMAIL */}
 						<div className={cn(s.formSection)}>
 							<div className={cn(s.inputWrapper)}>
-								<p>
+								<P2>
 									{t('signup.email')}
-								</p>
+								</P2>
 								<input className={cn(s.input)} {...register('email')} />
 								{errors.email && (
-									<p className={s.errorMessage}>{errors.email.message}</p>
+									<P2 className={s.errorMessage}>{errors.email.message}</P2>
 								)}
 							</div>
 						</div>
 						<WhiteSpace height={'40px'}/>
 						<SmallPrimaryButtonNew
-							isMobile={isMobile}
 							isLoading={loading}
 							text={t('signup.letsGo') || ''}
 						/>
@@ -124,12 +125,12 @@ const SignUp: React.FC<{ isMobile: boolean; setAuthView: React.Dispatch<any>, or
 };
 
 
-
 const VerifyEmail: React.FC<{ email: string, isMobile: boolean; setAuthView: React.Dispatch<any> }> = ({
 																										   email,
 																										   isMobile,
 																										   setAuthView
 																									   }) => {
+
 	const titleFontSize = isMobile ? 32 : 34;
 	const breadTextFontSize = isMobile ? 16 : 18;
 	const emailFontSize = 22;
@@ -141,40 +142,40 @@ const VerifyEmail: React.FC<{ email: string, isMobile: boolean; setAuthView: Rea
 				position="top-center"
 				reverseOrder={false}
 			/>
-			<p style={{ fontSize: titleFontSize + "px", fontFamily: "Adieu" }}>
+			<CustomAdieu fontSize={titleFontSize + "px"}>
 				{t('verifyYourEmail.title')}
-			</p>
+			</CustomAdieu>
 			<WhiteSpace height={titleSpace + "px"}/>
-			<p style={{ fontWeight: 600, lineHeight: "150%", textAlign: "center", fontSize: breadTextFontSize + "px" }}>
+			<CustomP fontWeight={600} lineHeight={"150%"} textAlign={"center"} fontSize={breadTextFontSize + "px"}>
 				<div className={"flex lg:flex-row flex-col"}>
-          <span>
-            {t('verifyYourEmail.thankYouForSigning')}
-          </span>
+                    <span>
+                        {t('verifyYourEmail.thankYouForSigning')}
+                    </span>
 					<span>&nbsp;
 						{t('verifyYourEmail.youAreAlmostThere')}
-          </span>
+                </span>
 				</div>
-			</p>
+			</CustomP>
 			<WhiteSpace height={breadTextFontSize + "px"}/>
-			<p style={{ fontWeight: 600, lineHeight: "150%", textAlign: "center", fontSize: breadTextFontSize + "px" }}>
+			<CustomP fontWeight={600} lineHeight={"150%"} textAlign={"center"} fontSize={breadTextFontSize + "px"}>
 				{t('verifyYourEmail.weSentAnEmail')}
-			</p>
-			<p style={{ fontWeight: 700, lineHeight: "150%", textAlign: "center", fontSize: emailFontSize + "px" }}>{email}</p>
+			</CustomP>
+			<CustomP fontWeight={700} lineHeight={"150%"} textAlign={"center"}
+					 fontSize={emailFontSize + "px"}>{email}</CustomP>
 			<WhiteSpace height={breadTextFontSize + "px"}/>
-			<p style={{ fontWeight: 600, lineHeight: "150%", textAlign: "center", fontSize: breadTextFontSize + "px" }}>
+			<CustomP fontWeight={600} lineHeight={"150%"} textAlign={"center"} fontSize={breadTextFontSize + "px"}>
 				{t('verifyYourEmail.pleaseVerify')}
 				&nbsp;
 				<span className={"font-bold"}>
-          {t('verifyYourEmail.checkYourSpam')}
-        </span>
-			</p>
+       {t('verifyYourEmail.checkYourSpam')}
+                    </span>
+			</CustomP>
 			<WhiteSpace height={breadTextFontSize + "px"}/>
-			<p style={{ fontWeight: 600, lineHeight: "150%", textAlign: "center", fontSize: breadTextFontSize + "px" }}>
+			<CustomP fontWeight={600} lineHeight={"150%"} textAlign={"center"} fontSize={breadTextFontSize + "px"}>
 				{t('verifyYourEmail.stillCantFind')}
-			</p>
+			</CustomP>
 			<WhiteSpace height={titleSpace + "px"}/>
 			<SmallPrimaryButtonNew
-				isMobile={isMobile}
 				text={t('verifyYourEmail.resendVerificationEmail') || ''}
 			/>
 		</div>

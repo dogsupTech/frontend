@@ -3,10 +3,12 @@ import React, { useState } from "react";
 import { useTranslation } from "next-i18next";
 import { useAuth } from "@/auth/auth";
 import { ForgotPassword, SignUp, Login, } from "@/auth";
-import { LoadingDots, SmallPrimaryButtonNew, PrimaryButton, PrimaryButtonNew } from "@/components";
+import { SmallPrimaryButtonNew, PrimaryButtonNew, PrimaryButton } from "@/components";
+
 import { WhiteSpace } from "@/components";
 import { Toaster } from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import LoadingDots from "@/components/LoadingDots";
 
 const joinTheWaitList = async (idToken: string): Promise<Response> => {
 	try {

@@ -1,118 +1,93 @@
-import React from 'react';
+import React from "react";
+import { ButtonText } from './texts';
+import LoadingDots from "@/components/LoadingDots";
 
-type ButtonDefaultProps = {
-	onClick?: () => void;
-	isDisabled?: boolean;
-	isWhite?: boolean;
-	border?: boolean;
-	isMobile: boolean;
+export type ButtonDefaultProps = {
 	isLoading?: boolean;
+	isWhite?: boolean;
 	text?: string;
+	isDisabled?: boolean;
+	onClick?: () => void;
+	isMobile?: boolean;
 	isSmall?: boolean;
+	border?: boolean;
 };
 
-export const LoadingDots = () => <div>Loading...</div>;
-const ButtonText = ({text}: { text: string }) => <span>{text}</span>;
+// Utility function to get background and text color
+const getColors = (isWhite: boolean) => ({
+	backgroundColor: isWhite ? 'bg-sugar' : 'bg-midnight-dogsup',
+	textColor: isWhite ? 'text-midnight-dogsup' : 'text-sugar',
+	hoverBgColor: 'hover:bg-virgot-dogsup',
+	hoverTextColor: 'hover:text-midnight-dogsup',
+});
 
 export const SmallPrimaryButtonNew = (props: ButtonDefaultProps) => {
-	// Define dynamic classes
-	const bgColor = props.isWhite ? 'bg-sugar' : 'bg-midnight-dogsup';
-	const textColor = props.isWhite ? 'text-midnight-dogsup' : 'text-sugar';
-	const borderColor = props.border ? 'border-[1px] border-black' : '';
-	const mobileSize = props.isMobile ? 'w-full h-[60px]' : 'min-w-[159px] h-[42px]';
+	const {backgroundColor, textColor, hoverBgColor, hoverTextColor} = getColors(props.isWhite!);
 
 	return (
 		<button
 			onClick={props.onClick}
 			disabled={props.isDisabled}
 			className={`
-        ${bgColor} 
-        ${textColor} 
-        ${borderColor} 
-        ${mobileSize}
-        flex 
-        lg:px-[10px]
-        justify-center 
-        items-center 
-        cursor-pointer 
-        transition
-        duration-300 
-        hover:bg-virgot-dogsup
-        hover:text-midnight-dogsup
-      `}
+                ${backgroundColor} 
+                ${textColor} 
+                ${props.border ? 'border border-black' : ''} 
+                ${props.isMobile ? 'w-full h-[60px]' : 'min-w-[159px] h-[42px]'}
+                flex justify-center items-center cursor-pointer transition duration-300 
+                ${hoverBgColor} ${hoverTextColor}
+            `}
 		>
-			{props.isLoading ? <LoadingDots/> : <ButtonText text={props.text || ''}/>}
+			{props.isLoading ? <LoadingDots/> : <ButtonText text={props.text}/>}
 		</button>
 	);
 };
 
 export const PrimaryButtonNew = (props: ButtonDefaultProps) => {
-	// Define dynamic classes
-	const bgColor = props.isWhite ? 'bg-sugar' : 'bg-midnight-dogsup';
-	const textColor = props.isWhite ? 'text-midnight-dogsup' : 'text-sugar';
-	const borderColor = props.border ? 'border-[1px] border-black' : '';
-	const size = props.isMobile ? 'w-full' : 'w-64 h-16';
+	const {backgroundColor, textColor, hoverBgColor, hoverTextColor} = getColors(props.isWhite!);
 
 	return (
 		<button
 			onClick={props.onClick}
 			disabled={props.isDisabled}
 			className={`
-        ${bgColor} 
-        ${textColor} 
-        ${borderColor} 
-        ${size}
-        flex 
-        justify-center 
-        items-center 
-        cursor-pointer 
-        transition
-        duration-300 
-        hover:bg-virgot-dogsup
-        hover:text-midnight-dogsup
-      `}
+                ${backgroundColor} 
+                ${textColor} 
+                ${props.border ? 'border border-black' : ''} 
+                ${props.isMobile ? 'w-full h-16' : 'w-64 h-16'}
+                flex justify-center items-center cursor-pointer transition duration-300 
+                ${hoverBgColor} ${hoverTextColor}
+            `}
 		>
-			{props.isLoading ? <LoadingDots/> : <ButtonText text={props.text || ''}/>}
+			{props.isLoading ? <LoadingDots/> : <ButtonText text={props.text}/>}
 		</button>
 	);
 };
 
+
 export type WhiteSpaceProps = {
 	height?: string;
 	width?: string;
-	children?: any
 };
 
-export const WhiteSpace: React.FC<WhiteSpaceProps> = ({height, width, children}) => {
-	return (
-		<div
-			style={{
-				height: height,
-				width: width
-			}}
-			className="bg-transparent" // Add any additional static classes here
-		>
-			{children}
-		</div>
-	);
-};
+export const WhiteSpace = ({ height, width }: WhiteSpaceProps) => (
+	<div style={{ height, width }} className="bg-transparent"></div>
+);
 
-export const PrimaryButton = (props: ButtonDefaultProps) => {
-	// Define base classes
-	let buttonClasses = "flex flex-col items-center justify-center cursor-pointer transition-colors duration-300";
-
-	// Add conditional classes for colors and sizes
-	buttonClasses += props.isWhite ? " bg-sugar text-midnight-dogsup" : " bg-midnight-dogsup text-sugar";
-	buttonClasses += props.isSmall ? " w-40 h-10" : " w-70 h-13"; // Tailwind does not support custom width and height directly, use closest sizes
-	buttonClasses += props.border ? " border border-black" : "";
+export const PrimaryButton = ({ isLoading, isWhite, isSmall, text, isDisabled, onClick, border, isMobile }: ButtonDefaultProps) => {
+	const baseStyles = `flex flex-col items-center justify-center cursor-pointer transition-colors`;
+	const colorStyles = isWhite ? 'bg-sugar text-midnight' : 'bg-midnight text-sugar';
+	const hoverStyles = isWhite ? 'hover:bg-midnight hover:text-sugar' : 'hover:bg-virgo hover:text-midnight';
+	const borderStyles = border ? 'border border-black' : '';
+	const sizeStyles = isSmall ? 'w-[159px] h-[42px]' : 'w-[280px] h-[53px]';
+	const mobileStyles = isMobile ? 'w-full' : '';
 
 	return (
 		<button
-			className={buttonClasses}
-			onClick={props.onClick}
-			disabled={props.isDisabled}
+			className={`${baseStyles} ${colorStyles} ${hoverStyles} ${borderStyles} ${sizeStyles} ${mobileStyles} rounded`}
+			onClick={onClick}
+			disabled={isDisabled}
 		>
-			{props.isLoading ? <LoadingDots/> : <ButtonText text={props.text || ''}/>}
+			{isLoading ? <LoadingDots/> : <ButtonText isSmall={isSmall} text={text}/>}
 		</button>
 	);
 };
