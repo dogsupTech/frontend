@@ -4,6 +4,7 @@ import "./globals.css";
 import local from 'next/font/local';
 import i18nConfig from '@/i18nConfig';
 import { dir } from 'i18next';
+import React from "react";
 
 // Define Inter with a CSS variable for Tailwind
 const inter = Inter({
