@@ -26,17 +26,19 @@ export default function CompleteSignup({params: {locale}}: CompleteSignupProps) 
 	const isMobile = useIsMobile();
 	const searchParams = useSearchParams(); // Hook to get search parameters
 
+	useEffect(() => {
+		initTranslations(locale, i18nNamespaces).then(trans => {
+			setTranslations(trans);
+		});
+	}, [locale]);	
+
 	// Extract parameters using the searchParams object
 	const email = searchParams.get('email');
 	const token = searchParams.get('token');
 	const redirect = searchParams.get('redirect');
 	const origin = searchParams.get('origin');
 
-	useEffect(() => {
-		initTranslations(locale, i18nNamespaces).then(trans => {
-			setTranslations(trans);
-		});
-	}, [locale]);
+
 
 	// Check for the presence of all necessary query parameters
 	if (!email || !token || !redirect || !origin) {
