@@ -7,6 +7,7 @@ import initTranslations from '../i18n';
 import TranslationsProvider from '@/components/TranslationsProvider';
 import { useIsMobile } from "@/useIsMobile";
 import { useAuth } from "@/components/auth/auth";
+
 const i18nNamespaces = ['default'];
 
 interface HomeProps {
@@ -26,11 +27,11 @@ export default function Home({params: {locale}}: HomeProps) {
 	const {user, userData, isLoading, refreshUserData} = useAuth();
 
 	const [translations, setTranslations] = useState<{ t: Function, resources: any } | null>(null);
-	
-	if (!translations) {
+
+	if (!translations || 	!user && !isLoading) {
 		return <div>Loading...</div>; // or any other loading state representation
 	}
-	
+
 	const {t, resources} = translations;
 
 	return (
@@ -39,21 +40,30 @@ export default function Home({params: {locale}}: HomeProps) {
 			locale={locale}
 			resources={resources}>
 			<main className={"border-2 h-screen items-center justify-center"}>
-				{ 
-					!user && !isLoading && !userData ? <WelcomeAi isUserLoggedIn={false} isMobile={isMobile}/> :
+				{
+					 !userData ? <WelcomeAi isUserLoggedIn={false} isMobile={isMobile}/> :
 						// dog things
-					<div>
-						<h1>Welcome back, {userData?.email}!</h1>
-						{ 
-							Object.entries(userData!).map(([key, value]) => { 
-								return (
-									<div key={key}>
-										{key}: {value}
-									</div>
-								)
-							})
-						}
-					</div>
+						<div>
+							<h1>Welcome back, {userData?.email}!</h1>
+							{
+								userData && Object.entries(userData).map(([key, value]) => {
+									return (
+										<div key={key}>
+											{key}: {value}
+										</div>
+									)
+								})
+							}
+							{
+								userData?.dog && Object.entries(userData).map(([key, value]) => {
+									return (
+										<div key={key}>
+											{key}: {value}
+										</div>
+									)
+								})
+							}
+						</div>
 				}
 			</main>
 		</TranslationsProvider>
