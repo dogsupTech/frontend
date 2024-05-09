@@ -33,7 +33,6 @@ export default function CompleteSignup({params: {locale}}: CompleteSignupProps) 
 	const redirect = searchParams.get('redirect');
 	const origin = searchParams.get('origin');
 
-
 	useEffect(() => {
 		initTranslations(locale, i18nNamespaces).then(trans => {
 			setTranslations(trans);
