@@ -7,8 +7,6 @@ import initTranslations from '../i18n';
 import TranslationsProvider from '@/components/TranslationsProvider';
 import { useIsMobile } from "@/useIsMobile";
 import { useAuth } from "@/components/auth/auth";
-import { object } from "zod";
-
 const i18nNamespaces = ['default'];
 
 interface HomeProps {
@@ -45,7 +43,8 @@ export default function Home({params: {locale}}: HomeProps) {
 					!user && !isLoading && !userData ? <WelcomeAi isUserLoggedIn={false} isMobile={isMobile}/> :
 						// dog things
 					<div>
-						{
+						<h1>Welcome back, {userData?.email}!</h1>
+						{ 
 							Object.entries(userData!).map(([key, value]) => { 
 								return (
 									<div key={key}>
@@ -54,7 +53,6 @@ export default function Home({params: {locale}}: HomeProps) {
 								)
 							})
 						}
-						
 					</div>
 				}
 			</main>
