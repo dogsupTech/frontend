@@ -40,8 +40,8 @@ class Dog {
 // Updated `getMe` function
 async function getMe(idToken: string): Promise<User | null> {
 	try {
-		const response = await fetch("/api/me", {
-			method: "POST",
+		const response = await fetch( process.env.NEXT_PUBLIC_ACCOUNT_SERVICE_URL+"/me"!,{
+			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
 				"Authorization": `Bearer ${idToken}`,
@@ -83,6 +83,7 @@ export const useAuth = () => {
 
 	useEffect(() => {
 		const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+			console.log("state changed")
 			setIsLoading(true);
 			setUser(firebaseUser);
 			if (firebaseUser) {

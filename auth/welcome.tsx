@@ -12,7 +12,7 @@ import LoadingDots from "@/components/LoadingDots";
 
 const joinTheWaitList = async (idToken: string): Promise<Response> => {
 	try {
-		const response = await fetch('/api/vet-ai-join-waitlist', {
+		const response = await fetch(process.env.NEXT_PUBLIC_ACCOUNT_SERVICE_URL + "/vet-ai-join-waitlist", {
 			method: "POST",
 			headers: {
 				'Content-Type': 'application/json',
@@ -31,8 +31,7 @@ const joinTheWaitList = async (idToken: string): Promise<Response> => {
 }
 
 export const WelcomeAi: React.FC<{ isUserLoggedIn: boolean; isMobile: boolean }> = ({isUserLoggedIn, isMobile}) => {
-	const [view, setView] = useState<'welcome' | 'auth'>('welcome');
-	const [authView, setAuthView] = useState<'signup' | 'login'>('signup');  // Assuming default is 'signup'
+	const [view, setView] = useState<'welcome' | 'auth'>('welcome'); const [authView, setAuthView] = useState<'signup' | 'login'>('signup');  // Assuming default is 'signup'
 	const {user, userData, isLoading, refreshUserData} = useAuth();
 	const {idToken} = useAuth();
 	const [loading, setLoading] = useState(false);
@@ -94,8 +93,6 @@ export const WelcomeAi: React.FC<{ isUserLoggedIn: boolean; isMobile: boolean }>
 					/>
 				</div>
 			}
-			{user && !isLoading && userData && userData.vet_ai_is_white_listed &&
-				<p className="font-josefin-sans text-lg">How it works!–</p>}
 			{!user && !isLoading && view === 'welcome' &&
 				<WelcomeComponent setAuthView={setAuthView} setView={setView} isMobile={isMobile}/>}
 			{!user && !isLoading && view === 'auth' &&

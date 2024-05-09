@@ -21,7 +21,7 @@ const signupSchema = z.object({
 type SignupSchema = z.infer<typeof signupSchema>;
 
 const handleSignUp = async (email: string, origin: string) => {
-	const SIGNUP_LINK_URL = "/api/auth/signup";
+	const SIGNUP_LINK_URL = process.env.NEXT_PUBLIC_ACCOUNT_SERVICE_URL +  "/signup";
 	try {
 		const response = await fetch(SIGNUP_LINK_URL, {
 			method: 'POST',
@@ -93,7 +93,6 @@ const SignUp: React.FC<{ isMobile: boolean; setAuthView: React.Dispatch<any>, or
 						{t('signup.alreadyHaveAnAccount')} &nbsp;
 						<span className={cn(s.callToAction)} onClick={() => setAuthView(LOGIN_AUTH_VIEW)}>
    {t('signup.loginHere')}
-
     </span>
 					</P2>
 					<form className={cn(s.form)} onSubmit={handleSubmit(handleFormSubmit)}>

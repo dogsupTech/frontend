@@ -13,7 +13,7 @@
 		"@hookform/resolvers": "^3.3.4",
 		"@types/locale": "^0.1.4",
 		"clsx": "^2.1.1",
-		"firebase": "^10.11.0",
+		"firebase": "^10.11.1",
 		"i18next": "^23.11.2",
 		"i18next-resources-to-backend": "^1.2.1",
 		"next": "14.2.2",
