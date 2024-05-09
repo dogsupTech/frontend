@@ -26,13 +26,11 @@ export default function CompleteSignup({params: {locale}}: CompleteSignupProps) 
 	const router = useRouter(); // Updated to use new useRouter from 'next/navigation'
 	const searchParams = useSearchParams(); // Hook to get search parameters
 
-
 	// Extract parameters using the searchParams object
 	const email = searchParams.get('email');
 	const token = searchParams.get('token');
 	const redirect = searchParams.get('redirect');
 	const origin = searchParams.get('origin');
-
 
 	useEffect(() => {
 		initTranslations(locale, i18nNamespaces).then(trans => {
