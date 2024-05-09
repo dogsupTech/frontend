@@ -16,7 +16,6 @@ interface HomeProps {
 }
 
 export default function Home({params: {locale}}: HomeProps) {
-	const [translations, setTranslations] = useState<{ t: Function, resources: any } | null>(null);
 	const isMobile = useIsMobile();
 
 	useEffect(() => {
@@ -25,11 +24,14 @@ export default function Home({params: {locale}}: HomeProps) {
 		});
 	}, [locale]);
 
+	const [translations, setTranslations] = useState<{ t: Function, resources: any } | null>(null);
+	
 	if (!translations) {
 		return <div>Loading...</div>; // or any other loading state representation
 	}
-
+	
 	const {t, resources} = translations;
+
 
 	return (
 		<TranslationsProvider
