@@ -32,20 +32,21 @@ export default function CompleteSignup({params: {locale}}: CompleteSignupProps) 
 	const redirect = searchParams.get('redirect');
 	const origin = searchParams.get('origin');
 
-	// Check for the presence of all necessary query parameters
-	if (!email || !token || !redirect || !origin) {
-		return <LoadingDots/>;
-	}
-	const [translations, setTranslations] = useState<{ t: Function, resources: any } | null>(null);
-
 	useEffect(() => {
 		initTranslations(locale, i18nNamespaces).then(trans => {
 			setTranslations(trans);
 		});
 	}, [locale]);
 
+	// Check for the presence of all necessary query parameters
+	if (!email || !token || !redirect || !origin) {
+		return <LoadingDots/>;
+	}
+	const [translations, setTranslations] = useState<{ t: Function, resources: any } | null>(null);
+
+
 	if (!translations) {
-		return <div>Loading...</div>; // or any other loading state representation
+		return <LoadingDots/>
 	}
 
 	const {t, resources} = translations;
