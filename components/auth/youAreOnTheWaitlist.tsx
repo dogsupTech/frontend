@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import cn from "clsx";
-import s from "./Form.module.css";
 import { SmallPrimaryButtonNew, WhiteSpace } from "@/components";
 import { CustomAdieu, CustomP } from "@/components/texts";
-import { useTranslation } from "next-i18next";
+import CaptureDogInfo from "@/components/captureDogInfo";
+import cn from "clsx";
+import s from "./Form.module.css";
 
+import { useTranslation } from 'next-i18next';
 
 export const YouAreOnTheWaitList: React.FC<{ email: string, isMobile: boolean; origin: string }> = ({
 																								 email,
@@ -24,6 +25,7 @@ export const YouAreOnTheWaitList: React.FC<{ email: string, isMobile: boolean; o
 	const textVetAI = t('completeSignup.vetAI.text')
 
 	const space = isMobile ? 37 : 50;
+	let VET_AI_ORIGIN;
 	return (
 		<div className={cn(s.formWrapper)}>
 			{view === "WAITLIST_VIEW" && (

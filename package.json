@@ -10,11 +10,15 @@
 		"lint": "next lint"
 	},
 	"dependencies": {
+		"@emotion/react": "^11.10.5",
+		"@emotion/style": "^0.8.0",
+		"@emotion/styled": "^11.11.5",
 		"@hookform/resolvers": "^3.3.4",
-		"@mui/x-date-pickers": "^7.3.2",
+		"@mui/lab": "5.0.0-alpha.120",
+		"@mui/x-date-pickers": "^6.18.6",
 		"@types/locale": "^0.1.4",
 		"clsx": "^2.1.1",
-		"date-fns": "^3.6.0",
+		"date-fns": "^2.30.0",
 		"firebase": "^10.11.1",
 		"i18next": "^23.11.2",
 		"i18next-resources-to-backend": "^1.2.1",
@@ -23,7 +27,7 @@
 		"next-i18next": "^15.3.0",
 		"react": "^18",
 		"react-dom": "^18",
-		"react-hook-form": "^7.51.3",
+		"react-hook-form": "^7.51.4",
 		"react-hot-toast": "^2.4.1",
 		"react-i18next": "^14.1.1",
 		"zod": "^3.23.4"
