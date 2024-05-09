@@ -21,16 +21,11 @@ interface CompleteSignupProps {
 
 // Main signup component with proper types for router queries
 export default function CompleteSignup({params: {locale}}: CompleteSignupProps) {
-	const router = useRouter(); // Updated to use new useRouter from 'next/navigation'
-
 	const isMobile = useIsMobile();
+
+	const router = useRouter(); // Updated to use new useRouter from 'next/navigation'
 	const searchParams = useSearchParams(); // Hook to get search parameters
 
-	useEffect(() => {
-		initTranslations(locale, i18nNamespaces).then(trans => {
-			setTranslations(trans);
-		});
-	}, [locale]);	
 
 	// Extract parameters using the searchParams object
 	const email = searchParams.get('email');
@@ -39,12 +34,19 @@ export default function CompleteSignup({params: {locale}}: CompleteSignupProps) 
 	const origin = searchParams.get('origin');
 
 
+	useEffect(() => {
+		initTranslations(locale, i18nNamespaces).then(trans => {
+			setTranslations(trans);
+		});
+	}, [locale]);
+
+	const [translations, setTranslations] = useState<{ t: Function, resources: any } | null>(null);
+
 
 	// Check for the presence of all necessary query parameters
 	if (!email || !token || !redirect || !origin) {
 		return <LoadingDots/>;
 	}
-	const [translations, setTranslations] = useState<{ t: Function, resources: any } | null>(null);
 
 
 	if (!translations) {
