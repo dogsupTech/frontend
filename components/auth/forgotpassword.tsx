@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import cn from "clsx";
 import s from "./Form.module.css";
-import { LOGIN_AUTH_VIEW } from "@/auth/welcome";
 import { z } from "zod";
 import { useTranslation } from "next-i18next";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Toaster } from "react-hot-toast";
 import { SmallPrimaryButtonNew, WhiteSpace } from "@/components/"
-import { errorToast, successToast } from "@/auth/index";
 import { H6, H7, P2 } from "@/components/texts";
+import { errorToast, successToast } from "@/components/auth/index";
+import { LOGIN_AUTH_VIEW } from "@/components/auth/welcome";
 
 const forgotPasswordSchema = z.object({
 	email: z.string().email("Please enter a valid email address").min(1, 'Email is required'),

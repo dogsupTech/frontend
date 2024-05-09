@@ -5,11 +5,11 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import s from "./Form.module.css";
-import { SmallPrimaryButtonNew, WhiteSpace } from "../components";
 import { errorToast } from "../auth";
 import cn from "clsx";
-import { LOGIN_AUTH_VIEW } from "@/auth/welcome";
 import { CustomAdieu, CustomP, H6, H7, P2 } from "@/components/texts";
+import { SmallPrimaryButtonNew, WhiteSpace } from "@/components";
+import { LOGIN_AUTH_VIEW } from "@/components/auth/welcome";
 
 export const invalid_type_error = "Invalid type error";
 export const required_error = "Required error";

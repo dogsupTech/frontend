@@ -5,12 +5,12 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Toaster } from "react-hot-toast";
 import { useTranslation } from "next-i18next";
-import { errorToast } from "@/auth/index";
 import { WhiteSpace, SmallPrimaryButtonNew } from "@/components";
-import { AUTH_VIEW_FORGOT_PASSWORD, SIGNUP_AUTH_VIEW } from "@/auth/welcome";
 import cn from "clsx";
 import s from "./Form.module.css";
 import { H6, H7, P2 } from "@/components/texts";
+import { AUTH_VIEW_FORGOT_PASSWORD, SIGNUP_AUTH_VIEW } from "@/components/auth/welcome";
+import { errorToast } from "@/components/auth/index";
 
 const loginSchema = z.object({
 	email: z.string().email().min(1, { message: 'Email is required' }),

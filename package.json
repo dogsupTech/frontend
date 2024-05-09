@@ -11,8 +11,10 @@
 	},
 	"dependencies": {
 		"@hookform/resolvers": "^3.3.4",
+		"@mui/x-date-pickers": "^7.3.2",
 		"@types/locale": "^0.1.4",
 		"clsx": "^2.1.1",
+		"date-fns": "^3.6.0",
 		"firebase": "^10.11.1",
 		"i18next": "^23.11.2",
 		"i18next-resources-to-backend": "^1.2.1",

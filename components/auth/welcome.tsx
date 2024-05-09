@@ -1,8 +1,8 @@
 'use client'
 import React, { useState } from "react";
 import { useTranslation } from "next-i18next";
-import { useAuth } from "@/auth/auth";
-import { ForgotPassword, SignUp, Login, } from "@/auth";
+import { useAuth } from "@/components/auth/auth";
+import { ForgotPassword, SignUp, Login, } from "@/components/auth";
 import { SmallPrimaryButtonNew, PrimaryButtonNew, PrimaryButton } from "@/components";
 
 import { WhiteSpace } from "@/components";

@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
-import { WelcomeAi } from "@/auth/welcome";
+import { WelcomeAi } from "@/components/auth/welcome";
 import initTranslations from '../i18n';
 import TranslationsProvider from '@/components/TranslationsProvider';
 import { useIsMobile } from "@/useIsMobile";
