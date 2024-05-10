@@ -6,7 +6,7 @@ import initTranslations from '../i18n';
 import TranslationsProvider from '@/components/TranslationsProvider';
 import { useIsMobile } from "@/useIsMobile";
 import { useAuth } from "@/components/auth/auth";
-import { H1, P1 } from "@/components/texts";
+import { H1, H2, H3, P1 } from "@/components/texts";
 
 interface ITranslations {
 	t: (key: string) => string;
@@ -64,7 +64,7 @@ export default function Home({params: {locale}}: HomeProps) {
 				{
 					!user ? <WelcomeAi isUserLoggedIn={false} isMobile={isMobile}/> :
 						<div>
-							<H1>Welcome back, {userData?.email}</H1>
+							<H3>Welcome back, {userData?.email}</H3>
 							{
 								userData?.dog ? Object.entries(userData.dog).map(([key, value]) => {
 									const displayValue = key === 'birthDate' ? formatDate(value as Date) : value;
@@ -73,7 +73,7 @@ export default function Home({params: {locale}}: HomeProps) {
 											<P1>{key}: {displayValue} </P1>
 										</div>
 									);
-								}) : <H1>No dog data found</H1>
+								}) : <H3>No dog data found</H3>
 							}
 						</div>
 				}
