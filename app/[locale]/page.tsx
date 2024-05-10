@@ -1,4 +1,3 @@
-// page.tsx
 "use client";
 
 import React, { useEffect, useState } from 'react';
@@ -8,7 +7,10 @@ import TranslationsProvider from '@/components/TranslationsProvider';
 import { useIsMobile } from "@/useIsMobile";
 import { useAuth } from "@/components/auth/auth";
 
-const i18nNamespaces = ['default'];
+interface ITranslations {
+	t: (key: string) => string;
+	resources: Record<string, any>;
+}
 
 interface HomeProps {
 	params: {
@@ -16,51 +18,60 @@ interface HomeProps {
 	};
 }
 
-export default function Home({params: {locale}}: HomeProps) {
+class Dog {
+	name: string = "";
+	sex: string = ""; // m for male and f for female
+	breed: string = "";
+	birthDate: Date | null = null; // can be used to calculate age
+	constructor(name: string, sex: string, breed: string, birthDate: Date) {
+		this.name = name;
+		this.sex = sex;
+		this.breed = breed;
+		this.birthDate = birthDate;
+	}
+}
+
+export default function Home({ params: { locale } }: HomeProps) {
 	const isMobile = useIsMobile();
+	const { user, userData, isLoading } = useAuth();
+	const [translations, setTranslations] = useState<ITranslations | null>(null);
 
 	useEffect(() => {
-		initTranslations(locale, i18nNamespaces).then(trans => {
+		initTranslations(locale, ['default']).then(trans => {
 			setTranslations(trans);
 		});
 	}, [locale]);
-	const {user, userData, isLoading, refreshUserData} = useAuth();
 
-	const [translations, setTranslations] = useState<{ t: Function, resources: any } | null>(null);
-
-	if (!translations || 	!user && !isLoading) {
+	if (!translations || isLoading) {
 		return <div>Loading...</div>; // or any other loading state representation
 	}
 
-	const {t, resources} = translations;
+	const formatDate = (date: Date | string | null): string => {
+		if (typeof date === 'string') {
+			date = new Date(date); // Convert string to Date object
+		}
 
+		return date instanceof Date && !isNaN(date.getTime()) ? date.toLocaleDateString() : "N/A";
+	}	
+	
 	return (
 		<TranslationsProvider
-			namespaces={i18nNamespaces}
+			namespaces={['default']}
 			locale={locale}
-			resources={resources}>
-			<main className={"border-2 h-screen items-center justify-center"}>
+			resources={translations.resources}>
+			<main className="border-2 h-screen flex items-center justify-center">
 				{
-					 !userData ? <WelcomeAi isUserLoggedIn={false} isMobile={isMobile}/> :
-						// dog things
+					!user ? <WelcomeAi isUserLoggedIn={false} isMobile={isMobile} /> :
 						<div>
-							<h1>Welcome back, {userData?.email}!</h1>
+							<h1>Welcome back, {userData?.email}</h1>
 							{
-								userData && Object.entries(userData).map(([key, value]) => {
+								userData?.dog && Object.entries(userData.dog).map(([key, value]) => {
+									const displayValue = key === 'birthDate' ? formatDate(value as Date) : value;
 									return (
 										<div key={key}>
-											{key}: {value}
+											{key}: {displayValue}
 										</div>
-									)
-								})
-							}
-							{
-								userData?.dog && Object.entries(userData).map(([key, value]) => {
-									return (
-										<div key={key}>
-											{key}: {value}
-										</div>
-									)
+									);
 								})
 							}
 						</div>

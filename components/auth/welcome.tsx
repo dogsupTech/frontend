@@ -152,7 +152,7 @@ export const WelcomeComponent: React.FC<{
 						A vet at your dog’s disposal at anytime, anywhere.
 					</p>
 					<WhiteSpace height="20px"/>
-					<PrimaryButton
+					<SmallPrimaryButtonNew
 						isSmall
 						onClick={() => {
 							setAuthView('signup');
