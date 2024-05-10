@@ -6,6 +6,7 @@ import initTranslations from '../i18n';
 import TranslationsProvider from '@/components/TranslationsProvider';
 import { useIsMobile } from "@/useIsMobile";
 import { useAuth } from "@/components/auth/auth";
+import { H1, P1 } from "@/components/texts";
 
 interface ITranslations {
 	t: (key: string) => string;
@@ -31,9 +32,9 @@ class Dog {
 	}
 }
 
-export default function Home({ params: { locale } }: HomeProps) {
+export default function Home({params: {locale}}: HomeProps) {
 	const isMobile = useIsMobile();
-	const { user, userData, isLoading } = useAuth();
+	const {user, userData, isLoading} = useAuth();
 	const [translations, setTranslations] = useState<ITranslations | null>(null);
 
 	useEffect(() => {
@@ -52,8 +53,8 @@ export default function Home({ params: { locale } }: HomeProps) {
 		}
 
 		return date instanceof Date && !isNaN(date.getTime()) ? date.toLocaleDateString() : "N/A";
-	}	
-	
+	}
+
 	return (
 		<TranslationsProvider
 			namespaces={['default']}
@@ -61,18 +62,18 @@ export default function Home({ params: { locale } }: HomeProps) {
 			resources={translations.resources}>
 			<main className="border-2 h-screen flex items-center justify-center">
 				{
-					!user ? <WelcomeAi isUserLoggedIn={false} isMobile={isMobile} /> :
+					!user ? <WelcomeAi isUserLoggedIn={false} isMobile={isMobile}/> :
 						<div>
-							<h1>Welcome back, {userData?.email}</h1>
+							<H1>Welcome back, {userData?.email}</H1>
 							{
-								userData?.dog && Object.entries(userData.dog).map(([key, value]) => {
+								userData?.dog ? Object.entries(userData.dog).map(([key, value]) => {
 									const displayValue = key === 'birthDate' ? formatDate(value as Date) : value;
 									return (
 										<div key={key}>
-											{key}: {displayValue}
+											<P1>{key}: {displayValue} </P1>
 										</div>
 									);
-								})
+								}) : <H1>No dog data found</H1>
 							}
 						</div>
 				}
