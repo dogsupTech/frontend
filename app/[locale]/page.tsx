@@ -67,7 +67,7 @@ export default function Home({params: {locale}}: HomeProps) {
 				{
 					!user ? <WelcomeAi isUserLoggedIn={false} isMobile={isMobile}/> :
 						<div className={"w-[80%]"}>
-							<H6 textAlign={"center"}>DogTalk behaviour coach{userData?.email}</H6>
+							<H6 textAlign={"center"}>DogTalk behaviour coach</H6>
 							{
 								userData?.dog ? Object.entries(userData.dog).map(([key, value]) => {
 									const displayValue = key === 'birthDate' ? formatDate(value as Date) : value;

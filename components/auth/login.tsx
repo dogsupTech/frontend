@@ -67,9 +67,9 @@ const Login: React.FC<{ isMobile: boolean, setAuthView: React.Dispatch<any> }> =
 				reverseOrder={false}
 			/>
 			{!isMobile ?
-				<H6>{LOGIN_TEXT}</H6>
+				<H6 textAlign={"center" }>{LOGIN_TEXT}</H6>
 				:
-				<H7>{LOGIN_TEXT}</H7>
+				<H7 textAlign={"center"}>{LOGIN_TEXT}</H7>
 			}
 			<WhiteSpace height={"15px"}/>
 			<P2 fontWeight={600}>{DONT_YOU_HAVE_AN_ACCOUNT_TEXT} <span className={cn(s.callToAction)} onClick={() => {

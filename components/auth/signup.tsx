@@ -83,7 +83,7 @@ const SignUp: React.FC<{ isMobile: boolean; setAuthView: React.Dispatch<any>, or
 						position="top-center"
 						reverseOrder={false}
 					/>
-					{!isMobile ? <H6>
+					{!isMobile ? <H6 textAlign={"center"}>
 						{t('signup.title')}
 					</H6> : <H7>
 						{t('signup.title')}
