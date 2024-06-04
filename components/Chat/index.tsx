@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 const chat = async (message: string, onData: (data: string, chunkCounter: number) => void) => {
 	try {
@@ -41,6 +41,18 @@ const Chat: React.FC<{ isMobile: boolean }> = () => {
 		}
 	]);
 
+	const chatContainerRef = useRef<HTMLDivElement>(null);
+
+	const scrollToBottom = () => {
+		if (chatContainerRef.current) {
+			chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+		}
+	};
+
+	useEffect(() => {
+		scrollToBottom();
+	}, [chatLog]);
+
 	const handleSend = async () => {
 		setChatLog(prevChatLog => [...prevChatLog, { message, isUser: true }]);
 		let botMessage = "";
@@ -66,24 +78,12 @@ const Chat: React.FC<{ isMobile: boolean }> = () => {
 	};
 
 	return (
-		<div className="flex flex-col items-center justify-center p-1 bg-gray-100">
+		<div className="flex flex-col items-center justify-center p-4 bg-gray-100">
 			<div className="bg-white w-full p-6 rounded-md shadow-md">
-				<div className="mb-4">
-					<input
-						type="text"
-						value={message}
-						onChange={(e) => setMessage(e.target.value)}
-						placeholder="Type your message here"
-						className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 mb-2"
-					/>
-					<button
-						onClick={handleSend}
-						className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300"
-					>
-						Send
-					</button>
-				</div>
-				<div className="w-full h-96 overflow-y-auto border border-gray-300 rounded-md p-4 bg-white">
+				<div
+					ref={chatContainerRef}
+					className="w-full h-96 overflow-y-auto border border-gray-300 rounded-md p-4 bg-white mb-4"
+				>
 					{chatLog.map((log, index) => (
 						<div
 							key={index}
@@ -94,6 +94,21 @@ const Chat: React.FC<{ isMobile: boolean }> = () => {
 							{log.message}
 						</div>
 					))}
+				</div>
+				<div className="flex flex-col">
+					<input
+						type="text"
+						value={message}
+						onChange={(e) => setMessage(e.target.value)}
+						placeholder="Type your message here"
+						className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 mb-2"
+					/>
+					<button
+						onClick={handleSend}
+						className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300"
+					>
+						Send
+					</button>
 				</div>
 			</div>
 		</div>
