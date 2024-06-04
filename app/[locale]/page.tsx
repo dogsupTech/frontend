@@ -6,7 +6,9 @@ import initTranslations from '../i18n';
 import TranslationsProvider from '@/components/TranslationsProvider';
 import { useIsMobile } from "@/useIsMobile";
 import { useAuth } from "@/components/auth/auth";
-import { H1, H2, H3, H4, P1 } from "@/components/texts";
+import { H3, H4, H6, P1 } from "@/components/texts";
+import Chat from "@/components/Chat";
+import { WhiteSpace } from "@/components";
 
 interface ITranslations {
 	t: (key: string) => string;
@@ -55,16 +57,17 @@ export default function Home({params: {locale}}: HomeProps) {
 		return date instanceof Date && !isNaN(date.getTime()) ? date.toLocaleDateString() : "N/A";
 	}
 
+
 	return (
 		<TranslationsProvider
 			namespaces={['default']}
 			locale={locale}
 			resources={translations.resources}>
-			<main className="border-2 h-screen flex items-center justify-center">
+			<main className="border-2 h-screen w-full flex items-center justify-center">
 				{
 					!user ? <WelcomeAi isUserLoggedIn={false} isMobile={isMobile}/> :
-						<div>
-							<H4 textAlign={"center"}>Welcome back, {userData?.email}</H4>
+						<div className={"w-[80%]"}>
+							<H6 textAlign={"center"}>DogTalk behaviour coach{userData?.email}</H6>
 							{
 								userData?.dog ? Object.entries(userData.dog).map(([key, value]) => {
 									const displayValue = key === 'birthDate' ? formatDate(value as Date) : value;
@@ -75,6 +78,8 @@ export default function Home({params: {locale}}: HomeProps) {
 									);
 								}) : <H4 textAlign={"center"}>No dog data found :(</H4>
 							}
+							<WhiteSpace height={"50px"}/>
+							<Chat isMobile/>
 						</div>
 				}
 			</main>

@@ -84,7 +84,7 @@ export const H5 = ({text, children, color, textAlign, className}: TextProp) => (
 );
 
 export const H6 = ({text, children, color, textAlign, className}: TextProp) => (
-	<h6 className={`font-adieu font-bold text-[28px] inline-block leading-[34px] -tracking-[0.02em] ${getTextAlignment(textAlign!)} ${color ? `text-[${color}]` : ''} ${className}`}>
+	<h6 className={`font-adieu w-full font-bold text-[28px] inline-block leading-[34px] -tracking-[0.02em] ${getTextAlignment(textAlign!)} ${color ? `text-[${color}]` : ''} ${className}`}>
 		{text}
 		{children}
 	</h6>

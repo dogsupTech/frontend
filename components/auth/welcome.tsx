@@ -9,6 +9,7 @@ import { WhiteSpace } from "@/components";
 import { Toaster } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import LoadingDots from "@/components/LoadingDots";
+import { RemoteRunnable } from "@langchain/core/runnables/remote";
 
 const joinTheWaitList = async (idToken: string): Promise<Response> => {
 	try {
@@ -30,13 +31,23 @@ const joinTheWaitList = async (idToken: string): Promise<Response> => {
 
 }
 
-export const WelcomeAi: React.FC<{ isUserLoggedIn: boolean; isMobile: boolean }> = ({isUserLoggedIn, isMobile}) => {
-	const [view, setView] = useState<'welcome' | 'auth'>('welcome'); const [authView, setAuthView] = useState<'signup' | 'login'>('signup');  // Assuming default is 'signup'
+
+
+
+export const WelcomeAi: React.FC<{ isUserLoggedIn: boolean; isMobile: boolean }> = ({
+																							  isUserLoggedIn,
+																							  isMobile
+																						  }) => {
+	const [view, setView] = useState<'welcome' | 'auth'>('welcome');
+	const [authView, setAuthView] = useState<'signup' | 'login'>('signup');  // Assuming default is 'signup'
 	const {user, userData, isLoading, refreshUserData} = useAuth();
 	const {idToken} = useAuth();
 	const [loading, setLoading] = useState(false);
 	const router = useRouter();
 	const {t} = useTranslation();
+
+
+
 
 	const handleJoinWaitlist = async () => {
 		if (!idToken) {
@@ -53,6 +64,7 @@ export const WelcomeAi: React.FC<{ isUserLoggedIn: boolean; isMobile: boolean }>
 			setLoading(false);
 		}
 	};
+	
 
 	return (
 		<>
