@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Dog } from "@/components/auth/auth";
 
-const chat = async (message: string, onData: (data: string, chunkCounter: number) => void) => {
+const chat = async (message: string, dog: Dog, onData: (data: string, chunkCounter: number) => void) => {
 	try {
 		const response = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + "/chat", {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
 			},
-			body: JSON.stringify({input: message}),
+			body: JSON.stringify({input: message, dog: dog}),
 		});
 
 		if (!response.body) {
@@ -32,7 +33,7 @@ const chat = async (message: string, onData: (data: string, chunkCounter: number
 	}
 };
 
-const Chat: React.FC<{ isMobile: boolean }> = () => {
+const Chat: React.FC<{ isMobile: boolean, dog: Dog }> = ({dog}) => {
 	const [message, setMessage] = useState<string>("");
 	const [chatLog, setChatLog] = useState<{ message: string, isUser: boolean }[]>([
 		{
@@ -49,6 +50,8 @@ const Chat: React.FC<{ isMobile: boolean }> = () => {
 		}
 	};
 
+	console.log("my dog", dog)
+
 	useEffect(() => {
 		scrollToBottom();
 	}, [chatLog]);
@@ -58,7 +61,7 @@ const Chat: React.FC<{ isMobile: boolean }> = () => {
 		let botMessage = "";
 
 		try {
-			await chat(message, (data, chunkCounter) => {
+			await chat(message, dog, (data, chunkCounter) => {
 				botMessage += data;
 				setChatLog(prevChatLog => {
 					const updatedLog = [...prevChatLog];

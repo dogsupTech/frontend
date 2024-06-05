@@ -5,7 +5,7 @@ import { WelcomeAi } from "@/components/auth/welcome";
 import initTranslations from '../i18n';
 import TranslationsProvider from '@/components/TranslationsProvider';
 import { useIsMobile } from "@/useIsMobile";
-import { useAuth } from "@/components/auth/auth";
+import { Dog, useAuth } from "@/components/auth/auth";
 import { H3, H4, H6, P1 } from "@/components/texts";
 import Chat from "@/components/Chat";
 import { WhiteSpace } from "@/components";
@@ -19,19 +19,6 @@ interface HomeProps {
 	params: {
 		locale: string;
 	};
-}
-
-class Dog {
-	name: string = "";
-	sex: string = ""; // m for male and f for female
-	breed: string = "";
-	birthDate: Date | null = null; // can be used to calculate age
-	constructor(name: string, sex: string, breed: string, birthDate: Date) {
-		this.name = name;
-		this.sex = sex;
-		this.breed = breed;
-		this.birthDate = birthDate;
-	}
 }
 
 export default function Home({params: {locale}}: HomeProps) {
@@ -57,6 +44,12 @@ export default function Home({params: {locale}}: HomeProps) {
 		return date instanceof Date && !isNaN(date.getTime()) ? date.toLocaleDateString() : "N/A";
 	}
 
+	const dogData = userData?.dog;
+	let userDog: Dog | null = null;
+	if (dogData) {
+		const birthDate = dogData.birthDate ? new Date(dogData.birthDate) : null;
+		userDog = new Dog(dogData.dogName, dogData.sex, dogData.selectedBreed, birthDate!);
+	}
 
 	return (
 		<TranslationsProvider
@@ -79,7 +72,7 @@ export default function Home({params: {locale}}: HomeProps) {
 								}) : <H4 textAlign={"center"}>No dog data found :(</H4>
 							}
 							<WhiteSpace height={"50px"}/>
-							<Chat isMobile/>
+							<Chat dog={userDog!} isMobile/>
 						</div>
 				}
 			</main>

@@ -23,15 +23,15 @@ class User {
 }
 
 
-class Dog {
-	name: string = "";
+export class Dog {
+	dogName: string = "";
 	sex: string = ""; // m for male and f for w
-	breed: string = "";
+	selectedBreed: string = "";
 	birthDate: Date | null = null // can be used to calculate age
 	constructor(name: string, sex: string, breed: string, birthDate: Date) {
-		this.name = name;
+		this.dogName = name;
 		this.sex = sex;
-		this.breed = breed;
+		this.selectedBreed = breed;
 		this.birthDate = birthDate;
 	}
 }
@@ -40,7 +40,7 @@ class Dog {
 // Updated `getMe` function
 async function getMe(idToken: string): Promise<User | null> {
 	try {
-		const response = await fetch( process.env.NEXT_PUBLIC_ACCOUNT_SERVICE_URL+"/me"!,{
+		const response = await fetch(process.env.NEXT_PUBLIC_ACCOUNT_SERVICE_URL + "/me"!, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
