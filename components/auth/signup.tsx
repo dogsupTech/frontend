@@ -96,7 +96,7 @@ const SignUp: React.FC<{ isMobile: boolean; setAuthView: React.Dispatch<any>, or
     </span>
 					</P2>
 					<form className={cn(s.form)} onSubmit={handleSubmit(handleFormSubmit)}>
-						{/* EMAIL */}
+						{/* EMAIL */}	
 						<div className={cn(s.formSection)}>
 							<div className={cn(s.inputWrapper)}>
 								<P2>

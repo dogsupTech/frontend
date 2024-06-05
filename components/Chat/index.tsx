@@ -2,12 +2,12 @@ import React, { useState, useEffect, useRef } from "react";
 
 const chat = async (message: string, onData: (data: string, chunkCounter: number) => void) => {
 	try {
-		const response = await fetch('http://localhost:8080/chat', {
+		const response = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + "/chat", {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
 			},
-			body: JSON.stringify({ input: message }),
+			body: JSON.stringify({input: message}),
 		});
 
 		if (!response.body) {
@@ -20,9 +20,9 @@ const chat = async (message: string, onData: (data: string, chunkCounter: number
 
 		let chunkCounter = 0;
 		while (!done) {
-			const { value, done: readerDone } = await reader.read();
+			const {value, done: readerDone} = await reader.read();
 			done = readerDone;
-			const chunkValue = decoder.decode(value, { stream: true });
+			const chunkValue = decoder.decode(value, {stream: true});
 			onData(chunkValue, chunkCounter);
 			chunkCounter++;
 		}
@@ -54,7 +54,7 @@ const Chat: React.FC<{ isMobile: boolean }> = () => {
 	}, [chatLog]);
 
 	const handleSend = async () => {
-		setChatLog(prevChatLog => [...prevChatLog, { message, isUser: true }]);
+		setChatLog(prevChatLog => [...prevChatLog, {message, isUser: true}]);
 		let botMessage = "";
 
 		try {
@@ -63,9 +63,9 @@ const Chat: React.FC<{ isMobile: boolean }> = () => {
 				setChatLog(prevChatLog => {
 					const updatedLog = [...prevChatLog];
 					if (chunkCounter === 0) {
-						updatedLog.push({ message: botMessage, isUser: false });
+						updatedLog.push({message: botMessage, isUser: false});
 					} else {
-						updatedLog[updatedLog.length - 1] = { message: botMessage, isUser: false };
+						updatedLog[updatedLog.length - 1] = {message: botMessage, isUser: false};
 					}
 					return updatedLog;
 				});
