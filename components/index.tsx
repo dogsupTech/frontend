@@ -23,7 +23,6 @@ const getColors = (isWhite: boolean) => ({
 
 export const SmallPrimaryButtonNew = (props: ButtonDefaultProps) => {
 	const {backgroundColor, textColor, hoverBgColor, hoverTextColor} = getColors(props.isWhite!);
-
 	return (
 		<button
 			onClick={props.onClick}
@@ -44,7 +43,6 @@ export const SmallPrimaryButtonNew = (props: ButtonDefaultProps) => {
 
 export const PrimaryButtonNew = (props: ButtonDefaultProps) => {
 	const {backgroundColor, textColor, hoverBgColor, hoverTextColor} = getColors(props.isWhite!);
-
 	return (
 		<button
 			onClick={props.onClick}
@@ -62,7 +60,6 @@ export const PrimaryButtonNew = (props: ButtonDefaultProps) => {
 		</button>
 	);
 };
-
 
 export type WhiteSpaceProps = {
 	height?: string;

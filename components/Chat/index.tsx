@@ -1,14 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Dog } from "@/components/auth/auth";
+import { Dog, useAuth } from "@/components/auth/auth";
 
-const chat = async (message: string, dog: Dog, onData: (data: string, chunkCounter: number) => void) => {
+const chat = async (message: string, idToken: string, onData: (data: string, chunkCounter: number) => void) => {
 	try {
 		const response = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + "/chat", {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
+				"Authorization": `Bearer ${idToken}`,
 			},
-			body: JSON.stringify({input: message, dog: dog}),
+			body: JSON.stringify({input: message}),
 		});
 
 		if (!response.body) {
@@ -33,8 +34,9 @@ const chat = async (message: string, dog: Dog, onData: (data: string, chunkCount
 	}
 };
 
-const Chat: React.FC<{ isMobile: boolean, dog: Dog }> = ({dog}) => {
+const Chat: React.FC<{ isMobile: boolean, dog: Dog }> = () => {
 	const [message, setMessage] = useState<string>("");
+	const {idToken} = useAuth();
 	const [chatLog, setChatLog] = useState<{ message: string, isUser: boolean }[]>([
 		{
 			message: "Hi I am your personalized behavior dog coach. I have been trained on the most relevant dog behavior research. Ask me any question about your dog and I will use all relevant information of your dog and find the best research and how it can help you",
@@ -50,8 +52,6 @@ const Chat: React.FC<{ isMobile: boolean, dog: Dog }> = ({dog}) => {
 		}
 	};
 
-	console.log("my dog", dog)
-
 	useEffect(() => {
 		scrollToBottom();
 	}, [chatLog]);
@@ -61,7 +61,7 @@ const Chat: React.FC<{ isMobile: boolean, dog: Dog }> = ({dog}) => {
 		let botMessage = "";
 
 		try {
-			await chat(message, dog, (data, chunkCounter) => {
+			await chat(message, idToken!,(data, chunkCounter) => {
 				botMessage += data;
 				setChatLog(prevChatLog => {
 					const updatedLog = [...prevChatLog];
@@ -79,6 +79,7 @@ const Chat: React.FC<{ isMobile: boolean, dog: Dog }> = ({dog}) => {
 
 		setMessage("");  // Clear input field after sending the message
 	};
+	
 
 	return (
 		<div className="flex flex-col items-center justify-center p-4 bg-gray-100">
