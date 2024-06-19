@@ -1,15 +1,21 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Dog, useAuth } from "@/components/auth/auth";
+import { useDropzone } from "react-dropzone";
 
-const chat = async (message: string, idToken: string, onData: (data: string, chunkCounter: number) => void) => {
+const chat = async (message: string, file: File | null, idToken: string, onData: (data: string, chunkCounter: number) => void) => {
 	try {
+		const formData = new FormData();
+		formData.append('input', message);
+		if (file) {
+			formData.append('file', file);
+		}
+
 		const response = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + "/chat", {
 			method: 'POST',
 			headers: {
-				'Content-Type': 'application/json',
 				"Authorization": `Bearer ${idToken}`,
 			},
-			body: JSON.stringify({input: message}),
+			body: formData,
 		});
 
 		if (!response.body) {
@@ -61,7 +67,7 @@ const Chat: React.FC<{ isMobile: boolean, dog: Dog }> = () => {
 		let botMessage = "";
 
 		try {
-			await chat(message, idToken!,(data, chunkCounter) => {
+			await chat(message, file, idToken!, (data, chunkCounter) => {
 				botMessage += data;
 				setChatLog(prevChatLog => {
 					const updatedLog = [...prevChatLog];
@@ -79,7 +85,16 @@ const Chat: React.FC<{ isMobile: boolean, dog: Dog }> = () => {
 
 		setMessage("");  // Clear input field after sending the message
 	};
-	
+
+	const [file, setFile] = useState<File | null>(null);
+
+	const onDrop = (acceptedFiles: File[]) => {
+		if (acceptedFiles && acceptedFiles.length > 0) {
+			setFile(acceptedFiles[0]);
+		}
+	};
+
+	const {getRootProps, getInputProps} = useDropzone({onDrop, accept: 'image/*'});
 
 	return (
 		<div className="flex flex-col items-center justify-center p-4 bg-gray-100">
@@ -107,6 +122,11 @@ const Chat: React.FC<{ isMobile: boolean, dog: Dog }> = () => {
 						placeholder="Type your message here"
 						className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 mb-2"
 					/>
+					<div {...getRootProps()}
+						 className="w-full p-2 border border-gray-300 rounded-md text-center cursor-pointer mb-2">
+						<input {...getInputProps()} />
+						{file ? file.name : 'Drag and drop a file here, or click to select a file'}
+					</div>
 					<button
 						onClick={handleSend}
 						className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300"
