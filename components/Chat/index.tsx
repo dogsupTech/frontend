@@ -94,7 +94,7 @@ const Chat: React.FC<{ isMobile: boolean, dog: Dog }> = () => {
 		}
 	};
 
-	const {getRootProps, getInputProps} = useDropzone({onDrop, accept: 'image/*'});
+	const {getRootProps, getInputProps} = useDropzone({onDrop });
 
 	return (
 		<div className="flex flex-col items-center justify-center p-4 bg-gray-100">
