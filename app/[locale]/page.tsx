@@ -33,7 +33,7 @@ export default function Home({params: {locale}}: HomeProps) {
 	}, [locale]);
 
 	if (!translations || isLoading) {
-		return <div>Loading...</div>; // or any other loading state representation
+		return <div className={"h-screen flex justify-center items-center"}>Loading...</div>; // or any other loading state representation
 	}
 
 	const formatDate = (date: Date | string | null): string => {
@@ -58,19 +58,34 @@ export default function Home({params: {locale}}: HomeProps) {
 			resources={translations.resources}>
 			<main className="border-2 h-screen w-full flex items-center justify-center">
 				{
-					!user ? <WelcomeAi isUserLoggedIn={false} isMobile={isMobile}/> :
-						<div className={"w-[80%]"}>
+					!user || !userData?.vet_ai_is_white_listed ?
+						<WelcomeAi isUserLoggedIn={false} isMobile={isMobile}/> :
+						<div className={"w-[80%] "}>
 							<H6 textAlign={"center"}>DogTalk behaviour coach</H6>
-							{
-								userData?.dog ? Object.entries(userData.dog).map(([key, value]) => {
-									const displayValue = key === 'birthDate' ? formatDate(value as Date) : value;
-									return (
-										<div key={key}>
-											<P1>{key}: {displayValue} </P1>
+							<div className={"flex lg:flex-row justify-around "}>
+								{
+									userData ?
+										<div className={"flex-col"}>
+											<P1>Email: {userData.email}</P1>
+											<P1>Roles: {userData.roles}</P1>
+											<P1>Requests left: {userData.request_count}</P1>
 										</div>
-									);
-								}) : <H4 textAlign={"center"}>No dog data found :(</H4>
-							}
+										: <H4 textAlign={"center"}>No user data found :(</H4>
+								}
+								<div className={"flex lg:flex-col"}>
+									{
+										userData?.dog ? Object.entries(userData.dog).map(([key, value]) => {
+											const displayValue = key === 'birthDate' ? formatDate(value as Date) : value;
+											return (
+												<div key={key}>
+													<P1>{key}: {displayValue} </P1>
+												</div>
+											);
+										}) : <H4 textAlign={"center"}>No dog data found :(</H4>
+									}
+								</div>
+							</div>
+
 							<WhiteSpace height={"50px"}/>
 							<Chat dog={userDog!} isMobile/>
 						</div>

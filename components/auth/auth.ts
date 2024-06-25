@@ -15,6 +15,8 @@ class User {
 	vet_ai_waitlist: boolean = false;
 	vet_ai_is_white_listed: boolean = false;
 	dog: Dog | null = null;
+	roles: string[] = [];
+	request_count: number = 0;
 
 	constructor(email: string, uid: string) {
 		this.uid = uid;
@@ -40,7 +42,7 @@ export class Dog {
 // Updated `getMe` function
 async function getMe(idToken: string): Promise<User | null> {
 	try {
-		const response = await fetch(process.env.NEXT_PUBLIC_ACCOUNT_SERVICE_URL + "/me"!, {
+		const response = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + "/me"!, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
