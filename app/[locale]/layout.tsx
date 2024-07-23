@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import local from 'next/font/local';
 import i18nConfig from '@/i18nConfig';
 import { dir } from 'i18next';
 import React from "react";
+import { Sidebar } from "@/components/nav";
 
 // Define Inter with a CSS variable for Tailwind
 const inter = Inter({
@@ -12,39 +12,6 @@ const inter = Inter({
 	display: 'swap',
 	variable: '--font-inter'
 });
-
-// Font files can be colocated inside of `app`
-// Define local fonts with CSS variables
-const Adieu = local({
-	src: [
-		{path: '../../public/Fonts/Adieu/Adieu-Regular.woff2', weight: 'normal', style: 'normal'},
-		{path: '../../public/Fonts/Adieu/Adieu-Light.woff2', weight: '300', style: 'normal'},
-		{path: '../../public/Fonts/Adieu/Adieu-Black.woff2', weight: '900', style: 'normal'}
-	],
-	variable: '--font-adieu'
-});
-
-
-const JosefinSans = local({
-	src: [
-		{path: '../../public/Fonts/Josefin_Sans/JosefinSans-Thin.woff2', weight: '100', style: 'normal'},
-		{path: '../../public/Fonts/Josefin_Sans/JosefinSans-ThinItalic.woff2', weight: '100', style: 'italic'},
-		{path: '../../public/Fonts/Josefin_Sans/JosefinSans-ExtraLight.woff2', weight: '200', style: 'normal'},
-		{path: '../../public/Fonts/Josefin_Sans/JosefinSans-ExtraLightItalic.woff2', weight: '200', style: 'italic'},
-		{path: '../../public/Fonts/Josefin_Sans/JosefinSans-Light.woff2', weight: '300', style: 'normal'},
-		{path: '../../public/Fonts/Josefin_Sans/JosefinSans-LightItalic.woff2', weight: '300', style: 'italic'},
-		{path: '../../public/Fonts/Josefin_Sans/JosefinSans-Regular.woff2', weight: 'normal', style: 'normal'},
-		{path: '../../public/Fonts/Josefin_Sans/JosefinSans-Italic.woff2', weight: 'normal', style: 'italic'},
-		{path: '../../public/Fonts/Josefin_Sans/JosefinSans-Medium.woff2', weight: '500', style: 'normal'},
-		{path: '../../public/Fonts/Josefin_Sans/JosefinSans-MediumItalic.woff2', weight: '500', style: 'italic'},
-		{path: '../../public/Fonts/Josefin_Sans/JosefinSans-SemiBold.woff2', weight: '600', style: 'normal'},
-		{path: '../../public/Fonts/Josefin_Sans/JosefinSans-SemiBoldItalic.woff2', weight: '600', style: 'italic'},
-		{path: '../../public/Fonts/Josefin_Sans/JosefinSans-Bold.woff2', weight: 'bold', style: 'normal'},
-		{path: '../../public/Fonts/Josefin_Sans/JosefinSans-BoldItalic.woff2', weight: 'bold', style: 'italic'}
-	],
-	variable: '--font-josefin-sans'
-});
-
 
 export const metadata: Metadata = {
 	title: "Vet AI app",
@@ -66,7 +33,12 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang={locale} dir={dir(locale)}>
-		<body>{children}</body>
+		<body>
+		<section className={"flex"}>
+			<Sidebar />
+			{children}
+		</section>
+		</body>
 		</html>
 	);
 }

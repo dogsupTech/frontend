@@ -5,13 +5,14 @@ import { useEffect, useState } from "react";
 class User {
 	uid: string;
 	email: string;
+	name: string
 
-	constructor(email: string, uid: string) {
+	constructor(email: string, uid: string, name:string) {
 		this.uid = uid;
 		this.email = email;
+		this.name = name
 	}
 }
-
 
 async function getMe(idToken: string): Promise<User | null> {
 	try {

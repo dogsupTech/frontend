@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import initTranslations from '../i18n';
 import TranslationsProvider from '@/components/TranslationsProvider';
 import useAuthLogic, { useAuth } from "@/components/auth/auth";
+import Sidebar from "@/components/nav";
 
 interface ITranslations {
 	t: (key: string) => string;
@@ -17,11 +18,11 @@ interface HomeProps {
 }
 
 const Loading = () => (
-	<div className="h-screen flex justify-center items-center">Loading...</div>
+	<div className="w-full h-screen flex items-center justify-center bg-gray-100">Loading...</div>
 );
 
 const Error = () => (
-	<div className="h-screen flex justify-center items-center text-red-500">Error loading translations.</div>
+	<div className="w-full h-screen flex items-center justify-center bg-gray-100">Error loading translations.</div>
 );
 
 export default function Home({ params: { locale } }: HomeProps) {
