@@ -9,7 +9,7 @@ import { router } from "next/client";
 interface SidebarProps {
 }
 
-export const Sidebar: React.FC<SidebarProps> = React.memo(() => {
+export const Sidebar: React.FC<SidebarProps> = () => {
 	const {userData} = useAuth();
 
 	const links = [
@@ -48,6 +48,6 @@ export const Sidebar: React.FC<SidebarProps> = React.memo(() => {
 			</div>
 		</div>
 	);
-});
+};
 
 export default Sidebar;
