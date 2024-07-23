@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Dog, useAuth } from "@/components/auth/auth";
+import {  useAuth } from "@/components/auth/auth";
 import { useDropzone } from "react-dropzone";
 
 const chat = async (message: string, file: File | null, idToken: string, onData: (data: string, chunkCounter: number) => void) => {
@@ -40,7 +40,7 @@ const chat = async (message: string, file: File | null, idToken: string, onData:
 	}
 };
 
-const Chat: React.FC<{ isMobile: boolean, dog: Dog }> = () => {
+const Chat: React.FC<{ isMobile: boolean }> = () => {
 	const [message, setMessage] = useState<string>("");
 	const {idToken} = useAuth();
 	const [chatLog, setChatLog] = useState<{ message: string, isUser: boolean }[]>([
