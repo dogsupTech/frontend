@@ -79,10 +79,9 @@ export function useAuthLogic() {
 
 	const login = async (username: string, password: string) => {
 		try {
-			console.log("logging in username", username)
 			const auth = getAuth(app);
-			console.log("auth", auth)
 			const userCredentials = await signInWithEmailAndPassword(auth, username, password);
+			alert(userCredentials)
 			return userCredentials; // Return the Firebase UserCredential object
 		} catch (error) {
 			console.error("Login error:", error);

@@ -3,8 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import initTranslations from '../i18n';
 import TranslationsProvider from '@/components/TranslationsProvider';
-import { useAuth } from "@/components/auth/auth";
-import { WelcomeAi } from "@/components/auth/welcome";
+import useAuthLogic, { useAuth } from "@/components/auth/auth";
 
 interface ITranslations {
 	t: (key: string) => string;
@@ -25,10 +24,14 @@ const Error = () => (
 	<div className="h-screen flex justify-center items-center text-red-500">Error loading translations.</div>
 );
 
-export default function Home({params: {locale}}: HomeProps) {
-	const {user, userData, isLoading} = useAuth();
+export default function Home({ params: { locale } }: HomeProps) {
+	const { userData, isLoading } = useAuth();
+	const { login } = useAuthLogic();
 	const [translations, setTranslations] = useState<ITranslations | null>(null);
 	const [error, setError] = useState<boolean>(false);
+	const [email, setEmail] = useState<string>('');
+	const [password, setPassword] = useState<string>('');
+	const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
 	useEffect(() => {
 		initTranslations(locale, ['default'])
@@ -41,43 +44,69 @@ export default function Home({params: {locale}}: HomeProps) {
 	}, [locale]);
 
 	if (error) {
-		return <Error/>;
+		return <Error />;
 	}
 
 	if (!translations || isLoading) {
-		return <Loading/>;
+		return <Loading />;
 	}
+
+	const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		setIsSubmitting(true);
+		try {
+			const credentials = await login(email, password);
+			return credentials;
+		} catch (e: any) {
+			console.log(e);
+			alert(e.message);
+		} finally {
+			setIsSubmitting(false);
+		}
+	};
 
 	return (
 		<TranslationsProvider
 			namespaces={['default']}
 			locale={locale}
 			resources={translations.resources}>
-			<main className="w-full flex items-center justify-center">
+			<main className="w-full h-screen flex items-center justify-center bg-gray-100">
 				{!isLoading && !userData ? (
-					<div style={{backgroundImage: `url("/background-login.jpeg")`, backgroundSize: 'cover'}}
-						 className={"h-screen flex w-full justify-center items-center"}>
+					<div
+						style={{ backgroundImage: `url("/background-login.jpeg")`, backgroundSize: 'cover' }}
+						className="h-screen flex w-full justify-center items-center"
+					>
 						<div className="bg-white rounded-md px-[88px] py-[44px]">
 							<div className="text-center flex justify-center flex-col items-center">
-								<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80"
-									 fill="none">
-									<path
-										d="M40 0C17.9065 0 0 17.9065 0 40C0 62.0935 17.9065 80 40 80C62.0935 80 80 62.0935 80 40C80 17.9065 62.103 0 40 0ZM65.0558 54.1752C64.3912 55.7512 63.4227 57.2134 62.2549 58.4667C61.4954 59.3212 60.6409 60.1092 59.7294 60.8213C57.9065 62.2454 55.8367 63.3658 53.7194 64.1158C52.0199 64.7235 50.254 65.1887 48.507 65.502C46.76 65.8153 45.0225 65.9862 43.3705 66.0147C42.0508 66.0147 40.826 65.9103 39.6677 65.7584C27.6952 64.1823 23.3753 56.0551 14.6309 59.3306C14.1467 59.511 13.7194 58.9414 14.0423 58.5236C16.2165 55.7512 19.0553 54.2796 22.4068 54.9347C22.5682 54.9632 22.6917 54.7828 22.5872 54.6499C21.4954 53.1498 21.1915 51.0135 21.3435 48.5925C21.4099 47.3392 21.6188 46.1619 21.8372 44.8801C23.4512 37.9967 26.8787 32.3095 27.7427 25.4356V25.4166C27.8471 23.812 27.5243 22.2075 26.3565 21.0301L26.3375 21.0112C25.7014 20.489 24.9608 20.6978 24.4291 21.1156C24.4291 21.1156 24.4102 21.1251 24.4007 21.1346C22.6917 22.9575 21.6093 25.6349 18.8274 26.0622C16.7861 26.385 15.3905 24.4481 15.1721 22.6252C14.9537 19.9383 16.3494 17.4697 18.6091 15.9601C21.8277 13.9188 25.9103 13.1688 29.1384 14.9917C30.9138 15.9791 32.2431 17.1754 33.2115 18.5331C34.1799 19.8908 34.7971 21.4099 35.1389 23.024C35.8035 26.4799 35.4807 30.0309 34.6641 33.5153C34.2749 35.3192 33.8001 37.1137 33.3159 38.8322C32.8317 40.5507 32.338 42.2122 31.9202 43.7408V43.7693C31.7304 45.1365 31.6924 46.4847 31.9013 47.8139C32.1006 49.1526 32.5469 50.4723 33.3349 51.7731C34.5502 53.7669 36.4396 55.1531 38.5474 55.7797C40.6551 56.4064 42.9718 56.2639 45.051 55.2006C46.4752 54.4695 47.624 53.4536 48.545 52.2668C49.2001 51.3268 49.7413 50.3204 50.1685 49.2571C51.3174 46.3328 51.6686 43.0192 51.1654 39.8576C51.1465 39.7342 51.0135 39.6677 50.9091 39.7247C49.0672 40.5887 46.5132 40.1139 46.1239 37.9872C45.4783 34.9774 49.0292 32.5089 51.8016 33.4678C52.5516 33.7337 53.1213 34.3128 53.3302 35.1294C53.8524 36.8099 52.8839 38.4239 51.4883 39.3829C51.3933 39.4493 51.3838 39.5822 51.4598 39.6677C54.5265 42.8293 53.7574 47.2063 53.4251 48.545C53.3871 48.6969 53.5485 48.8298 53.691 48.7539C57.3368 46.741 59.5585 42.6869 59.8718 38.6423C59.9763 36.1737 59.549 33.4868 57.935 31.4455C55.5709 28.6542 52.0294 28.0085 48.9153 26.6129C47.738 26.0717 46.4467 24.8944 46.874 23.3943C47.3582 21.3719 49.6843 21.7707 51.4693 22.1885C51.6497 22.2264 51.7731 22.0081 51.6402 21.8846C48.526 18.742 44.4054 16.1975 40.2279 14.9917C40.019 14.9347 40.0665 14.6214 40.2848 14.6309C50.1875 15.2196 59.4446 21.7707 63.3088 31.0278C66.2711 38.1771 66.0242 46.4942 62.6537 53.4251C62.5587 53.615 62.8056 53.7859 62.948 53.634C63.1474 53.4251 63.3658 53.1783 63.6031 52.9029C64.4386 52.0389 65.1982 51.1465 65.7109 50.159C65.8058 49.9786 66.0717 50.0546 66.0527 50.254C65.9293 51.6022 65.578 52.9219 65.0463 54.1752H65.0558Z"
-										fill="#121124"/>
-								</svg>
 								<h2 className="text-xl font-bold mb-6">Logga in</h2>
 							</div>
-							<form>
+							<form onSubmit={onSubmit} className="min-w-[550px]">
 								<div className="mb-4">
-									<input type="email" placeholder="jack@dogsup.co"
-										   className="w-full px-4 py-2 border rounded-md"/>
+									<input
+										type="email"
+										value={email}
+										onChange={(e) => setEmail(e.target.value)}
+										placeholder="jack@dogsup.co"
+										className="w-full py-3 border rounded-md text-lg text-left"
+										required
+									/>
 								</div>
 								<div className="mb-4">
-									<input type="password" placeholder="************"
-										   className="w-full px-4 py-2 border rounded-md"/>
+									<input
+										type="password"
+										value={password}
+										onChange={(e) => setPassword(e.target.value)}
+										placeholder="************"
+										className="w-full px-6 py-3 border rounded-md text-lg text-left"
+										required
+									/>
 								</div>
-								<button type="submit" className="w-full bg-black text-white py-2 rounded-md">LOGGA
-									IN
+								<button
+									type="submit"
+									disabled={isSubmitting}
+									className={`w-full py-3 rounded-md text-white text-lg ${isSubmitting ? 'bg-gray-500' : 'bg-black'}`}
+								>
+									{isSubmitting ? 'Logging in...' : 'LOGGA IN'}
 								</button>
 							</form>
 						</div>

@@ -45,3 +45,51 @@ body {
 		font-family: 'Adieu', serif;
 	}
 }
+
+
+/* Button Styles */
+.btn-primary {
+	background-color: #121124; /* Default background color */
+	color: white;
+	border: none;
+	padding: 0.5rem 1rem;
+	border-radius: 0.375rem;
+	font-weight: bold;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+	background-color: #ff70b7; /* Hover background color */
+}
+
+.btn-primary:disabled {
+	background-color: #d3d3d3; /* Disabled background color */
+	color: #a9a9a9;
+	cursor: not-allowed;
+}
+
+/* Secondary Button Styles */
+.btn-secondary {
+	background-color: white;
+	color: #121124;
+	border: 2px solid #121124;
+	padding: 0.5rem 1rem;
+	border-radius: 0.375rem;
+	font-weight: bold;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+.btn-secondary:hover {
+	background-color: #ff70b7; /* Hover background color */
+	color: white;
+	border-color: #ff70b7;
+}
+
+.btn-secondary:disabled {
+	background-color: #d3d3d3; /* Disabled background color */
+	color: #a9a9a9;
+	border-color: #d3d3d3;
+	cursor: not-allowed;
+}
