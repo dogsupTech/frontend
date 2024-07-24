@@ -1,0 +1,82 @@
+.formWrapper {
+    @apply flex flex-col w-full px-[20px] lg:w-[475px] items-center
+}
+
+.form {
+    @apply w-full flex justify-center flex-col items-center
+}
+
+.formSection {
+    @apply flex lg:flex-row flex-col w-full
+}
+
+
+.primaryButton {
+    @apply
+    cursor-pointer
+    text-[#fcfbf9]
+    bg-midnight-dogsup
+	font-josefin-sans
+    hover:bg-virgot-dogsup
+    hover:text-[#100f1f]
+    w-[160px]
+    h-[42px]
+}
+
+.subscriptionButton {
+    @apply
+    p-[10px]
+    rounded-sm
+    mt-[22px]
+    cursor-pointer
+    w-[160px]
+    rounded-sm
+    text-[14px]
+    font-josefin-sans
+}
+
+.inputWrapper {
+    @apply flex w-full mt-[16px] flex-col items-stretch
+}
+
+.input {
+    @apply rounded-[4px] w-full p-[12px] border-black bg-transparent font-josefin-sans border-solid border-[1px] text-midnight-dogsup
+}
+
+.callToAction {
+    @apply underline cursor-pointer
+}
+
+.buttonForgotPasswordSend {
+    @apply
+    cursor-pointer
+    text-[#fcfbf9]
+    bg-midnight-dogsup
+    font-josefin-sans
+    hover:bg-virgot-dogsup
+    hover:text-[#100f1f]
+    w-[160px]
+        text-[14px]
+    h-[42px]
+    flex
+    flex-row
+    justify-center
+    items-center
+}
+
+.buttonForgotPasswordBack {
+    @apply
+    cursor-pointer
+    text-midnight-dogsup
+    hover:bg-virgot-dogsup
+    hover:text-[#100f1f]
+    border-[2px]
+    border-midnight-dogsup
+    w-[160px]
+    h-[42px]
+    text-[14px]
+    flex
+    flex-row
+    justify-center
+    items-center
+}

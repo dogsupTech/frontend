@@ -1,8 +1,10 @@
-import { i18nRouter } from 'next-i18n-router';
-import i18nConfig from './i18nConfig';
+import { app } from "./components/auth/firebase";
+import { getAuth } from "firebase/auth";
 
 export function middleware(request) {
-	return i18nRouter(request, i18nConfig);
+	const auth = getAuth(app);
+	console.log(auth.currentUser)
+	
 }
 
 // applies this middleware only to files in the app directory
