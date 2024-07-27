@@ -26,7 +26,7 @@ export default function RootLayout({
 		<html lang="sv" className={inter.variable}>
 		<body className="bg-gray-100 text-gray-900">
 		<BaseLayout>
-			<main className="flex-1 p-4">
+			<main className="flex justify-center items-center">
 				{children}
 			</main>
 		</BaseLayout>

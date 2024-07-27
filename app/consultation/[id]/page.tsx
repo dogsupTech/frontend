@@ -1,7 +1,7 @@
 'use client'
 
 import { useParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useState } from "react";
 
 export default function ConsultationPage() {
 	const params = useParams();
@@ -23,13 +23,15 @@ export default function ConsultationPage() {
 	// if (!consultation) {
 	// 	return <div>Loading...</div>;
 	// }
+	
+	console.log(params)
 
 	return (
-		<div className={"flex w-full justify-center items-center"}>
+		<div>
 			<h1>Consultation: {consultation}</h1>
 
 			{params.id}
-			
+
 			{/* Display other consultation details here */}
 		</div>
 	);
