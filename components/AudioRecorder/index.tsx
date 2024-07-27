@@ -3,16 +3,24 @@
 import { AudioRecorder, useAudioRecorder } from 'react-audio-voice-recorder';
 import { useState, useEffect } from "react";
 import { useFilePicker } from "use-file-picker";
-const HandleFileUpload = async (file: Blob, fileName: string) => {
+import { useAuth } from "@/components/auth/auth";
+
+const handleFileUpload = async (file: Blob, fileName: string, idToken: string) => {
+	if (!idToken) {
+		console.error('ID Token not available.');
+		return;
+	}
 	const formData = new FormData();
 	formData.append('file', file, fileName);
 	formData.append('name', fileName);
 	try {
 		const response = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + '/upload-consultation', {
+			headers: {
+				"Authorization": `Bearer ${idToken}`,
+			},
 			method: 'POST',
 			body: formData,
 		});
-
 		if (response.ok) {
 			console.log('File uploaded successfully');
 			const s = await response.json();
@@ -25,20 +33,19 @@ const HandleFileUpload = async (file: Blob, fileName: string) => {
 	}
 };
 
-const ConsultationComponent: React.FC<{ onStartRecording: () => void }> = ({onStartRecording}) => {
+const ConsultationComponent: React.FC<{ onStartRecording: () => void, idToken: string }> = ({onStartRecording, idToken}) => {
 	const {openFilePicker, filesContent, loading} = useFilePicker({
 		accept: 'audio/*',
 	});
 
-	const handleFileUpload = async (file:any) => {
+	const uploadFile = async (file: any) => {
 		const blob = new Blob([file.content], {type: file.mimeType});
-		const formData = new FormData();
-		HandleFileUpload(blob, file.name);
+		handleFileUpload(blob, file.name, idToken);
 	};
 
 	useEffect(() => {
 		if (filesContent.length > 0) {
-			handleFileUpload(filesContent[0]);
+			uploadFile(filesContent[0]);
 		}
 	}, [filesContent]);
 
@@ -90,13 +97,10 @@ const RecordingComponent: React.FC<{
 	onPauseRecording: () => void,
 	isPaused: boolean
 }> = ({onStopRecording, onPauseRecording, isPaused}) => {
-
-
 	return (
 		<div className="flex flex-row items-center justify-center bg-gray-100">
 			<div className="flex flex-col items-center">
 				<div className="w-16 h-16 mb-2 flex items-center justify-center bg-green-100 rounded-full">
-					{/* Placeholder for check icon */}
 					<span className="text-gray-400">✅</span>
 				</div>
 				<p className="text-center text-gray-600 text-sm">
@@ -112,7 +116,6 @@ const RecordingComponent: React.FC<{
 			<div className="flex flex-col items-center">
 				<div
 					className={`w-16 h-16 mb-2 flex items-center justify-center rounded-full ${isPaused ? 'bg-green-100' : 'bg-yellow-100'}`}>
-					{/* Toggle between pause and play icon */}
 					<span className="text-gray-400">{isPaused ? '▶️' : '⏸'}</span>
 				</div>
 				<p className="text-center text-gray-600 text-sm">
@@ -127,9 +130,10 @@ const RecordingComponent: React.FC<{
 			</div>
 		</div>
 	);
-}
+};
 
 export const AudioRecorderComponent = () => {
+	const {idToken} = useAuth();
 	const recorderControls = useAudioRecorder();
 	const [isRecording, setIsRecording] = useState(false);
 	const [isPaused, setIsPaused] = useState(false);
@@ -138,7 +142,7 @@ export const AudioRecorderComponent = () => {
 	const addAudioElement = (blob: Blob) => {
 		const url = URL.createObjectURL(blob);
 		setAudioSrc(url);
-		HandleFileUpload(blob, 'recorded_audio.mp3');
+		handleFileUpload(blob, 'recorded_audio.mp3', idToken!);
 	};
 
 	const startRecording = () => {
@@ -167,7 +171,7 @@ export const AudioRecorderComponent = () => {
 			/>
 			{audioSrc && <audio controls={true} src={audioSrc}></audio>}
 			{!isRecording ? (
-				<ConsultationComponent onStartRecording={startRecording}/>
+				<ConsultationComponent onStartRecording={startRecording} idToken={idToken!}/>
 			) : (
 				<RecordingComponent onStopRecording={stopRecording} onPauseRecording={pauseRecording}
 									isPaused={isPaused}/>
