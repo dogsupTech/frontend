@@ -16,9 +16,8 @@ const BaseLayout: React.FC<{ children: React.ReactNode }> = ({children}) => {
 
 	return userData ? (
 		<div className="flex">
-
 			<Sidebar/>
-			<main className="flex-1 p-4">
+			<main className="4 pl-[340px]">
 				{children}
 			</main>
 		</div>
