@@ -193,7 +193,7 @@ export default function ConsultationPage() {
 				onClose={() => setModalState({ ...modalState, visible: false })}
 				onSave={handleSave}
 				initialValue={modalState.value}
-				title={fieldTranslations[modalState.section] || modalState.section.split('.').pop()}
+				title={fieldTranslations[modalState.section] as string || modalState.section.split('.').pop() as string}
 			/>
 		</div>
 	);
