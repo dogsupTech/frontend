@@ -4,6 +4,7 @@ import { Button, Modal, Input } from 'antd';
 import { useParams } from 'next/navigation';
 import { useAuth } from "@/components/auth/auth";
 import { useEffect, useState } from "react";
+import { WhiteSpace } from "@/components";
 
 export type Consultation = {
 	id: string;
@@ -55,7 +56,13 @@ const fieldTranslations: { [key: string]: string } = {
 	'physical_examination.weight': "Vikt"
 };
 
-const EditModal = ({ visible, onClose, onSave, initialValue, title }: { visible: boolean, onClose: () => void, onSave: (value: string) => void, initialValue: string, title: string }) => {
+const EditModal = ({visible, onClose, onSave, initialValue, title}: {
+	visible: boolean,
+	onClose: () => void,
+	onSave: (value: string) => void,
+	initialValue: string,
+	title: string
+}) => {
 	const [value, setValue] = useState(initialValue);
 
 	useEffect(() => {
@@ -74,7 +81,7 @@ const EditModal = ({ visible, onClose, onSave, initialValue, title }: { visible:
 			onOk={handleSave}
 			onCancel={onClose}
 		>
-			<Input.TextArea value={value} onChange={(e) => setValue(e.target.value)} />
+			<Input.TextArea value={value} onChange={(e) => setValue(e.target.value)}/>
 		</Modal>
 	);
 };
@@ -84,14 +91,18 @@ const setNestedValue = (obj: any, path: string, value: any): any => {
 	const lastKey = keys.pop() as string;
 	const lastObj = keys.reduce((obj, key) => obj[key] = obj[key] || {}, obj);
 	lastObj[lastKey] = value;
-	return { ...obj };
+	return {...obj};
 };
 
 export default function ConsultationPage() {
 	const params = useParams();
 	const [consultation, setConsultation] = useState<Consultation | null>(null);
-	const { idToken, isLoading } = useAuth();
-	const [modalState, setModalState] = useState<{ visible: boolean, section: string, value: string }>({ visible: false, section: "", value: "" });
+	const {idToken, isLoading} = useAuth();
+	const [modalState, setModalState] = useState<{ visible: boolean, section: string, value: string }>({
+		visible: false,
+		section: "",
+		value: ""
+	});
 
 	useEffect(() => {
 		const fetchConsultation = async () => {
@@ -121,13 +132,13 @@ export default function ConsultationPage() {
 	}, [params.id, idToken, isLoading]);
 
 	const handleEdit = (section: string, value: string) => {
-		setModalState({ visible: true, section, value });
+		setModalState({visible: true, section, value});
 	};
 
 	const handleSave = async (newValue: string) => {
 		if (!consultation) return;
 
-		const updatedConsultation = setNestedValue({ ...consultation }, `sections.${modalState.section}`, newValue);
+		const updatedConsultation = setNestedValue({...consultation}, `sections.${modalState.section}`, newValue);
 
 		try {
 			const response = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + `/consultations/${consultation.id}`, {
@@ -148,7 +159,7 @@ export default function ConsultationPage() {
 			console.error("Error saving consultation:", error);
 		}
 
-		setModalState({ visible: false, section: "", value: "" });
+		setModalState({visible: false, section: "", value: ""});
 	};
 
 	if (isLoading || !consultation) {
@@ -156,9 +167,11 @@ export default function ConsultationPage() {
 	}
 
 	const renderSection = (sectionKey: string, sectionData: any) => (
-		<div key={sectionKey} className="bg-white p-4 mb-4 rounded shadow">
-			<h2 className="text-xl font-semibold mb-2">{fieldTranslations[sectionKey]}</h2>
-			<p>{sectionData}</p>
+		<div key={sectionKey} className="bg-white p-4 mb-4 rounded shadow flex justify-between">
+			<div>
+				<h2 className="text-xl font-semibold mb-2">{fieldTranslations[sectionKey]}</h2>
+				<p>{sectionData}</p>
+			</div>
 			<Button type="primary" onClick={() => handleEdit(sectionKey, sectionData)}>
 				Edit
 			</Button>
@@ -166,21 +179,43 @@ export default function ConsultationPage() {
 	);
 
 	return (
-		<div className="p-8 bg-gray-100">
-			<h1 className="text-2xl font-bold mb-6">Allmän information</h1>
-			{consultation?.sections?.general_information && Object.entries(consultation.sections.general_information).map(([key, value]) =>
-				renderSection(`general_information.${key}`, value)
-			)}
-
-			<h1 className="text-2xl font-bold mb-6 mt-8">Fysisk undersökning</h1>
-			{consultation?.sections?.physical_examination && Object.entries(consultation.sections.physical_examination).map(([key, value]) =>
-				renderSection(`physical_examination.${key}`, value)
-			)}
-
-			<h1 className="text-2xl font-bold mb-6 mt-8">Kliniska anteckningar</h1>
-			{consultation?.sections?.clinical_notes && Object.entries(consultation.sections.clinical_notes).map(([key, value]) =>
-				renderSection(`clinical_notes.${key}`, value)
-			)}
+		<div className="p-8 bg-[#FCFDFA]">
+			<h1 className="text-3xl font-bold mb-6">Konsultation: Resultat</h1>
+			<p className="mb-8">Klicka på <span className="text-blue-500">"Edit"</span> för att redigera en sektion och
+				spara ändringar.</p>
+			<div className="flex justify-between mb-4">
+				<div className={"flex flex-row justify-center items-center"}>
+					<div className={"bg-[FFF] border-[0.25px] border-black rounded-[8px] p-[8px] "}>
+						resultat
+					</div>
+					<WhiteSpace width={"23px"}/>
+					<div>
+						samtal
+					</div>
+				</div>
+				<div>
+					<label className="block mb-2 font-semibold">Namn på konsultation</label>
+					<input className="p-2 border rounded-md" value={consultation?.name} readOnly/>
+				</div>
+			</div>
+			<div className="mb-8">
+				<h2 className="text-2xl font-bold mb-4">Allmän information</h2>
+				{consultation?.sections?.general_information && Object.entries(consultation.sections.general_information).map(([key, value]) =>
+					renderSection(`general_information.${key}`, value)
+				)}
+			</div>
+			<div className="mb-8">
+				<h2 className="text-2xl font-bold mb-4">Fysisk undersökning</h2>
+				{consultation?.sections?.physical_examination && Object.entries(consultation.sections.physical_examination).map(([key, value]) =>
+					renderSection(`physical_examination.${key}`, value)
+				)}
+			</div>
+			<div>
+				<h2 className="text-2xl font-bold mb-4">Kliniska anteckningar</h2>
+				{consultation?.sections?.clinical_notes && Object.entries(consultation.sections.clinical_notes).map(([key, value]) =>
+					renderSection(`clinical_notes.${key}`, value)
+				)}
+			</div>
 
 			<div className="flex justify-center mt-8">
 				<Button type="primary" className="bg-blue-500 text-white font-bold py-2 px-4 rounded">
@@ -190,7 +225,7 @@ export default function ConsultationPage() {
 
 			<EditModal
 				visible={modalState.visible}
-				onClose={() => setModalState({ ...modalState, visible: false })}
+				onClose={() => setModalState({...modalState, visible: false})}
 				onSave={handleSave}
 				initialValue={modalState.value}
 				title={fieldTranslations[modalState.section] as string || modalState.section.split('.').pop() as string}
