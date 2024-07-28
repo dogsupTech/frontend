@@ -7,7 +7,7 @@ class User {
 	email: string;
 	name: string
 
-	constructor(email: string, uid: string, name:string) {
+	constructor(email: string, uid: string, name: string) {
 		this.uid = uid;
 		this.email = email;
 		this.name = name
@@ -82,7 +82,6 @@ export function useAuthLogic() {
 		try {
 			const auth = getAuth(app);
 			const userCredentials = await signInWithEmailAndPassword(auth, username, password);
-			alert(userCredentials)
 			return userCredentials; // Return the Firebase UserCredential object
 		} catch (error) {
 			console.error("Login error:", error);

@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useAuth } from "@/components/auth/auth";
+import LoadingDots from "@/components/LoadingDots";
 
 type User = {
 	name: string;
@@ -10,7 +11,7 @@ type User = {
 };
 
 export default function Users() {
-	const { idToken } = useAuth();
+	const {idToken} = useAuth();
 	const [users, setUsers] = useState<User[]>([]);
 	const [loading, setLoading] = useState<boolean>(true);
 	const [error, setError] = useState<string | null>(null);
@@ -43,7 +44,9 @@ export default function Users() {
 	}, [idToken]);
 
 	if (loading) {
-		return <div className="flex justify-center items-center h-screen">Loading...</div>;
+		return <div className="flex justify-center items-center h-screen">
+			<LoadingDots/>
+		</div>;
 	}
 
 	if (error) {
@@ -53,7 +56,8 @@ export default function Users() {
 	return (
 		<main className="w-full h-screen flex flex-col items-center justify-start bg-gray-100 p-8">
 			<h1 className="text-4xl font-bold mb-2">Användare</h1>
-			<p className="text-lg mb-8">Här ser du en överblick över alla tidigare besök du har haft där Charlie har använts under konsultationen.</p>
+			<p className="text-lg mb-8">Här ser du en överblick över alla tidigare besök du har haft där Charlie har
+				använts under konsultationen.</p>
 			<div className="w-full max-w-4xl bg-white rounded-lg shadow-lg overflow-hidden">
 				<div className="flex justify-between px-8 py-4 bg-gray-50 border-b">
 					<span className="text-lg font-semibold">Namn</span>

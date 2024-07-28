@@ -33,7 +33,8 @@ export const Sidebar: React.FC<SidebarProps> = () => {
 	];
 
 	return (
-		<div className="h-full bg-[#FEFDFD] flex flex-col pl-[17px] w-[310px] fixed shadow-[0px_4px_3px_0px_rgba(0,0,0,0.25)]">
+		<div
+			className="h-full bg-[#FEFDFD] flex flex-col pl-[17px] w-[310px] fixed shadow-[0px_4px_3px_0px_rgba(0,0,0,0.25)]">
 			<div className="flex items-center p-4">
 				<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
 					<path
@@ -43,17 +44,17 @@ export const Sidebar: React.FC<SidebarProps> = () => {
 			</div>
 			<WhiteSpace height={"24px"}/>
 			{/*PLAY BUTTON*/}
-			<button
-				className="bg-[#100F1F] flex justify-center items-center text-[#FCFBF9] h-[52px] rounded-[8px] hover:text-[#100F1F] w-[273px] hover:bg-[#FA85C4]">
+			<Link href="/"
+				  className="bg-[#100F1F] flex justify-center items-center text-[#FCFBF9] h-[52px] rounded-[8px] hover:text-[#100F1F] w-[273px] hover:bg-[#FA85C4]">
 				<p className={"text-[16px]"}>STARTA</p>
 				<WhiteSpace width={"5px"}/>
 				<svg xmlns="http://www.w3.org/2000/svg" width="13" height="15" viewBox="0 0 13 15" fill="none">
 					<path d="M13 7.5L0.249999 14.8612L0.25 0.138783L13 7.5Z" fill="white"/>
 				</svg>
-			</button>
+			</Link>
 			<WhiteSpace height={"18px"}/>
 			<nav className="flex flex-col ">
-				{links.map(({ id, link, name }) => (
+				{links.map(({id, link, name}) => (
 					<Link
 						className={`flex items-center h-[45px] mb-[10px] pl-[8px] rounded-[8px] w-[273px] ${
 							currentPath === link ? 'bg-[#E5EFF4]' : ''
@@ -66,15 +67,15 @@ export const Sidebar: React.FC<SidebarProps> = () => {
 					</Link>
 				))}
 			</nav>
-			<div className="absolute bottom-4 left-0 right-0 p-4">
-				<Link href={"/settings"} key={3} passHref>
-					<div className="flex items-center p-4 bg-[#F5F5F5]rounded-md">
-						<div className="ml-4">
+			<div className="absolute bottom-4 left-[20px]  right-[20px]">
+				<div className={"bg-[#F5F5F5] p-[12px] rounded-[8px]"}>
+					<Link href={"/settings"} passHref>
+						<div>
 							<p>{userData?.name}</p>
-							<p className="text-gray-500 text-[12px]">{userData?.email}</p>
+							<p className="text-[#7F7F7F] text-[12px] font-inter ">{userData?.email}</p>
 						</div>
-					</div>
-				</Link>
+					</Link>
+				</div>
 			</div>
 		</div>
 	);

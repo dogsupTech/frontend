@@ -3,8 +3,9 @@
 import { Button, Modal, Input } from 'antd';
 import { useParams } from 'next/navigation';
 import { useAuth } from "@/components/auth/auth";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { WhiteSpace } from "@/components";
+import LoadingDots from "@/components/LoadingDots";
 
 export type Consultation = {
 	id: string;
@@ -163,8 +164,9 @@ export default function ConsultationPage() {
 	};
 
 	if (isLoading || !consultation) {
-		return <div className="flex justify-center items-center h-screen">Loading...</div>;
-	}
+		return <div className="flex justify-center items-center h-screen">
+			<LoadingDots />
+		</div>;	}
 
 	const renderSection = (sectionKey: string, sectionData: any) => (
 		<div key={sectionKey} className="bg-white p-4 mb-4 rounded shadow flex justify-between">

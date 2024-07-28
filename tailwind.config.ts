@@ -9,6 +9,8 @@ const config: Config = {
 	],
 	safelist: [
 		'font-inter',
+		'font-grotesk-semibold',
+		'font-grotesk-bold',
 		'font-roboto',
 		'font-adieu',
 		'font-josefin-sans'
@@ -41,6 +43,10 @@ const config: Config = {
 				'5xl': '3rem',
 				'6xl': '4rem',
 				'7xl': '5rem',
+			},
+			fontFamily: {
+				'inter': ['var(--font-inter)', 'sans-serif'],
+				'grotesk': ['var(--font-grotesk)', 'sans-serif'],
 			},
 		},
 	},
