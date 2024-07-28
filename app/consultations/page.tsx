@@ -1,36 +1,19 @@
 'use client'
 
-import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { useAuth } from "@/components/auth/auth";
+import ConsultationTable from "@/components/consultationTable"; // Ensure this path is correct
 
 export default function ConsultationPage() {
-	const params = useParams();
-	const [consultation, setConsultation] = useState(null);
-
-	// useEffect(() => {
-	// 	const fetchConsultation = async () => {
-	// 		// Replace with your actual API endpoint
-	// 		const response = await fetch(`/api/consultation/${params.id}`);
-	// 		if (response.ok) {
-	// 			const data = await response.json();
-	// 			setConsultation(data);
-	// 		}
-	// 	};
-	//
-	// 	fetchConsultation();
-	// }, [params.id]);
-
-	// if (!consultation) {
-	// 	return <div>Loading...</div>;
-	// }
+	const { idToken, isLoading } = useAuth();
 
 	return (
-		<div className={"flex w-full justify-center items-center"}>
-			<h1>Consultation: {consultation}</h1>
-
-			{params.id}
-			
-			{/* Display other consultation details here */}
+		<div className="w-full p-4">
+			<h1 className="text-2xl font-bold mb-4">Consultations</h1>
+			<ConsultationTable
+				idToken={idToken}
+				isLoading={isLoading}
+			/>
 		</div>
 	);
 }

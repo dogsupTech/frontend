@@ -4,7 +4,8 @@ import { useParams } from 'next/navigation';
 import { useState, useEffect } from "react";
 import { useAuth } from "@/components/auth/auth";
 
-type Consultation = {
+export type Consultation = {
+	id: string,
 	date: string;
 	full_transcript: string;
 	name: string;
@@ -61,6 +62,7 @@ export default function ConsultationPage() {
 		return <div className="flex justify-center items-center h-screen">Loading...</div>;
 	}
 
+	console.log("Consultation:", consultation);
 	return (
 		<div className="p-8 bg-gray-100">
 			<h1 className="text-2xl font-bold mb-6">Allmän information</h1>
