@@ -93,3 +93,13 @@ body {
 	border-color: #d3d3d3;
 	cursor: not-allowed;
 }
+
+
+/* globals.css */
+.font-semibold {
+	font-weight: 600;
+}
+
+.font-bold {
+	font-weight: 700;
+}

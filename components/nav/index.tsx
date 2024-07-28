@@ -3,22 +3,37 @@
 import React from 'react';
 import Link from 'next/link';
 import { useAuth } from "@/components/auth/auth";
-import { useRouter } from "next/router";
-import { router } from "next/client";
+import { WhiteSpace } from "@/components";
+import { usePathname } from "next/navigation";
 
 interface SidebarProps {
 }
 
 export const Sidebar: React.FC<SidebarProps> = () => {
 	const {userData} = useAuth();
+	const currentPath = usePathname();
 
 	const links = [
-		{id: 1, link: '/', name: 'Hem', icon: 'H'},
-		{id: 2, link: '/consultations', name: 'Konsultationer', icon: 'K'},
+		{
+			id: 1,
+			link: '/',
+			name: 'Hem',
+			icon: <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18" viewBox="0 0 16 18" fill="black">
+				<path d="M2 16H5V10H11V16H14V7L8 2.5L2 7V16ZM0 18V6L8 0L16 6V18H9V12H7V18H0Z" fill="#5C5C5C"/>
+			</svg>
+		},
+		{
+			id: 2, link: '/consultations', name: 'Konsultationer', icon:
+				<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+					<path
+						d="M9 18C6.7 18 4.69583 17.2375 2.9875 15.7125C1.27917 14.1875 0.3 12.2833 0.05 10H2.1C2.33333 11.7333 3.10417 13.1667 4.4125 14.3C5.72083 15.4333 7.25 16 9 16C10.95 16 12.6042 15.3208 13.9625 13.9625C15.3208 12.6042 16 10.95 16 9C16 7.05 15.3208 5.39583 13.9625 4.0375C12.6042 2.67917 10.95 2 9 2C7.85 2 6.775 2.26667 5.775 2.8C4.775 3.33333 3.93333 4.06667 3.25 5H6V7H0V1H2V3.35C2.85 2.28333 3.8875 1.45833 5.1125 0.875C6.3375 0.291667 7.63333 0 9 0C10.25 0 11.4208 0.2375 12.5125 0.7125C13.6042 1.1875 14.5542 1.82917 15.3625 2.6375C16.1708 3.44583 16.8125 4.39583 17.2875 5.4875C17.7625 6.57917 18 7.75 18 9C18 10.25 17.7625 11.4208 17.2875 12.5125C16.8125 13.6042 16.1708 14.5542 15.3625 15.3625C14.5542 16.1708 13.6042 16.8125 12.5125 17.2875C11.4208 17.7625 10.25 18 9 18ZM11.8 13.2L8 9.4V4H10V8.6L13.2 11.8L11.8 13.2Z"
+						fill="#343437"/>
+				</svg>
+		},
 	];
 
 	return (
-		<div className="h-full bg-white text-black border-r w-[310px] fixed">
+		<div className="h-full bg-[#FEFDFD] flex flex-col pl-[17px] w-[310px] fixed shadow-[0px_4px_3px_0px_rgba(0,0,0,0.25)]">
 			<div className="flex items-center p-4">
 				<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
 					<path
@@ -26,19 +41,34 @@ export const Sidebar: React.FC<SidebarProps> = () => {
 						fill="#121124"/>
 				</svg>
 			</div>
-			<nav className="mt-4 flex flex-col">
-				{links.map(({id, link, name, icon}) => (
+			<WhiteSpace height={"24px"}/>
+			{/*PLAY BUTTON*/}
+			<button
+				className="bg-[#100F1F] flex justify-center items-center text-[#FCFBF9] h-[52px] rounded-[8px] hover:text-[#100F1F] w-[273px] hover:bg-[#FA85C4]">
+				<p className={"text-[16px]"}>STARTA</p>
+				<WhiteSpace width={"5px"}/>
+				<svg xmlns="http://www.w3.org/2000/svg" width="13" height="15" viewBox="0 0 13 15" fill="none">
+					<path d="M13 7.5L0.249999 14.8612L0.25 0.138783L13 7.5Z" fill="white"/>
+				</svg>
+			</button>
+			<WhiteSpace height={"18px"}/>
+			<nav className="flex flex-col ">
+				{links.map(({ id, link, name }) => (
 					<Link
-						href={link} key={id} passHref>
-						<span className="text-lg">{icon}</span>
+						className={`flex items-center h-[45px] mb-[10px] pl-[8px] rounded-[8px] w-[273px] ${
+							currentPath === link ? 'bg-[#E5EFF4]' : ''
+						}`}
+						href={link}
+						key={id}
+						passHref>
+						{/* Your Icon Here */}
 						<span className="ml-4">{name}</span>
 					</Link>
 				))}
 			</nav>
 			<div className="absolute bottom-4 left-0 right-0 p-4">
 				<Link href={"/settings"} key={3} passHref>
-
-					<div className="flex items-center p-4 bg-gray-100 rounded-md">
+					<div className="flex items-center p-4 bg-[#F5F5F5]rounded-md">
 						<div className="ml-4">
 							<p>{userData?.name}</p>
 							<p className="text-gray-500 text-[12px]">{userData?.email}</p>
