@@ -81,8 +81,12 @@ export const AudioRecorderComponent: React.FC = () => {
 
 	if (isUploading) {
 		return (
-			<div className="flex justify-center items-center h-screen">
-				<p className="text-xl">Uploading...</p>
+			<div className="flex justify-center items-center h-screen w-full">
+				<svg xmlns="http://www.w3.org/2000/svg" width="411" height="147" viewBox="0 0 411 147" fill="none">
+					<path
+						d="M10 73.5C23.0333 158.167 36.0667 158.167 49.1 73.5C62.1333 -11.1667 75.1667 -11.1667 88.2 73.5C101.233 158.167 114.267 158.167 127.3 73.5C140.333 -11.1667 153.367 -11.1667 166.4 73.5C179.433 158.167 192.467 158.167 205.5 73.5C218.533 -11.1667 231.567 -11.1667 244.6 73.5C257.633 158.167 270.667 158.167 283.7 73.5C296.733 -11.1667 309.767 -11.1667 322.8 73.5C335.833 158.167 348.867 158.167 361.9 73.5C374.933 -11.1667 387.967 -11.1667 401 73.5"
+						stroke="#EDE6FF" stroke-width="20"/>
+				</svg>
 			</div>
 		);
 	}
@@ -101,7 +105,7 @@ export const AudioRecorderComponent: React.FC = () => {
 				recorderControls={recorderControls}
 				showVisualizer={true}
 			/>
-			{audioSrc && <audio controls src={audioSrc} />}
+			{audioSrc && <audio controls src={audioSrc}/>}
 			<div className="flex space-x-4">
 				<div className="flex flex-col items-center">
 					<input
