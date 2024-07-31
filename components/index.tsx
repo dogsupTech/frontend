@@ -31,8 +31,8 @@ export const SmallPrimaryButtonNew = (props: ButtonDefaultProps) => {
                 ${backgroundColor} 
                 ${textColor} 
                 ${props.border ? 'border border-black' : ''} 
-                ${props.isMobile ? 'w-full h-[60px]' : 'min-w-[159px] h-[42px]'}
-                flex justify-center items-center cursor-pointer transition duration-300 
+                ${props.isMobile ? 'w-full h-[60px]' : 'min-w-[189px] h-[53px]'}
+                rounded-[8px] flex justify-center items-center cursor-pointer transition duration-300 
                 ${hoverBgColor} ${hoverTextColor}
             `}
 		>

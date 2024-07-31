@@ -16,6 +16,10 @@
 	font-family: var(--font-josefin-sans);
 }
 
+html {
+	scroll-behavior: smooth;
+}
+
 :root {
 	--foreground-rgb: 0, 0, 0;
 	--background-color: #FCFBF9; /* Correct definition */

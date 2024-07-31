@@ -33,7 +33,7 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang="sv" className={familjenGrotesk.className}>
-		<body className="bg-[#fcfdfa] text-[#343437]">
+		<body className="bg-[#fcfdfa] text-[#343437] w-full">
 		<BaseLayout>
 				{children}
 		</BaseLayout>

@@ -3,7 +3,7 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"dev": "i18nexus pull && next dev",
+		"dev": "next dev",
 		"pulltranslations": "i18nexus pull",
 		"build": "next build",
 		"start": "next start",
@@ -34,10 +34,13 @@
 		"react-audio-voice-recorder": "^2.2.0",
 		"react-dom": "^18",
 		"react-dropzone": "^14.2.3",
+		"react-file-picker": "^0.0.6",
 		"react-hook-form": "^7.51.4",
 		"react-hot-toast": "^2.4.1",
 		"react-i18next": "^14.1.1",
 		"react-icons": "^5.2.1",
+		"react-scroll": "^1.9.0",
+		"react-timer-hook": "^3.0.7",
 		"use-file-picker": "^2.1.2",
 		"zod": "^3.23.4"
 	},

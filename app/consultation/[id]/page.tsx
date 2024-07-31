@@ -6,6 +6,7 @@ import { useAuth } from "@/components/auth/auth";
 import React, { useEffect, useState } from "react";
 import { WhiteSpace } from "@/components";
 import LoadingDots from "@/components/LoadingDots";
+import { Link, Element, Events, animateScroll as scroll, scrollSpy } from 'react-scroll';
 
 export type Consultation = {
 	id: string;
@@ -68,6 +69,14 @@ const EditModal = ({visible, onClose, onSave, initialValue, title}: {
 
 	useEffect(() => {
 		setValue(initialValue);
+		// Updating scrollSpy when the component mounts.
+		scrollSpy.update();
+
+		// Returning a cleanup function to remove the registered events when the component unmounts.
+		return () => {
+			Events.scrollEvent.remove('begin');
+			Events.scrollEvent.remove('end');
+		};
 	}, [initialValue]);
 
 	const handleSave = () => {
@@ -99,6 +108,8 @@ export default function ConsultationPage() {
 	const params = useParams();
 	const [consultation, setConsultation] = useState<Consultation | null>(null);
 	const {idToken, isLoading} = useAuth();
+	const [view, setView] = useState<"resultat" | "samtal">("resultat");
+
 	const [modalState, setModalState] = useState<{ visible: boolean, section: string, value: string }>({
 		visible: false,
 		section: "",
@@ -165,8 +176,9 @@ export default function ConsultationPage() {
 
 	if (isLoading || !consultation) {
 		return <div className="flex justify-center items-center h-screen">
-			<LoadingDots />
-		</div>;	}
+			<LoadingDots/>
+		</div>;
+	}
 
 	const renderSection = (sectionKey: string, sectionData: any) => (
 		<div key={sectionKey} className="bg-white p-4 mb-4 rounded shadow flex justify-between">
@@ -179,52 +191,144 @@ export default function ConsultationPage() {
 			</Button>
 		</div>
 	);
-
 	return (
-		<div className="p-8 bg-[#FCFDFA]">
-			<h1 className="text-3xl font-bold mb-6">Konsultation: Resultat</h1>
-			<p className="mb-8">Klicka på <span className="text-blue-500">"Edit"</span> för att redigera en sektion och
-				spara ändringar.</p>
-			<div className="flex justify-between mb-4">
-				<div className={"flex flex-row justify-center items-center"}>
-					<div className={"bg-[FFF] border-[0.25px] border-black rounded-[8px] p-[8px] "}>
-						resultat
-					</div>
-					<WhiteSpace width={"23px"}/>
-					<div>
-						samtal
-					</div>
-				</div>
-				<div>
-					<label className="block mb-2 font-semibold">Namn på konsultation</label>
-					<input className="p-2 border rounded-md" value={consultation?.name} readOnly/>
-				</div>
-			</div>
-			<div className="mb-8">
-				<h2 className="text-2xl font-bold mb-4">Allmän information</h2>
-				{consultation?.sections?.general_information && Object.entries(consultation.sections.general_information).map(([key, value]) =>
-					renderSection(`general_information.${key}`, value)
-				)}
-			</div>
-			<div className="mb-8">
-				<h2 className="text-2xl font-bold mb-4">Fysisk undersökning</h2>
-				{consultation?.sections?.physical_examination && Object.entries(consultation.sections.physical_examination).map(([key, value]) =>
-					renderSection(`physical_examination.${key}`, value)
-				)}
-			</div>
+		<div className="mx-[37px] mt-[91px]">
 			<div>
-				<h2 className="text-2xl font-bold mb-4">Kliniska anteckningar</h2>
-				{consultation?.sections?.clinical_notes && Object.entries(consultation.sections.clinical_notes).map(([key, value]) =>
-					renderSection(`clinical_notes.${key}`, value)
-				)}
+				<h1 className="text-[40px]">Konsultation: {view}</h1>
+				<WhiteSpace height={"14px"}/>
+				<p className={"min-h-[82px] max-w-[507px] font-inter text-[12px]"}>
+					{
+
+						view == "resultat" ?
+							<>
+								Klicka på &nbsp;
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="13"
+									height="15"
+									viewBox="0 0 13 15"
+									fill="none"
+									style={{display: 'inline-block', verticalAlign: 'middle'}}
+								>
+									<path
+										d="M4.58824 12C4.16765 12 3.8076 11.8531 3.50809 11.5594C3.20858 11.2656 3.05882 10.9125 3.05882 10.5V1.5C3.05882 1.0875 3.20858 0.734375 3.50809 0.440625C3.8076 0.146875 4.16765 0 4.58824 0H11.4706C11.8912 0 12.2512 0.146875 12.5507 0.440625C12.8502 0.734375 13 1.0875 13 1.5V10.5C13 10.9125 12.8502 11.2656 12.5507 11.5594C12.2512 11.8531 11.8912 12 11.4706 12H4.58824ZM4.58824 10.5H11.4706V1.5H4.58824V10.5ZM1.52941 15C1.10882 15 0.748775 14.8531 0.449265 14.5594C0.149755 14.2656 0 13.9125 0 13.5V3H1.52941V13.5H9.94118V15H1.52941Z"
+										fill="#343437"
+									/>
+								</svg>
+								&nbsp; för att kopiera en anteckning som du sedan kan klistra in i din patients journal.
+								För att ändra en anteckning klicka på &nbsp;
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="4"
+									height="16"
+									viewBox="0 0 4 16"
+									fill="none"
+									style={{display: 'inline-block', verticalAlign: 'middle'}}
+								>
+									<circle cx="2" cy="2" r="2" fill="#343437"/>
+									<circle cx="2" cy="7.6001" r="2" fill="#343437"/>
+									<circle cx="2" cy="13.2" r="2" fill="#343437"/>
+								</svg>
+								&nbsp; och sedan ‘ändra’. När du känner dig klar, klicka på Klar-knappen längst ner på
+								sidan. Du kan närsomhelst titta på resultatet från tidigare konsultationer genom att
+								klicka på ‘konsultationer’ i menyn till vänster.
+							</>
+							: <>
+								Nedan finner du hela samtalet i text från er konsultation som AI:n har analyserat. AI:n har
+								transkriberat ert samtal, helt enkelt omvandlat tal till text genom att noggrant skriva ner
+								allt som sagts under ert samtal.
+							</>
+					}
+				</p>
+				<div className="flex justify-between">
+					<div className={"flex flex-row justify-center items-center"}>
+						<div
+							onClick={() => setView("resultat")}
+							className={`bg-[FFF] ${view === "resultat" ? "border-[0.25px] border-black bg-white" : ""} rounded-[8px] p-[8px] cursor-pointer`}
+						>
+							Resultat
+						</div>
+						<WhiteSpace width={"23px"}/>
+						<div
+							onClick={() => setView("samtal")}
+							className={`${view === "samtal" ? "border-[0.25px] border-black rounded-[8px] p-[8px] bg-white" : ""} cursor-pointer`}
+						>
+							Samtal
+						</div>
+					</div>
+					<div className={"p-2 border rounded-md bg-white flex flex-col min-w-[280px]"}>
+						<label className="text-[10px] font-semibold">Namn på konsultation</label>
+						{consultation?.name}
+					</div>
+				</div>
+			</div>
+			{/* Navigation Links */}
+			<div className={"flex flex-row ml-[8px]"}>
+				<Link to="allman-information"
+					  className="cursor-pointer hover:underline pr-[12px]">
+					<p className={"font-inter text-[12px]"}>
+						Allmän information
+					</p>
+				</Link>
+				<Link to="fysisk-undersokning"
+					  className="cursor-pointer hover:underline pr-[12px]">
+					<p className={"font-inter text-[12px]"}>
+						Fysisk undersökning
+					</p>
+				</Link>
+				<Link to="kliniska-anteckningar"
+					  className="cursor-pointer hover:underline">
+					<p className={"font-inter text-[12px]"}>
+						Kliniska anteckningar
+					</p>
+				</Link>
 			</div>
 
-			<div className="flex justify-center mt-8">
-				<Button type="primary" className="bg-blue-500 text-white font-bold py-2 px-4 rounded">
-					KLAR
-				</Button>
-			</div>
 
+			<WhiteSpace height={"12px"}/>
+			{/*result & samtal */}
+			<div>
+				<div className={"bg-white rounder-[8px] py-[22px] px-[77px]"}>
+					{/*RESULT*/}
+					{view === "resultat" &&
+						<>
+							<Element name="allman-information">
+								<div className="mb-8">
+									<h2 className="text-[26px] mb-4">Allmän information</h2>
+									{consultation?.sections?.general_information && Object.entries(consultation.sections.general_information).map(([key, value]) =>
+										renderSection(`general_information.${key}`, value)
+									)}
+								</div>
+							</Element>
+							<Element name="fysisk-undersokning">
+								<div className="mb-8">
+									<h2 className="text-[26px] mb-4">Fysisk undersökning</h2>
+									{consultation?.sections?.physical_examination && Object.entries(consultation.sections.physical_examination).map(([key, value]) =>
+										renderSection(`physical_examination.${key}`, value)
+									)}
+								</div>
+							</Element>
+							<Element name="kliniska-anteckningar">
+								<div>
+									<h2 className="text-[26px] mb-4">Kliniska anteckningar</h2>
+									{consultation?.sections?.clinical_notes && Object.entries(consultation.sections.clinical_notes).map(([key, value]) =>
+										renderSection(`clinical_notes.${key}`, value)
+									)}
+								</div>
+							</Element>
+							<div className="flex justify-center mt-8">
+								<Button type="primary" className="bg-blue-500 text-white font-bold py-2 px-4 rounded">
+									KLAR
+								</Button>
+							</div>
+						</>
+					}
+				</div>
+				{/*SAMTAL*/}
+				<div>
+					
+				</div>
+			</div>
 			<EditModal
 				visible={modalState.visible}
 				onClose={() => setModalState({...modalState, visible: false})}
@@ -233,5 +337,6 @@ export default function ConsultationPage() {
 				title={fieldTranslations[modalState.section] as string || modalState.section.split('.').pop() as string}
 			/>
 		</div>
-	);
+	)
+		;
 }
