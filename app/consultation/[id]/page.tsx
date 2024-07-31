@@ -7,6 +7,8 @@ import React, { useEffect, useState } from "react";
 import { WhiteSpace } from "@/components";
 import LoadingDots from "@/components/LoadingDots";
 import { Link, Element, Events, animateScroll as scroll, scrollSpy } from 'react-scroll';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+
 
 export type Consultation = {
 	id: string;
@@ -36,6 +38,7 @@ export type Consultation = {
 			temperature: string;
 			weight: string;
 		};
+		formatted_transcription: { role: string, message: string }[];
 	};
 };
 
@@ -180,20 +183,19 @@ export default function ConsultationPage() {
 		</div>;
 	}
 
-	const renderSection = (sectionKey: string, sectionData: any) => (
-		<div key={sectionKey} className="bg-white p-4 mb-4 rounded shadow flex justify-between">
+	const renderSection = (title: string, content: any, bg: string, actionsComponent?: React.ReactNode) => (
+		<div key={title} className={`${bg} p-4 mb-4 rounded flex rounded-[8px] items-center justify-between`}>
 			<div>
-				<h2 className="text-xl font-semibold mb-2">{fieldTranslations[sectionKey]}</h2>
-				<p>{sectionData}</p>
+				<h2 className="text-[16px] font-semibold mb-2">{title}</h2>
+				<p className={"font-inter text-[14px]"}>{content}</p>
 			</div>
-			<Button type="primary" onClick={() => handleEdit(sectionKey, sectionData)}>
-				Edit
-			</Button>
+			{actionsComponent && <div>{actionsComponent}</div>}
 		</div>
 	);
+
 	return (
 		<div className="mx-[37px] mt-[91px]">
-			<div>
+			<div className={"px-[77px]"}>
 				<h1 className="text-[40px]">Konsultation: {view}</h1>
 				<WhiteSpace height={"14px"}/>
 				<p className={"min-h-[82px] max-w-[507px] font-inter text-[12px]"}>
@@ -240,6 +242,8 @@ export default function ConsultationPage() {
 							</>
 					}
 				</p>
+				<WhiteSpace height={"24px"}/>
+
 				<div className="flex justify-between">
 					<div className={"flex flex-row justify-center items-center"}>
 						<div
@@ -263,72 +267,157 @@ export default function ConsultationPage() {
 				</div>
 			</div>
 			{/* Navigation Links */}
-			<div className={"flex flex-row ml-[8px]"}>
-				<Link to="allman-information"
-					  className="cursor-pointer hover:underline pr-[12px]">
-					<p className={"font-inter text-[12px]"}>
-						Allmän information
-					</p>
-				</Link>
-				<Link to="fysisk-undersokning"
-					  className="cursor-pointer hover:underline pr-[12px]">
-					<p className={"font-inter text-[12px]"}>
-						Fysisk undersökning
-					</p>
-				</Link>
-				<Link to="kliniska-anteckningar"
-					  className="cursor-pointer hover:underline">
-					<p className={"font-inter text-[12px]"}>
-						Kliniska anteckningar
-					</p>
-				</Link>
-			</div>
-
-
+			{view == "resultat" ?
+				<div className={"flex flex-row ml-[8px] px-[77px] h-[20px pt-[10px]"}>
+					<Link to="allman-information"
+						  className="cursor-pointer hover:underline pr-[12px]">
+						<p className={"font-inter text-[12px]"}>
+							Allmän information
+						</p>
+					</Link>
+					<Link to="fysisk-undersokning"
+						  className="cursor-pointer hover:underline pr-[12px]">
+						<p className={"font-inter text-[12px]"}>
+							Fysisk undersökning
+						</p>
+					</Link>
+					<Link to="kliniska-anteckningar"
+						  className="cursor-pointer hover:underline">
+						<p className={"font-inter text-[12px]"}>
+							Kliniska anteckningar
+						</p>
+					</Link>
+				</div> : <WhiteSpace height={"30px"}/>
+			}
 			<WhiteSpace height={"12px"}/>
 			{/*result & samtal */}
-			<div>
-				<div className={"bg-white rounder-[8px] py-[22px] px-[77px]"}>
+			<>
+				<div className={"bg-white rounded-[8px] py-[22px] px-[77px]"}>
 					{/*RESULT*/}
 					{view === "resultat" &&
 						<>
 							<Element name="allman-information">
 								<div className="mb-8">
 									<h2 className="text-[26px] mb-4">Allmän information</h2>
-									{consultation?.sections?.general_information && Object.entries(consultation.sections.general_information).map(([key, value]) =>
-										renderSection(`general_information.${key}`, value)
+									{consultation?.sections?.general_information && Object.entries(consultation.sections.general_information).map(([key, value], index) =>
+										renderSection(
+											fieldTranslations[`general_information.${key}`],
+											value,
+											index % 2 === 0 ? 'bg-[#FCFBFB]' : 'bg-[#F5F6FA]',
+											<div className={"flex justify-center"}>
+												<div className={"cursor-pointer"}>
+													<CopyToClipboard text={value}>
+														<svg xmlns="http://www.w3.org/2000/svg" width="17" height="20"
+															 viewBox="0 0 17 20" fill="none">
+															<path
+																d="M6 16C5.45 16 4.97917 15.8042 4.5875 15.4125C4.19583 15.0208 4 14.55 4 14V2C4 1.45 4.19583 0.979167 4.5875 0.5875C4.97917 0.195833 5.45 0 6 0H15C15.55 0 16.0208 0.195833 16.4125 0.5875C16.8042 0.979167 17 1.45 17 2V14C17 14.55 16.8042 15.0208 16.4125 15.4125C16.0208 15.8042 15.55 16 15 16H6ZM6 14H15V2H6V14ZM2 20C1.45 20 0.979167 19.8042 0.5875 19.4125C0.195833 19.0208 0 18.55 0 18V4H2V18H13V20H2Z"
+																fill="#343437"/>
+														</svg>
+													</CopyToClipboard>
+												</div>
+												<WhiteSpace width={"17px"}/>
+												<div
+													className={"cursor-pointer flex items-center justify-center"}
+													onClick={() => handleEdit(`general_information.${key}`, value)}>
+													<svg xmlns="http://www.w3.org/2000/svg" width="5" height="19"
+														 viewBox="0 0 5 19" fill="none">
+														<circle cx="2.5" cy="2.5" r="2.5" fill="#343437"/>
+														<circle cx="2.5" cy="9.5" r="2.5" fill="#343437"/>
+														<circle cx="2.5" cy="16.5" r="2.5" fill="#343437"/>
+													</svg>
+												</div>
+											</div>
+										)
 									)}
 								</div>
 							</Element>
 							<Element name="fysisk-undersokning">
 								<div className="mb-8">
 									<h2 className="text-[26px] mb-4">Fysisk undersökning</h2>
-									{consultation?.sections?.physical_examination && Object.entries(consultation.sections.physical_examination).map(([key, value]) =>
-										renderSection(`physical_examination.${key}`, value)
+									{consultation?.sections?.physical_examination && Object.entries(consultation.sections.physical_examination).map(([key, value], index) =>
+										renderSection(
+											fieldTranslations[`physical_examination.${key}`],
+											value,
+											index % 2 === 0 ? 'bg-[#FCFBFB]' : 'bg-[#F5F6FA]',
+											<div className={"flex justify-center"}>
+												<div className={"cursor-pointer"}>
+													<CopyToClipboard text={value}>
+														<svg xmlns="http://www.w3.org/2000/svg" width="17" height="20"
+															 viewBox="0 0 17 20" fill="none">
+															<path
+																d="M6 16C5.45 16 4.97917 15.8042 4.5875 15.4125C4.19583 15.0208 4 14.55 4 14V2C4 1.45 4.19583 0.979167 4.5875 0.5875C4.97917 0.195833 5.45 0 6 0H15C15.55 0 16.0208 0.195833 16.4125 0.5875C16.8042 0.979167 17 1.45 17 2V14C17 14.55 16.8042 15.0208 16.4125 15.4125C16.0208 15.8042 15.55 16 15 16H6ZM6 14H15V2H6V14ZM2 20C1.45 20 0.979167 19.8042 0.5875 19.4125C0.195833 19.0208 0 18.55 0 18V4H2V18H13V20H2Z"
+																fill="#343437"/>
+														</svg>
+													</CopyToClipboard>
+												</div>
+												<WhiteSpace width={"17px"}/>
+												<div
+													className={"cursor-pointer flex items-center justify-center"}
+													onClick={() => handleEdit(`general_information.${key}`, value)}>
+													<svg xmlns="http://www.w3.org/2000/svg" width="5" height="19"
+														 viewBox="0 0 5 19" fill="none">
+														<circle cx="2.5" cy="2.5" r="2.5" fill="#343437"/>
+														<circle cx="2.5" cy="9.5" r="2.5" fill="#343437"/>
+														<circle cx="2.5" cy="16.5" r="2.5" fill="#343437"/>
+													</svg>
+												</div>
+											</div>
+										)
 									)}
 								</div>
 							</Element>
 							<Element name="kliniska-anteckningar">
 								<div>
 									<h2 className="text-[26px] mb-4">Kliniska anteckningar</h2>
-									{consultation?.sections?.clinical_notes && Object.entries(consultation.sections.clinical_notes).map(([key, value]) =>
-										renderSection(`clinical_notes.${key}`, value)
+									{consultation?.sections?.clinical_notes && Object.entries(consultation.sections.clinical_notes).map(([key, value], index) =>
+										renderSection(
+											fieldTranslations[`clinical_notes.${key}`],
+											value,
+											index % 2 === 0 ? 'bg-[#FCFBFB]' : 'bg-[#F5F6FA]',
+											<div className={"flex justify-center"}>
+												<div className={"cursor-pointer"}>
+													<CopyToClipboard text={value}>
+														<svg xmlns="http://www.w3.org/2000/svg" width="17" height="20"
+															 viewBox="0 0 17 20" fill="none">
+															<path
+																d="M6 16C5.45 16 4.97917 15.8042 4.5875 15.4125C4.19583 15.0208 4 14.55 4 14V2C4 1.45 4.19583 0.979167 4.5875 0.5875C4.97917 0.195833 5.45 0 6 0H15C15.55 0 16.0208 0.195833 16.4125 0.5875C16.8042 0.979167 17 1.45 17 2V14C17 14.55 16.8042 15.0208 16.4125 15.4125C16.0208 15.8042 15.55 16 15 16H6ZM6 14H15V2H6V14ZM2 20C1.45 20 0.979167 19.8042 0.5875 19.4125C0.195833 19.0208 0 18.55 0 18V4H2V18H13V20H2Z"
+																fill="#343437"/>
+														</svg>
+													</CopyToClipboard>
+												</div>
+												<WhiteSpace width={"17px"}/>
+												<div
+													className={"cursor-pointer flex items-center justify-center"}
+													onClick={() => handleEdit(`general_information.${key}`, value)}>
+													<svg xmlns="http://www.w3.org/2000/svg" width="5" height="19"
+														 viewBox="0 0 5 19" fill="none">
+														<circle cx="2.5" cy="2.5" r="2.5" fill="#343437"/>
+														<circle cx="2.5" cy="9.5" r="2.5" fill="#343437"/>
+														<circle cx="2.5" cy="16.5" r="2.5" fill="#343437"/>
+													</svg>
+												</div>
+											</div>
+										)
 									)}
 								</div>
 							</Element>
-							<div className="flex justify-center mt-8">
-								<Button type="primary" className="bg-blue-500 text-white font-bold py-2 px-4 rounded">
-									KLAR
-								</Button>
+						</>}
+					{/*SAMTAL*/}
+					<div>
+						{view === "samtal" && (
+							<div>
+								<h2 className="text-[26px] mb-4">Samtal</h2>
+								{consultation.sections.formatted_transcription && consultation.sections.formatted_transcription.map((entry, index) => {
+									const role = Object.keys(entry)[0];
+									const message = entry[role];
+									const bg = index % 2 === 0 ? 'bg-[#FCFBFB]' : 'bg-[#F5F6FA]'
+									return renderSection(role, message, bg);
+								})}
 							</div>
-						</>
-					}
+						)}
+					</div>
 				</div>
-				{/*SAMTAL*/}
-				<div>
-					
-				</div>
-			</div>
+			</>
 			<EditModal
 				visible={modalState.visible}
 				onClose={() => setModalState({...modalState, visible: false})}
