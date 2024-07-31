@@ -1,0 +1,18 @@
+/* styles.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Ant Design Table Header */
+.custom-ant-table .ant-table-thead > tr > th {
+	@apply bg-white font-semibold text-gray-800; /* Apply white background, bold font, and gray text color */
+	border-bottom: 2px solid #f0f0f0; /* Customize the bottom border */
+	border-radius: 0; /* Remove border-radius */
+}
+
+/* Custom Pagination */
+.pagination-custom .ant-pagination-item,
+.pagination-custom .ant-pagination-prev,
+.pagination-custom .ant-pagination-next {
+	@apply text-black border-none; /* Make pagination text black and remove border */
+}
