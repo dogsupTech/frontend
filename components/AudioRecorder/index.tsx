@@ -9,14 +9,17 @@ import { useFilePicker } from "use-file-picker";
 import { SmallPrimaryButtonNew, WhiteSpace } from "@/components";
 import LoadingDots from "@/components/LoadingDots";
 import { useStopwatch } from "react-timer-hook";
+import TextArea from "antd/es/input/TextArea";
 
-const handleFileUpload = async (file: Blob, fileName: string, consultationName: string, idToken: string): Promise<string> => {
+const handleFileUpload = async (file: Blob, fileName: string, consultationName: string, idToken: string, notes:string): Promise<string> => {
 	if (!idToken) {
 		throw new Error('ID Token not available.');
 	}
 	const formData = new FormData();
 	formData.append('file', file, fileName);
 	formData.append('name', consultationName);
+	formData.append('notes', notes)
+	
 	const response = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + '/upload-consultation', {
 		headers: {
 			"Authorization": `Bearer ${idToken}`,
@@ -38,6 +41,7 @@ export const AudioRecorderComponent: React.FC = () => {
 	const [audioSrc, setAudioSrc] = useState<string | null>(null);
 	const [consultationName, setConsultationName] = useState('');
 	const [isUploading, setIsUploading] = useState(false);
+	const [notes, setNotes] = useState(''); // State for textarea
 
 	//  stop watch stuff
 	const {
@@ -57,7 +61,6 @@ export const AudioRecorderComponent: React.FC = () => {
 		multiple: true,
 		onFilesSelected: ({plainFiles, filesContent, errors}) => {
 			// this callback is always called, even if there are errors
-			console.log('onFilesSelected', plainFiles, filesContent, errors);
 		},
 		onFilesRejected: ({errors}) => {
 			// this callback is called when there were validation errors
@@ -78,7 +81,7 @@ export const AudioRecorderComponent: React.FC = () => {
 		if (!idToken) return;
 		setIsUploading(true);
 		try {
-			const result = await handleFileUpload(file, fileName, consultationName, idToken);
+			const result = await handleFileUpload(file, fileName, consultationName, idToken, notes);
 			// @ts-ignore
 			router.push(`/consultation/${result.id}`);
 		} catch (error) {
@@ -375,7 +378,21 @@ export const AudioRecorderComponent: React.FC = () => {
 						</div>
 					)}
 				</div>
+				<WhiteSpace height={"38px"}/>
+				<div className={"w-[458px]"}>
+					<h2 className={"text-[24px]"}>Egna anteckningar</h2>
+					<WhiteSpace height={"10px"}/>
+					<TextArea
+						placeholder="Börja skriv här..."
+						value={notes}
+						onChange={(e) => setNotes(e.target.value)}
+						rows={4}
+						cols={4}
+						className={"bg-[#F5F6FA] p-4 text-[#0A0A0B] rounded-[8px] border-0"}
+					/>
+				</div>
 			</div>
+
 		</div>
 
 	);

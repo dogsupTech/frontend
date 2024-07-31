@@ -67,7 +67,7 @@ export const Sidebar: React.FC<SidebarProps> = () => {
 					</Link>
 				))}
 			</nav>
-			<div className="absolute bottom-4 left-[20px]  right-[20px]">
+			<div className="absolute bottom-4 left-[20px]  right-[20px] lg:mb-[61px]">
 				<div className={"bg-[#F5F5F5] p-[12px] rounded-[8px] "}>
 					<Link href={"/settings"} passHref className={"flex flex-row justify-center items-center"}>
 						<div>
