@@ -4,10 +4,11 @@ import { Button, Modal, Input } from 'antd';
 import { useParams } from 'next/navigation';
 import { useAuth } from "@/components/auth/auth";
 import React, { useEffect, useState } from "react";
-import { WhiteSpace } from "@/components";
+import { SmallPrimaryButtonNew, WhiteSpace } from "@/components";
 import LoadingDots from "@/components/LoadingDots";
 import { Link, Element, Events, animateScroll as scroll, scrollSpy } from 'react-scroll';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { CloseOutlined } from "@ant-design/icons";
 
 
 export type Consultation = {
@@ -72,10 +73,7 @@ const EditModal = ({visible, onClose, onSave, initialValue, title}: {
 
 	useEffect(() => {
 		setValue(initialValue);
-		// Updating scrollSpy when the component mounts.
 		scrollSpy.update();
-
-		// Returning a cleanup function to remove the registered events when the component unmounts.
 		return () => {
 			Events.scrollEvent.remove('begin');
 			Events.scrollEvent.remove('end');
@@ -89,12 +87,29 @@ const EditModal = ({visible, onClose, onSave, initialValue, title}: {
 
 	return (
 		<Modal
-			title={`Edit ${title}`}
+			title={<h2 className={"text-[24px]"}>{title}</h2>}
 			visible={visible}
-			onOk={handleSave}
 			onCancel={onClose}
+			footer={[
+				<div className={" justify-center flex flex-row"}>
+					<SmallPrimaryButtonNew
+						border={true}
+						onClick={onClose}
+						isWhite={true}
+						text={"AVBRYT"}
+					/>
+					<WhiteSpace width={"15px"}/>
+					<SmallPrimaryButtonNew
+						border={true}
+						onClick={handleSave}
+						text={"SPARA"}
+					/>
+				</div>
+			]}
+			closeIcon={<CloseOutlined/>}
 		>
-			<Input.TextArea value={value} onChange={(e) => setValue(e.target.value)}/>
+			<Input.TextArea                  autoSize={{ minRows: 4, maxRows: 8 }} // Set min and max rows
+											 className={"bg-[#F5F6FA]  font-inter text-[14px]"} value={value} onChange={(e) => setValue(e.target.value)}/>
 		</Modal>
 	);
 };
@@ -255,7 +270,7 @@ export default function ConsultationPage() {
 						<WhiteSpace width={"23px"}/>
 						<div
 							onClick={() => setView("samtal")}
-							className={`${view === "samtal" ? "border-[0.25px] border-black rounded-[8px] p-[8px] bg-white" : ""} cursor-pointer`}
+							className={`bg-[FFF] ${view === "samtal" ? "border-[0.25px] border-black bg-white" : ""} rounded-[8px] p-[8px] cursor-pointer`}
 						>
 							Samtal
 						</div>
@@ -353,7 +368,7 @@ export default function ConsultationPage() {
 												<WhiteSpace width={"17px"}/>
 												<div
 													className={"cursor-pointer flex items-center justify-center"}
-													onClick={() => handleEdit(`general_information.${key}`, value)}>
+													onClick={() => handleEdit(`physical_examination.${key}`, value)}>
 													<svg xmlns="http://www.w3.org/2000/svg" width="5" height="19"
 														 viewBox="0 0 5 19" fill="none">
 														<circle cx="2.5" cy="2.5" r="2.5" fill="#343437"/>
@@ -388,7 +403,7 @@ export default function ConsultationPage() {
 												<WhiteSpace width={"17px"}/>
 												<div
 													className={"cursor-pointer flex items-center justify-center"}
-													onClick={() => handleEdit(`general_information.${key}`, value)}>
+													onClick={() => handleEdit(`clinical_notes.${key}`, value)}>
 													<svg xmlns="http://www.w3.org/2000/svg" width="5" height="19"
 														 viewBox="0 0 5 19" fill="none">
 														<circle cx="2.5" cy="2.5" r="2.5" fill="#343437"/>
