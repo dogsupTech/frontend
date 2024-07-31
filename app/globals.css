@@ -113,3 +113,41 @@ body {
 .font-bold {
 	font-weight: 700;
 }
+
+
+
+/* Custom Ant Design Table Header */
+.custom-ant-table .ant-table-thead > tr > th {
+	@apply bg-white font-semibold text-gray-800; /* Apply white background, bold font, and gray text color */
+	border-bottom: 2px solid #f0f0f0; /* Customize the bottom border */
+	border-radius: 0; /* Remove border-radius */
+}
+
+/* Custom Pagination */
+.pagination-custom .ant-pagination-item,
+.pagination-custom .ant-pagination-prev,
+.pagination-custom .ant-pagination-next {
+	@apply text-black border-none; /* Make pagination text black and remove border */
+}
+
+
+.custom-ant-pagination {
+	color: black;
+	display: flex;
+	justify-content: center;
+}
+
+.custom-ant-pagination .ant-pagination-item,
+.custom-ant-pagination .ant-pagination-prev,
+.custom-ant-pagination .ant-pagination-next {
+	color: black;
+}
+
+.custom-ant-pagination .ant-pagination-item a {
+	color: black;
+}
+
+.custom-ant-pagination .ant-pagination-item-active {
+	background-color: #f0f0f0;
+	border-color: #d9d9d9;
+}

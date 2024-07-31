@@ -1,12 +1,12 @@
 "use client";
 
-import { Button, Modal, Input } from 'antd';
+import {  Modal, Input } from 'antd';
 import { useParams } from 'next/navigation';
 import { useAuth } from "@/components/auth/auth";
 import React, { useEffect, useState } from "react";
 import { SmallPrimaryButtonNew, WhiteSpace } from "@/components";
 import LoadingDots from "@/components/LoadingDots";
-import { Link, Element, Events, animateScroll as scroll, scrollSpy } from 'react-scroll';
+import { Link, Element, Events, scrollSpy } from 'react-scroll';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { CloseOutlined } from "@ant-design/icons";
 
@@ -424,6 +424,7 @@ export default function ConsultationPage() {
 								<h2 className="text-[26px] mb-4">Samtal</h2>
 								{consultation.sections.formatted_transcription && consultation.sections.formatted_transcription.map((entry, index) => {
 									const role = Object.keys(entry)[0];
+									// @ts-ignore
 									const message = entry[role];
 									const bg = index % 2 === 0 ? 'bg-[#FCFBFB]' : 'bg-[#F5F6FA]'
 									return renderSection(role, message, bg);

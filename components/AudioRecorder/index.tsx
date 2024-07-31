@@ -184,10 +184,12 @@ export const AudioRecorderComponent: React.FC = () => {
 						className={"rounded-[8px] font-inter text-[#838383] bg-[#FEFDFD] border-black text-[14px] min-w-[294px] border-[0.25px] p-[16px]"}
 					/>
 				}
-				<AudioRecorder
-					onRecordingComplete={addAudioElement}
-					recorderControls={recorderControls}
-				/>
+				<div className={"hidden"}>
+					<AudioRecorder
+						onRecordingComplete={addAudioElement}
+						recorderControls={recorderControls}
+					/>
+				</div>
 				{audioSrc && <audio controls src={audioSrc}/>}
 				<WhiteSpace height={"32px"}/>
 				<div className="flex flex-col items-center">
