@@ -378,19 +378,19 @@ export const AudioRecorderComponent: React.FC = () => {
 						</div>
 					)}
 				</div>
-				<WhiteSpace height={"38px"}/>
-				<div className={"w-[458px]"}>
-					<h2 className={"text-[24px]"}>Egna anteckningar</h2>
-					<WhiteSpace height={"10px"}/>
-					<TextArea
-						placeholder="Börja skriv här..."
-						value={notes}
-						onChange={(e) => setNotes(e.target.value)}
-						rows={4}
-						cols={4}
-						className={"bg-[#F5F6FA] p-4 text-[#0A0A0B] rounded-[8px] border-0"}
-					/>
-				</div>
+				{/*<WhiteSpace height={"38px"}/>*/}
+				{/*<div className={"w-[458px]"}>*/}
+				{/*	<h2 className={"text-[24px]"}>Egna anteckningar</h2>*/}
+				{/*	<WhiteSpace height={"10px"}/>*/}
+				{/*	<TextArea*/}
+				{/*		placeholder="Börja skriv här..."*/}
+				{/*		value={notes}*/}
+				{/*		onChange={(e) => setNotes(e.target.value)}*/}
+				{/*		rows={4}*/}
+				{/*		cols={4}*/}
+				{/*		className={"bg-[#F5F6FA] p-4 text-[#0A0A0B] rounded-[8px] border-0"}*/}
+				{/*	/>*/}
+				{/*</div>*/}
 			</div>
 
 		</div>
