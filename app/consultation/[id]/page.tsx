@@ -8,6 +8,7 @@ import { SmallPrimaryButtonNew, WhiteSpace } from "@/components";
 import LoadingDots from "@/components/LoadingDots";
 import { Link, Element, Events, scrollSpy } from 'react-scroll';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { CloseOutlined } from "@ant-design/icons";
 
 
 export type Consultation = {
