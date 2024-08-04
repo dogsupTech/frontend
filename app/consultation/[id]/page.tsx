@@ -91,7 +91,7 @@ const EditModal = ({visible, onClose, onSave, initialValue, title}: {
 			visible={visible}
 			onCancel={onClose}
 			footer={[
-				<div className={" justify-center flex flex-row"}>
+				<div key={title} className={"justify-center flex flex-row"}>
 					<SmallPrimaryButtonNew
 						border={true}
 						onClick={onClose}
@@ -108,8 +108,8 @@ const EditModal = ({visible, onClose, onSave, initialValue, title}: {
 			]}
 			closeIcon={<CloseOutlined/>}
 		>
-			<Input.TextArea                  autoSize={{ minRows: 4, maxRows: 8 }} // Set min and max rows
-											 className={"bg-[#F5F6FA]  font-inter text-[14px]"} value={value} onChange={(e) => setValue(e.target.value)}/>
+			<Input.TextArea autoSize={{ minRows: 4, maxRows: 8 }} // Set min and max rows
+			className={"bg-[#F5F6FA]  font-inter text-[14px]"} value={value} onChange={(e) => setValue(e.target.value)}/>
 		</Modal>
 	);
 };
@@ -319,7 +319,7 @@ export default function ConsultationPage() {
 											fieldTranslations[`general_information.${key}`],
 											value,
 											index % 2 === 0 ? 'bg-[#FCFBFB]' : 'bg-[#F5F6FA]',
-											<div className={"flex justify-center"}>
+											<div key={`general_information_${key}`} className={"flex justify-center"}>
 												<div className={"cursor-pointer"}>
 													<CopyToClipboard text={value}>
 														<svg xmlns="http://www.w3.org/2000/svg" width="17" height="20"
@@ -354,7 +354,7 @@ export default function ConsultationPage() {
 											fieldTranslations[`physical_examination.${key}`],
 											value,
 											index % 2 === 0 ? 'bg-[#FCFBFB]' : 'bg-[#F5F6FA]',
-											<div className={"flex justify-center"}>
+											<div key={`physical_examination_${key}`} className={"flex justify-center"}>
 												<div className={"cursor-pointer"}>
 													<CopyToClipboard text={value}>
 														<svg xmlns="http://www.w3.org/2000/svg" width="17" height="20"
@@ -389,7 +389,7 @@ export default function ConsultationPage() {
 											fieldTranslations[`clinical_notes.${key}`],
 											value,
 											index % 2 === 0 ? 'bg-[#FCFBFB]' : 'bg-[#F5F6FA]',
-											<div className={"flex justify-center"}>
+											<div key={`clinical_notes_${key}`} className={"flex justify-center"}>
 												<div className={"cursor-pointer"}>
 													<CopyToClipboard text={value}>
 														<svg xmlns="http://www.w3.org/2000/svg" width="17" height="20"
@@ -427,7 +427,7 @@ export default function ConsultationPage() {
 									// @ts-ignore
 									const message = entry[role];
 									const bg = index % 2 === 0 ? 'bg-[#FCFBFB]' : 'bg-[#F5F6FA]'
-									return renderSection(role, message, bg);
+									return renderSection(role + index, message, bg);
 								})}
 							</div>
 						)}
